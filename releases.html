@@ -1,0 +1,579 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Releases @ Digital Divide Records</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Advent+Pro:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo">
+      <img src="logo.jpg" alt="Digital Divide Records Logo">
+    </div>
+    <button class="hamburger">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </button>
+    <ul class="nav-menu">
+      <li><a href="index.html" data-tooltip="Learn about Digital Divide Records">About</a></li>
+      <li><a href="artists.html" data-tooltip="Our featured artists">Artists</a></li>
+      <li><a href="demos.html" data-tooltip="Submit your demos">Demos</a></li>
+      <li><a href="releases.html" data-tooltip="Browse our releases">Releases</a></li>
+      <!--START OF MERCH STORES DROPDOWN MENU-->
+      <!--<li class="dropdown">
+        <a href="merch.html" class="dropbtn" data-tooltip="Shop our merchandise">Merch <i class="fas fa-caret-down"></i></a>
+        <ul class="dropdown-content">
+          <li><a href="https://digitaldividerecords.bigcartel.com/" data-tooltip="Shop On Big Cartel">Big Cartel</a></li>
+          <li><a href="https://digitaldividerecordsmerch.company.site/" data-tooltip="Shop On Ecwid">Ecwid</a></li>
+        </ul>
+      </li>
+    </ul-->
+
+      <!--END OF MERCH STORES DROPDOWN MENU-->
+  </nav>
+
+  <div class="releases-container">
+    <h1>Our Releases</h1>
+    
+    <p class="releases-intro">
+      Digital Divide Records brings you cutting-edge underground house music from talented artists around the globe. Our releases span various sub-genres including Amapiano, Afro, Deep, Tech, and more. All our music is available on all major streaming platforms and download stores.
+    </p>
+
+<!--START OF DOWNLOAD & STREAMING PLATFORM ICON LINKS-->
+    
+    <!--<div class="platforms">
+      <h2>Find Our Music On:</h2>
+      <div class="platform-icons">
+        <a href="https://www.beatport.com/label/digital-divide-records/100802" target="_blank" class="platform">
+          <i class="fas fa-music"></i>
+          <span>Beatport</span>
+        </a>
+        <a href="https://www.traxsource.com/label/57635/digital-divide-records" target="_blank" class="platform">
+          <i class="fas fa-compact-disc"></i>
+          <span>Traxsource</span>
+        </a>
+        <a href="https://www.junodownload.com/labels/Digital+Divide+Records/" target="_blank" class="platform">
+          <i class="fas fa-download"></i>
+          <span>Juno Download</span>
+        </a>
+        <a href="https://open.spotify.com/playlist/7tIq6DiPUbpZtfQmpSi2zg" target="_blank" class="platform">
+          <i class="fab fa-spotify"></i>
+          <span>Spotify</span>
+        </a>
+        <a href="https://music.apple.com/label/digital-divide-records/1627547773" target="_blank" class="platform">
+          <i class="fab fa-apple"></i>
+          <span>Apple Music</span>
+        </a>
+      </div>
+    </div>-->
+
+    <!--END OF DOWNLOAD & STREAMING PLATFORM ICON LINKS-->
+
+    <div class="release-catalog">
+      <h2>Latest Releases</h2>
+      
+      <div class="search-container">
+        <div class="search-box">
+          <input type="text" class="search-input" id="release-search" placeholder="Search by artist or title...">
+          <i class="fas fa-search search-icon"></i>
+        </div>
+      </div>
+      
+      <div class="search-filters">
+        <button class="filter-btn active" data-genre="all">All Genres</button>
+        
+        <button class="filter-btn" data-genre="amapiano">AmaPiano</button>
+        <button class="filter-btn" data-genre="afro">Afro House</button>
+        <button class="filter-btn" data-genre="electronica">Electronica</button>
+        <button class="filter-btn" data-genre="electro">Electro House</button>
+        <button class="filter-btn" data-genre="deep">Deep House</button>
+        <button class="filter-btn" data-genre="disco/nu-disco">Disco/Nu-Disco</button>
+        <button class="filter-btn" data-genre="funky/jackin">Funky/Jackin House</button>
+        <button class="filter-btn" data-genre="techno">Techno</button>
+        <button class="filter-btn" data-genre="tech">Tech House</button>
+        <button class="filter-btn" data-genre="soulful">Soulful</button>
+      </div>
+      <!--<button class="filter-btn" data-genre="progressive">Progressive House</button>-->
+      
+      <div class="releases-navigation">
+        <button id="prev-page" class="nav-btn">
+          <i class="fas fa-chevron-left"></i> Previous
+        </button>
+        <div class="page-indicator">
+          <span id="current-page">1</span> / <span id="total-pages">4</span>
+        </div>
+        <button id="next-page" class="nav-btn">
+          Next <i class="fas fa-chevron-right"></i>
+        </button>
+      </div>
+      
+      <div class="release-grid" id="releases-container">
+        <!-- Page 1 releases -->
+        
+        <div class="release-item" data-page="1">
+          <div class="release-image">
+            <img src="nextlevel.jpg" alt="DJ Jonnas - Next Level" loading="lazy">
+          </div>
+          <div class="release-info">
+            <h3>DJ Jonnas - Next level</h3>
+            <p class="release-date">Released: 15/03/2025</p>
+            <p class="release-description">Groovy Tech House House with sci-fi psychotic rhythms.
+            </p>
+            <a href="https://www.beatport.com/release/next-level/4828459" target="_blank" class="listen-btn">Listen & Buy</a>
+          </div>
+        </div>
+
+       
+        <div class="release-item" data-page="1">
+          <div class="release-image">
+            <img src="growth.jpg" alt="DJ Jonnas - Growth">
+          </div>
+          <div class="release-info">
+            <h3>DJ Jonnas - Growth</h3>
+            <p class="release-date">Released: 23/12/2024</p>
+            <p class="release-description">
+              Groovy Techno & Tech House tune with a funky filled bassline.
+            </p>
+            <a href="https://www.beatport.com/release/growth/4834024" target="_blank" class="listen-btn">Listen & Buy</a>
+          </div>
+        </div>
+ 
+
+            <div class="release-item" data-page="1">
+              <div class="release-image">
+                <img src="heartgiver.jpg" alt="Kru Side - Heart Giver">
+              </div>
+              <div class="release-info">
+                <h3>Kru Side - Heart Giver</h3>
+                <p class="release-date">Released: 22/11/2024</p>
+                <p class="release-description">
+Chilled House with hints of Soulful vocals
+                </p>
+                <a href="https://www.beatport.com/release/heart-giver/4798154" target="_blank" class="listen-btn">Listen & Buy</a>
+          </div>
+        </div>
+
+        
+        <div class="release-item" data-page="1">
+          <div class="release-image">
+            <img src="afrodream.jpg" alt="Aquarius - Afro Dream">
+          </div>
+          <div class="release-info">
+            <h3>Aquarius - Afro Dream</h3>
+            <p class="release-date">Released: 16/12/2022</p>
+            <p class="release-description">
+        Deep & Melodic House with hints of Afro House & Electronica
+            </p>
+            <a href="https://www.beatport.com/release/afro-dream/479778" target="_blank" class="listen-btn">Listen & Buy</a>
+              </div>
+              </div>
+        
+
+    
+    <div class="release-item" data-page="1">
+      <div class="release-image">
+        <img src="laidback.jpg" alt="Kru Side - Laidback">
+      </div>
+      <div class="release-info">
+        <h3>Kru Side - Laidback</h3>
+        <p class="release-date">Released: 06/05/2022</p>
+        <p class="release-description">
+    Chilled Souldful house with a groovy bassline
+        </p>
+        <a href="https://www.traxsource.com/title/2395420/laidback" target="_blank" class="listen-btn">Listen & Buy</a>
+    </div>
+    </div>
+
+        <div class="release-item" data-page="1">
+          <div class="release-image">
+            <img src="flexxin.jpg" alt="Adam Jesse - Flexxin">
+          </div>
+          <div class="release-info">
+            <h3>Adam Jesse - Flexxin</h3>
+            <p class="release-date">Released: 13/02/2023</p>
+            <p class="release-description">
+        Electrifying Funky Electro House Rhythm to get your body moving
+            </p>
+            <a href="https://www.traxsource.com/title/2395774/flexxin" target="_blank" class="listen-btn">Listen & Buy</a>
+        </div>
+        </div>
+        
+        <div class="release-item" data-page="1">
+          <div class="release-image">
+            <img src="blablabla.jpg" alt="Adam Jesse - Bla Bla Bla">
+          </div>
+          <div class="release-info">
+            <h3>Adam Jesse - Bla Bla Bla</h3>
+            <p class="release-date">Released: 20/03/2023</p>
+            <p class="release-description">
+        Electrifying Funky House & Electro House Rhythm to get your body moving
+            </p>
+            <a href="https://www.traxsource.com/title/2395441/bla-bla-bla" target="_blank" class="listen-btn">Listen & Buy</a>
+        </div>
+        </div>
+
+        
+        <div class="release-item" data-page="1">
+          <div class="release-image">
+            <img src="jungle.jpg" alt="Aquarius - Jungle">
+          </div>
+          <div class="release-info">
+            <h3>Aquarius - Jungle</h3>
+            <p class="release-date">Released: 15/04/2023</p>
+            <p class="release-description">Deep & Afro House Finely blended
+            </p>
+            <a href="https://www.traxsource.com/title/2395414/jungle" target="_blank" class="listen-btn">Listen & Buy</a>
+        </div>
+        </div>
+
+        <div class="release-item" data-page="1">
+          <div class="release-image">
+            <img src="lawofhouse.jpg" alt="Adam Jesse - Law Of House">
+          </div>
+          <div class="release-info">
+            <h3>Adam Jesse - Law Of House</h3>
+            <p class="release-date">Released: 05/05/2023</p>
+            <p class="release-description">
+        Sensationally sizzling Electro House tune
+            </p>
+            <a href="https://www.traxsource.com/title/2395775/law-of-house" target="_blank" class="listen-btn">Listen & Buy</a>
+        </div>
+        </div>
+
+        <div class="release-item" data-page="1">
+          <div class="release-image">
+            <img src="pleasedontgo.jpg" alt="Adam Jesse - Please Don't Go">
+          </div>
+          <div class="release-info">
+            <h3>Adam Jesse - Please Don't Go</h3>
+            <p class="release-date">Released: 08/06/2023</p>
+            <p class="release-description">
+        Funkdafied Electro Groove
+            </p>
+            <a href="https://www.traxsource.com/title/2395445/please-dont-go" target="_blank" class="listen-btn">Listen & Buy</a>
+        </div>
+        </div>
+
+        <div class="release-item" data-page="1">
+          <div class="release-image">
+            <img src="giveit2me.jpg" alt="Adam Jesse - Give It To Me">
+          </div>
+          <div class="release-info">
+            <h3>Adam Jesse - Give It To Me</h3>
+            <p class="release-date">Released: 16/06/2023</p>
+            <p class="release-description">
+        Sexy Female Vocals With A Groovy Electro Rhythm
+            </p>
+            <a href="https://www.traxsource.com/title/2395777/give-it-to-me" target="_blank" class="listen-btn">Listen & Buy</a>
+        </div>
+        </div>
+
+
+        <div class="release-item" data-page="1">
+          <div class="release-image">
+            <img src="2shotrule.jpg" alt="Adam Jesse - 2 Shot Rule">
+          </div>
+          <div class="release-info">
+            <h3>Adam Jesse - 2 Shot Rule</h3>
+            <p class="release-date">Released: 26/08/2023</p>
+            <p class="release-description">
+        Strong punchy & completely complextro (complex electro sounds)
+            </p>
+            <a href="https://www.traxsource.com/title/2395444/2-shot-rule" target="_blank" class="listen-btn">Listen & Buy</a>
+        </div>
+        </div>
+
+        <div class="release-item" data-page="1">
+          <div class="release-image">
+            <img src="thebackroom.jpg" alt="Adam Jesse - The Back Room">
+          </div>
+          <div class="release-info">
+            <h3>Adam Jesse - The Back Room</h3>
+            <p class="release-date">Released: 26/08/2023</p>
+            <p class="release-description">
+        Pumping up the pace with this solid groove
+            </p>
+            <a href="https://www.traxsource.com/title/2395770/the-back-room" target="_blank" class="listen-btn">Listen & Buy</a>
+        </div>
+        </div>
+
+        <div class="release-item" data-page="1">
+          <div class="release-image">
+            <img src="headcase.jpg" alt="Adam Jesse - Headcase">
+          </div>
+          <div class="release-info">
+            <h3>Adam Jesse - Headcase</h3>
+            <p class="release-date">Released: 08/12/2023</p>
+            <p class="release-description">Aggressive synth patterns and one glitchy electro groove 
+            </p>
+            <a href="https://www.traxsource.com/title/2395771/headcase" target="_blank" class="listen-btn">Listen & Buy</a>
+        </div>
+        </div>
+
+
+
+
+
+
+
+        
+
+        
+
+
+
+
+
+
+
+
+
+        
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+
+        <div class="release-item" data-page="1">
+          <div class="release-image">
+            <img src="magic.jpg" alt="Kru Side - Magic">
+          </div>
+          <div class="release-info">
+            <h3>Kru Side - Magic</h3>
+            <p class="release-date">Released: 07/10/2022</p>
+            <p class="release-description">
+              Sophisticated Soulful House with heartwarming vocals.
+            </p>
+            <a href="https://www.beatport.com/release/magic/4798148" target="_blank" class="listen-btn">Listen & Buy</a>
+          </div>
+        </div>
+
+        <div class="release-item" data-page="1">
+          <div class="release-image">
+            <img src="got2go.jpg" alt="Adam Jesse - Got To Go">
+          </div>
+          <div class="release-info">
+            <h3>Adam Jesse - Got to Go</h3>
+            <p class="release-date">Released: 30/09/2022</p>
+            <p class="release-description">
+              Electro House with spacey synths and driving basslines for peak-time sets.
+            </p>
+            <a href="https://www.beatport.com/release/got-to-go/4798162" target="_blank" class="listen-btn">Listen & Buy</a>
+          </div>
+        </div>
+
+        <div class="release-item" data-page="1">
+          <div class="release-image">
+            <img src="underwater.jpg" alt="Aquarius - Underwater">
+          </div>
+          <div class="release-info">
+            <h3>Aquarius - Underwater</h3>
+            <p class="release-date">Released: 09/09/2022</p>
+            <p class="release-description">
+              Melodic Deep house featuring lush pads, and organic percussion elements.
+            </p>
+            <a href="https://www.beatport.com/release/underwater/4798135" target="_blank" class="listen-btn">Listen & Buy</a>
+          </div>
+        </div>
+        
+        <div class="release-item" data-page="2">
+          <div class="release-image">
+            <img src="distance.jpg" alt="DJ Jonnas - Distance">
+          </div>
+          <div class="release-info">
+            <h3>DJ Jonnas - Distance</h3>
+            <p class="release-date">Released: 12/08/2022</p>
+            <p class="release-description">
+              Deep House with hypnotically mesmerizing melodies.
+            </p>
+            <a href="https://www.traxsource.com/title/2395781/distance" target="_blank" class="listen-btn">Listen & Buy</a>
+          </div>
+        </div>
+        
+        <div class="release-item" data-page="2">
+          <div class="release-image">
+            <img src="logos.jpg" alt="k-Elements - Logos">
+          </div>
+          <div class="release-info">
+            <h3>K-Elements - Logos</h3>
+            <p class="release-date">Released: 01/08/2022</p>
+            <p class="release-description">
+              Melodic House sounds with glitchy textures and experimental sound design.
+            </p>
+            <a href="https://www.beatport.com/release/logos/4808386" target="_blank" class="listen-btn">Listen & Buy</a>
+          </div>
+        </div>
+        
+        <!-- Page 2 releases (initially hidden) -->
+        <div class="release-item" data-page="2">
+          <div class="release-image">
+            <img src="jinglequeen.jpg" alt="frank NoMore - Jingle Queen">
+          </div>
+          <div class="release-info">
+            <h3>Frank NoMore - Jingle Queen</h3>
+            <p class="release-date">Released: 31/05/2022</p>
+            <p class="release-description">
+              Disco & Nu-disco House groove with retro synths and funky basslines inspired by 80s aesthetics.
+            </p>
+            <a href="https://www.beatport.com/release/jingle-queen/4798137" target="_blank" class="listen-btn">Listen & Buy</a>
+          </div>
+        </div>
+        
+        <div class="release-item" data-page="2">
+          <div class="release-image">
+            <img src="nevermind.jpg" alt="SizBlack" - Nevermind">
+          </div>
+          <div class="release-info">
+            <h3>SizBlack - Nevermind</h3>
+            <p class="release-date">Released: 20/05/2022</p>
+            <p class="release-description">Chilled Deep House with hypnotic melodies
+            </p>
+            <a href="https://www.beatport.com/release/nevermind/4797720" target="_blank" class="listen-btn">Listen & Buy</a>
+          </div>
+        </div>
+        
+        <div class="release-item" data-page="2">
+          <div class="release-image">
+            <img src="firstlove.jpg" alt="Kru Side - First Love">
+          </div>
+          <div class="release-info">
+            <h3>Kru Side - First Love</h3>
+            <p class="release-date">Released: 06/05/2022</p>
+            <p class="release-description">Groovy Soulful House with Jazz sounds and meditative progressions.
+            </p>
+            <a href="https://www.traxsource.com/title/2401061/first-love" target="_blank" class="listen-btn">Listen & Buy</a>
+          </div>
+        </div>
+        
+        <div class="release-item" data-page="2">
+          <div class="release-image">
+            <img src="you.jpg" alt="Endjour - YOU">
+          </div>
+          <div class="release-info">
+            <h3>Endjour - YOU</h3>
+            <p class="release-date">Released: 29/04/2022</p>
+            <p class="release-description">
+  Distinctively deep house rhythms with progressive structures.
+            </p>
+            <a href="https://www.traxsource.com/title/2401058/you" target="_blank" class="listen-btn">Listen & Buy</a>
+          </div>
+        </div>
+        
+        <div class="release-item" data-page="2">
+          <div class="release-image">
+            <img src="newbalance.jpg" alt="K-Elements - New Balance">
+          </div>
+          <div class="release-info">
+            <h3>K-Elements - New Balance</h3>
+            <p class="release-date">Released: 22/04/2022</p>
+            <p class="release-description">Chilled & melodic house tunes with ambient samples & groovy basslines
+            </p>
+            <a href="https://www.traxsource.com/title/2401062/new-balance" target="_blank" class="listen-btn">Listen & Buy</a>
+          </div>
+        </div>
+        
+        <div class="release-item" data-page="2">
+          <div class="release-image">
+            <img src="odyssey.jpg" alt="DJ Jonnas - The Odyssey">
+          </div>
+          <div class="release-info">
+            <h3>DJ Jonnas - The Odyssey</h3>
+            <p class="release-date">Released: 14/04/2022</p>
+            <p class="release-description">Forward-thinking deep & tech house with futuristic sound design and dystopian atmospheres.
+            </p>
+            <a href="https://www.traxsource.com/title/2395780/the-odyssey" target="_blank" class="listen-btn">Listen & Buy</a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="pagination-controls">
+        <div class="page-dots">
+          <!-- Dots will be generated dynamically by JavaScript -->
+        </div>
+      </div>
+    </div>
+
+    <div class="upcoming-releases">
+      <h2>Coming Soon</h2>
+      <p>Stay tuned for upcoming releases from our talented roster of artists. Follow us on social media for announcements and previews!</p>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-section">
+        <h3>Connect With Us</h3>
+        <p>Follow us on social media for the latest updates & releases.</p>
+        <div class="social-icons">
+          <a href="https://web.facebook.com/DigitalDivideRecords/" target="_blank" class="social-icon" aria-label="Facebook">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+          <a href="https://instagram.com/digitaldividerecords" target="_blank" class="social-icon" aria-label="Instagram">
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a href="https://x.com/DigitalDivideRe" target="_blank" class="social-icon" aria-label="X (Twitter)">
+            <i class="fab fa-twitter"></i>
+          </a>
+          <a href="https://soundcloud.com/digitaldividerecs" target="_blank" class="social-icon" aria-label="Soundcloud">
+            <i class="fab fa-soundcloud"></i>
+          </a>
+          <a href="https://mixcloud.com/digitaldividerecords" target="_blank" class="social-icon" aria-label="Mixcloud">
+            <i class="fab fa-mixcloud"></i>
+          </a>
+        </div>
+      </div>
+      
+      <div class="footer-section">
+        <h3>Download Stores</h3>
+        <div class="music-platforms">
+          <a href="https://www.beatport.com/label/digital-divide-records/100802" target="_blank" class="platform-link">
+            Beatport
+          </a>
+          <a href="https://www.traxsource.com/label/62753/digital-divide-records" target="_blank" class="platform-link">
+            Traxsource
+          </a>
+          <a href="https://www.junodownload.com/labels/Digital+Divide/" target="_blank" class="platform-link">
+            Juno Download
+          </a>
+        </div>
+      </div>
+      
+      <div class="footer-section">
+        <h3>Legal</h3>
+        <div class="legal-links">
+          <a href="privacy-policy.html" class="legal-link">Privacy Policy</a>
+          <a href="terms-conditions.html" class="legal-link">Terms & Conditions</a>
+          <a href="mailto:infoqdigitaldividerecords@gmail.com" class="legal-link">Contact Us</a>
+        </div>
+      </div>
+    </div>
+    
+    <div class="copyright">
+      &copy; <script>document.write(new Date().getFullYear())</script> Digital Divide Records. All Rights Reserved.
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

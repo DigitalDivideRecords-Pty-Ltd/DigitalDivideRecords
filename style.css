@@ -18,10 +18,9 @@ body {
   background-color: black;
 }
 
-.logo img {
+.logo img, .footer-logo-img {
   height: 160px;
   width: auto;
-  margin-bottom: 1.5rem;
 }
 
 .nav-menu {
@@ -752,7 +751,13 @@ body {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  align-items: center;
   gap: 2rem;
+}
+
+.footer-logo {
+  height: 160px;
+  width: auto;
 }
 
 .footer-section {

@@ -755,10 +755,10 @@ body {
   gap: 2rem;
 }
 
-.footer-logo {
+/*.footer-logo {
   height: 160px;
   width: auto;
-}
+}*/
 
 .footer-section {
   flex: 1;

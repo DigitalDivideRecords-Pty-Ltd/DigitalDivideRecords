@@ -282,7 +282,10 @@ document.addEventListener('DOMContentLoaded', () => {
       if (itemsFound === 0) {
         const noResults = document.createElement('div');
         noResults.className = 'no-results';
-        noResults.innerHTML = `No releases found matching "${searchTerm}" ${currentFilter !== 'all' ? `in ${currentFilter}` : ''}. <br> Try a different search term or filter.`;
+        noResults.textContent = `No releases found matching "${searchTerm}" ${currentFilter !== 'all' ? `in ${currentFilter}` : ''}.`;
+        const br = document.createElement('br');
+        noResults.appendChild(br);
+        noResults.appendChild(document.createTextNode(' Try a different search term or filter.'));
         releasesContainer.appendChild(noResults);
       }
 

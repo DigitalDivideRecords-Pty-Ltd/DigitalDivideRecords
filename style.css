@@ -1174,3 +1174,111 @@ section {
   margin-top: 2rem;
   padding: 2rem 1.5rem;
 }
+
+.upcoming-highlight {
+  background: linear-gradient(135deg, #1a202c 80%, #ff2d55 100%);
+  color: #fff;
+  margin: 40px auto;
+  padding: 32px 16px;
+  border-radius: 26px;
+  box-shadow: 0 0 24px 4px #ff2d55, 0 0 64px 16px #ffffff33;
+  max-width: 900px;
+  position: relative;
+  z-index: 10;
+  overflow: hidden;
+  animation: pulseGlow 2.5s infinite alternate;
+  transition: box-shadow 0.3s;
+}
+
+@keyframes pulseGlow {
+  0% { box-shadow: 0 0 24px 4px #ff2d55, 0 0 64px 16px #ffffff33; }
+  100% { box-shadow: 0 0 64px 12px #ff2d55, 0 0 128px 32px #ffffff55; }
+}
+
+.upcoming-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.upcoming-title {
+  font-family: 'Advent Pro', 'Arial', sans-serif;
+  font-size: 2.2em;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-align: center;
+  margin-bottom: 18px;
+  text-shadow: 0 0 6px #ff2d55cc;
+  animation: textFadeIn 1.2s ease;
+}
+
+@keyframes textFadeIn {
+  from { opacity: 0; transform: scale(0.95);}
+  to   { opacity: 1; transform: scale(1);}
+}
+
+.upcoming-media {
+  display: flex;
+  gap: 24px;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 18px;
+  flex-wrap: wrap;
+}
+
+.upcoming-img {
+  max-width: 270px;
+  border-radius: 18px;
+  box-shadow: 0 0 16px 4px #ff2d55;
+  animation: imgPop 1.5s cubic-bezier(.68,-0.55,.27,1.55) 0.5s;
+}
+
+@keyframes imgPop {
+  from { transform: scale(0.8); opacity: 0; }
+  to   { transform: scale(1); opacity: 1; }
+}
+
+.upcoming-video {
+  max-width: 420px;
+  border-radius: 18px;
+  box-shadow: 0 0 14px 2px #ff2d5566;
+  outline: none;
+  animation: videoPop 1.7s cubic-bezier(.68,-0.55,.27,1.55) 0.7s;
+}
+
+@keyframes videoPop {
+  from { transform: scale(0.85); opacity: 0; }
+  to   { transform: scale(1); opacity: 1; }
+}
+
+.upcoming-desc {
+  text-align: center;
+  margin-top: 12px;
+  font-size: 1.15em;
+  max-width: 700px;
+  line-height: 1.6;
+  animation: descFadeIn 1.5s ease 1s;
+}
+
+@keyframes descFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.release-date-announce {
+  display: block;
+  margin-top: 12px;
+  font-weight: bold;
+  font-size: 1.15em;
+  background: #ff2d55;
+  color: #fff;
+  padding: 8px 18px;
+  border-radius: 8px;
+  box-shadow: 0 0 8px #ff2d55cc;
+  animation: blinkDate 1s infinite alternate;
+}
+
+@keyframes blinkDate {
+  0%   { background: #ff2d55; }
+  100% { background: #fff; color: #ff2d55; }
+    }

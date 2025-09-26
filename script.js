@@ -347,3 +347,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 });
+
+window.addEventListener('DOMContentLoaded', function() {
+  const upcomingSection = document.querySelector('.upcoming-highlight');
+  if (upcomingSection) {
+    setTimeout(() => {
+      upcomingSection.scrollIntoView({behavior: 'smooth', block: 'center'});
+    }, 400);
+  }
+});

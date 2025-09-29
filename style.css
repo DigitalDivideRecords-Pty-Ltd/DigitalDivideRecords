@@ -442,6 +442,20 @@ body {
   overflow: hidden;
 }
 
+/* Gradient Text + Shadow for Upcoming Releases */
+.upcoming-releases h2,
+.upcoming-releases p {
+  background: linear-gradient(90deg, #ff9800, #00ff00);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 2px 8px rgba(0, 255, 0, 0.15); /* subtle green shadow */
+  font-weight: bold;
+}
+
+
+
 .upcoming-releases::before {
   content: '';
   position: absolute;

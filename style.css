@@ -286,6 +286,26 @@ body {
   transform: scale(1.2);
 }
 
+
+/* Add this to your style.css file */
+
+/* Gradient Text for Upcoming Releases Section */
+.upcoming-releases,
+.upcoming-releases h2,
+.upcoming-releases p {
+  background: linear-gradient(90deg, #ff9800, #00ff00);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  font-weight: bold; /* Optional: Make text stand out more */
+}
+
+
+
+
+
+
 .dot:after {
   content: attr(data-page);
   position: absolute;
@@ -446,6 +466,18 @@ body {
 
 .upcoming-releases p {
   font-size: 0.95rem;
+}
+
+/* Gradient Text + Shadow for Upcoming Releases */
+.upcoming-releases h2,
+.upcoming-releases p {
+  background: linear-gradient(90deg, #ff9800, #00ff00);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 2px 8px rgba(0, 255, 0, 0.15); /* subtle green shadow */
+  font-weight: bold;
 }
 
 /* Animation for page transitions - optimized for performance */

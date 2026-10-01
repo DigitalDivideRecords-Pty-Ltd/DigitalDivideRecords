@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Offline Notification Banner - DigitalDivideRecords</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        /* ========== BANNER CONTAINER ========== */
+        .offline-banner {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 9999;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+            overflow: hidden;
+            animation: slideDown 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        /* ========== SMOKE/PARTICLE EFFECT BACKGROUND ========== */
+        .banner-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .smoke-particle {
+            position: absolute;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 70%);
+            border-radius: 50%;
+            filter: blur(2px);
+            animation: floatSmoke 6s ease-in-out infinite;
+        }
+
+        @keyframes floatSmoke {
+            0% {
+                opacity: 0;
+                transform: translateY(0) translateX(0) scale(1);
+            }
+            50% {
+                opacity: 0.5;
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-40px) translateX(20px) scale(1.5);
+            }
+        }
+
+        /* ========== GRADIENT OVERLAY ========== */
+        .banner-gradient {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, 
+                rgba(239, 68, 68, 0.1) 0%,
+                rgba(239, 68, 68, 0.05) 25%,
+                rgba(239, 68, 68, 0.05) 75%,
+                rgba(239, 68, 68, 0.1) 100%);
+            animation: gradientShift 4s ease-in-out infinite;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% {
+                opacity: 0.3;
+            }
+            50% {
+                opacity: 0.6;
+            }
+        }
+
+        /* ========== CONTENT WRAPPER ========== */
+        .banner-content {
+            position: relative;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            min-height: 80px;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        /* ========== ANIMATED ICON ========== */
+        .offline-icon {
+            flex-shrink: 0;
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+
+        .icon-circle {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #ef4444 0%, #f87171 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            position: relative;
+            box-shadow: 0 0 20px rgba(239, 68, 68, 0.5),
+                        0 0 40px rgba(239, 68, 68, 0.3);
+        }
+
+        .icon-glow {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 2px solid rgba(239, 68, 68, 0.5);
+            animation: expandGlow 2s ease-out infinite;
+        }
+
+        @keyframes expandGlow {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(1.3);
+                opacity: 0;
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        /* ========== TEXT CONTENT ========== */
+        .banner-text {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .banner-title {
+            font-size: clamp(16px, 5vw, 24px);
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 5px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            letter-spacing: 0.5px;
+            animation: slideInLeft 0.8s ease-out;
+        }
+
+        .banner-subtitle {
+            font-size: clamp(12px, 3vw, 14px);
+            color: rgba(255, 255, 255, 0.85);
+            opacity: 0;
+            animation: fadeInUp 0.8s ease-out 0.2s forwards;
+        }
+
+        @keyframes slideInLeft {
+            from {
+                transform: translateX(-30px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                transform: translateY(10px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* ========== LOADING DOTS ========== */
+        .loading-dots {
+            display: flex;
+            gap: 4px;
+            align-items: center;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #fff;
+            opacity: 0.6;
+            animation: dotBounce 1.4s ease-in-out infinite;
+        }
+
+        .dot:nth-child(1) {
+            animation-delay: -0.32s;
+        }
+
+        .dot:nth-child(2) {
+            animation-delay: -0.16s;
+        }
+
+        @keyframes dotBounce {
+            0%, 80%, 100% {
+                transform: scale(0);
+                opacity: 0.5;
+            }
+            40% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        /* ========== CLOSE BUTTON ========== */
+        .banner-close {
+            flex-shrink: 0;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: #fff;
+            font-size: 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
+            overflow: hidden;
+            animation: scaleIn 0.6s ease-out 0.3s both;
+        }
+
+        .banner-close:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: rotate(90deg) scale(1.1);
+            box-shadow: 0 0 15px rgba(239, 68, 68, 0.4);
+        }
+
+        .banner-close:active {
+            transform: rotate(90deg) scale(0.95);
+        }
+
+        @keyframes scaleIn {
+            from {
+                transform: scale(0);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        /* ========== PROGRESS BAR ========== */
+        .banner-progress {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #fbbf24, #f97316, #ef4444);
+            animation: progressMove 2s ease-in-out infinite;
+        }
+
+        @keyframes progressMove {
+            0% {
+                width: 0;
+            }
+            50% {
+                width: 100%;
+            }
+            100% {
+                width: 0;
+            }
+        }
+
+        /* ========== RESPONSIVE DESIGN ========== */
+        @media (max-width: 768px) {
+            .banner-content {
+                flex-direction: column;
+                gap: 15px;
+                padding: 15px;
+                min-height: auto;
+            }
+
+            .icon-circle {
+                width: 45px;
+                height: 45px;
+                font-size: 24px;
+            }
+
+            .banner-title {
+                font-size: 18px;
+                text-align: center;
+            }
+
+            .banner-subtitle {
+                font-size: 12px;
+                text-align: center;
+            }
+
+            .banner-close {
+                width: 32px;
+                height: 32px;
+                font-size: 18px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .banner-content {
+                padding: 12px;
+            }
+
+            .icon-circle {
+                width: 40px;
+                height: 40px;
+                font-size: 20px;
+            }
+
+            .banner-title {
+                font-size: 16px;
+            }
+
+            .banner-subtitle {
+                font-size: 11px;
+            }
+
+            .loading-dots {
+                gap: 3px;
+            }
+
+            .dot {
+                width: 6px;
+                height: 6px;
+            }
+        }
+
+        /* ========== DEMO PAGE STYLING ========== */
+        .demo-container {
+            max-width: 1200px;
+            margin: 100px auto 0;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            animation: fadeInUp 0.8s ease-out 0.4s both;
+        }
+
+        .demo-title {
+            font-size: 32px;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .demo-subtitle {
+            font-size: 16px;
+            color: #6b7280;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .demo-content {
+            color: #4b5563;
+            line-height: 1.8;
+            font-size: 14px;
+        }
+
+        .demo-content p {
+            margin-bottom: 15px;
+        }
+
+        .code-block {
+            background: #1f2937;
+            color: #e5e7eb;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            margin: 15px 0;
+            border-left: 4px solid #ef4444;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .demo-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 14px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .btn-secondary {
+            background: #e5e7eb;
+            color: #1f2937;
+        }
+
+        .btn-secondary:hover {
+            background: #d1d5db;
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .demo-container {
+                margin: 90px 20px 0;
+                padding: 20px;
+            }
+
+            .demo-title {
+                font-size: 24px;
+            }
+
+            .demo-subtitle {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ========== OFFLINE BANNER ========== -->
+    <div class="offline-banner" id="offlineBanner">
+        <div class="banner-bg">
+            <!-- Smoke particles will be generated by JavaScript -->
+        </div>
+        <div class="banner-gradient"></div>
+
+        <div class="banner-content">
+            <div class="offline-icon">
+                <div class="icon-circle">
+                    <div class="icon-glow"></div>
+                    ⚠️
+                </div>
+            </div>
+
+            <div class="banner-text">
+                <div class="banner-title">
+                    🚀 Digital Divide Records is Currently Offline
+                </div>
+                <div class="banner-subtitle">
+                    We're upgrading our systems to serve you better
+                    <span class="loading-dots">
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                    </span>
+                </div>
+            </div>
+
+            <button class="banner-close" id="closeBanner" title="Dismiss notification">
+                ✕
+            </button>
+        </div>
+
+        <div class="banner-progress"></div>
+    </div>
+
+    <!-- ========== DEMO CONTENT ========== -->
+    <div class="demo-container">
+        <h1 class="demo-title">✨ Animated Offline Notification Banner</h1>
+        <p class="demo-subtitle">For DigitalDivideRecords - Fully Responsive & JavaScript Intensive</p>
+
+        <div class="demo-content">
+            <p><strong>🎯 Features Included:</strong></p>
+            <ul style="margin-left: 20px; margin-bottom: 20px;">
+                <li>✅ Glassmorphism effect with blur backdrop</li>
+                <li>✅ Animated smoke particles</li>
+                <li>✅ Pulsing icon with glowing aura</li>
+                <li>✅ Animated loading dots</li>
+                <li>✅ Smooth slide-down entrance animation</li>
+                <li>✅ Rotating gradient background</li>
+                <li>✅ Fully responsive design (mobile, tablet, desktop)</li>
+                <li>✅ Smooth close animation with localStorage</li>
+                <li>✅ Progress bar indicator</li>
+                <li>✅ Particle system for dynamic effects</li>
+            </ul>
+
+            <p><strong>📱 Responsive Breakpoints:</strong></p>
+            <ul style="margin-left: 20px; margin-bottom: 20px;">
+                <li>Desktop: Full horizontal layout</li>
+                <li>Tablet (768px): Flexible layout</li>
+                <li>Mobile (480px): Compact vertical layout</li>
+            </ul>
+
+            <div class="button-group">
+                <button class="demo-btn btn-primary" onclick="showBanner()">
+                    Show Banner Again
+                </button>
+                <button class="demo-btn btn-secondary" onclick="changeBannerMessage()">
+                    Change Message
+                </button>
+                <button class="demo-btn btn-secondary" onclick="toggleParticles()">
+                    Toggle Particles
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== JAVASCRIPT ========== -->
+    <script>
+        // ========== BANNER MANAGER CLASS ==========
+        class OfflineBannerManager {
+            constructor() {
+                this.bannerEl = document.getElementById('offlineBanner');
+                this.closeBtn = document.getElementById('closeBanner');
+                this.storageKey = 'ddr-banner-dismissed';
+                this.particlesEnabled = true;
+                this.messageIndex = 0;
+                this.messages = [
+                    {
+                        title: '🚀 Digital Divide Records is Currently Offline',
+                        subtitle: 'We\'re upgrading our systems to serve you better'
+                    },
+                    {
+                        title: '🔧 Scheduled Maintenance in Progress',
+                        subtitle: 'We\'re improving your experience'
+                    },
+                    {
+                        title: '⚡ Performance Optimization Underway',
+                        subtitle: 'Coming back stronger than ever'
+                    },
+                    {
+                        title: '🎨 New Features Being Added',
+                        subtitle: 'Exciting updates coming soon'
+                    }
+                ];
+
+                this.init();
+            }
+
+            // ========== INITIALIZATION ==========
+            init() {
+                this.setupEventListeners();
+                this.generateParticles();
+                this.checkDismissal();
+                this.setupAutoRefresh();
+            }
+
+            // ========== EVENT LISTENERS ==========
+            setupEventListeners() {
+                this.closeBtn.addEventListener('click', () => this.closeBanner());
+                this.closeBtn.addEventListener('mouseenter', () => this.scaleButton(true));
+                this.closeBtn.addEventListener('mouseleave', () => this.scaleButton(false));
+
+                // Re-show banner when online
+                window.addEventListener('online', () => this.showBanner());
+                
+                // Responsive updates
+                window.addEventListener('resize', () => this.updateParticleCount());
+            }
+
+            // ========== PARTICLE GENERATION (SMOKE EFFECT) ==========
+            generateParticles() {
+                if (!this.particlesEnabled) return;
+
+                const bgContainer = this.bannerEl.querySelector('.banner-bg');
+                const screenWidth = window.innerWidth;
+                const particleCount = this.getParticleCount();
+
+                // Clear existing particles
+                bgContainer.innerHTML = '';
+
+                for (let i = 0; i < particleCount; i++) {
+                    const particle = this.createParticle();
+                    bgContainer.appendChild(particle);
+                }
+            }
+
+            createParticle() {
+                const particle = document.createElement('div');
+                particle.className = 'smoke-particle';
+
+                // Random position
+                const startX = Math.random() * 100;
+                const startY = Math.random() * 50;
+                const size = Math.random() * 40 + 30;
+                const duration = Math.random() * 4 + 4;
+                const delay = Math.random() * 2;
+                const offsetX = (Math.random() - 0.5) * 60;
+
+                particle.style.cssText = `
+                    left: ${startX}%;
+                    top: ${startY}%;
+                    width: ${size}px;
+                    height: ${size}px;
+                    animation-duration: ${duration}s;
+                    animation-delay: ${delay}s;
+                    --offsetX: ${offsetX}px;
+                `;
+
+                // Custom animation with offset
+                const keyframes = `
+                    @keyframes floatSmoke${i} {
+                        0% {
+                            opacity: 0;
+                            transform: translateY(0) translateX(0) scale(1);
+                        }
+                        50% {
+                            opacity: 0.5;
+                        }
+                        100% {
+                            opacity: 0;
+                            transform: translateY(-40px) translateX(${offsetX}px) scale(1.5);
+                        }
+                    }
+                `;
+
+                return particle;
+            }
+
+            getParticleCount() {
+                const width = window.innerWidth;
+                if (width < 480) return 4;
+                if (width < 768) return 6;
+                return 8;
+            }
+
+            updateParticleCount() {
+                this.generateParticles();
+            }
+
+            // ========== BANNER VISIBILITY ==========
+            checkDismissal() {
+                const isDismissed = localStorage.getItem(this.storageKey);
+                if (isDismissed && isDismissed === 'true') {
+                    this.bannerEl.style.display = 'none';
+                }
+            }
+
+            closeBanner() {
+                this.bannerEl.style.animation = 'slideDown 0.6s ease-in reverse forwards';
+                setTimeout(() => {
+                    this.bannerEl.style.display = 'none';
+                    localStorage.setItem(this.storageKey, 'true');
+                }, 600);
+            }
+
+            showBanner() {
+                localStorage.setItem(this.storageKey, 'false');
+                this.bannerEl.style.display = 'block';
+                this.bannerEl.style.animation = 'slideDown 0.8s cubic-bezier(0.34, 1.56, 0.64, 1)';
+            }
+
+            // ========== MESSAGE CYCLING ==========
+            changeMessage() {
+                this.messageIndex = (this.messageIndex + 1) % this.messages.length;
+                const msg = this.messages[this.messageIndex];
+
+                const titleEl = this.bannerEl.querySelector('.banner-title');
+                const subtitleEl = this.bannerEl.querySelector('.banner-subtitle');
+
+                // Fade out
+                titleEl.style.opacity = '0';
+                subtitleEl.style.opacity = '0';
+
+                setTimeout(() => {
+                    titleEl.textContent = msg.title;
+                    subtitleEl.innerHTML = `
+                        ${msg.subtitle}
+                        <span class="loading-dots">
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                        </span>
+                    `;
+
+                    // Fade in
+                    titleEl.style.transition = 'opacity 0.5s ease';
+                    subtitleEl.style.transition = 'opacity 0.5s ease';
+                    titleEl.style.opacity = '1';
+                    subtitleEl.style.opacity = '1';
+                }, 300);
+            }
+
+            // ========== AUTO REFRESH (Optional) ==========
+            setupAutoRefresh() {
+                // Uncomment to auto-cycle messages every 8 seconds
+                // setInterval(() => this.changeMessage(), 8000);
+            }
+
+            // ========== PARTICLE TOGGLE ==========
+            toggleParticles() {
+                this.particlesEnabled = !this.particlesEnabled;
+                if (this.particlesEnabled) {
+                    this.generateParticles();
+                } else {
+                    this.bannerEl.querySelector('.banner-bg').innerHTML = '';
+                }
+            }
+
+            // ========== BUTTON ANIMATION HELPER ==========
+            scaleButton(isHovered) {
+                if (isHovered) {
+                    this.closeBtn.style.transform = 'rotate(90deg) scale(1.1)';
+                } else {
+                    this.closeBtn.style.transform = 'rotate(0deg) scale(1)';
+                }
+            }
+        }
+
+        // ========== INITIALIZE BANNER ==========
+        const bannerManager = new OfflineBannerManager();
+
+        // ========== DEMO FUNCTIONS ==========
+        function showBanner() {
+            bannerManager.showBanner();
+        }
+
+        function changeBannerMessage() {
+            bannerManager.changeMessage();
+        }
+
+        function toggleParticles() {
+            bannerManager.toggleParticles();
+            const btn = event.target;
+            btn.textContent = bannerManager.particlesEnabled ? 'Toggle Particles' : 'Toggle Particles (Off)';
+        }
+
+        // ========== KEYBOARD SHORTCUTS ==========
+        document.addEventListener('keydown', (e) => {
+            if (e.ctrlKey && e.key === 'b') {
+                e.preventDefault();
+                showBanner();
+            }
+        });
+
+        // ========== PAGE LOAD ANIMATION ==========
+        window.addEventListener('load', () => {
+            console.log('🎨 Offline Banner initialized successfully!');
+            console.log('Keyboard Shortcut: Ctrl+B to show banner');
+        });
+    </script>
+
+</body>
+</html>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DigitalDivideRecords - Offline Notification</title>
+    <title>Offline Notification Banner - DigitalDivideRecords</title>
     <style>
         * {
             margin: 0;
@@ -13,7 +13,7 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #1a1a1a 0%, #2d1b3d 50%, #1a1a1a 100%);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
             display: flex;
             justify-content: center;
@@ -28,12 +28,11 @@
             left: 0;
             width: 100%;
             z-index: 9999;
-            background: rgba(26, 26, 26, 0.15);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            border-bottom: 2px solid rgba(255, 215, 0, 0.3);
-            box-shadow: 0 8px 32px rgba(255, 215, 0, 0.2),
-                        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
             overflow: hidden;
             animation: slideDown 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
@@ -50,9 +49,9 @@
 
         .smoke-particle {
             position: absolute;
-            background: radial-gradient(circle, rgba(255, 215, 0, 0.2) 0%, rgba(255, 215, 0, 0) 70%);
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 70%);
             border-radius: 50%;
-            filter: blur(3px);
+            filter: blur(2px);
             animation: floatSmoke 6s ease-in-out infinite;
         }
 
@@ -62,11 +61,11 @@
                 transform: translateY(0) translateX(0) scale(1);
             }
             50% {
-                opacity: 0.4;
+                opacity: 0.5;
             }
             100% {
                 opacity: 0;
-                transform: translateY(-50px) translateX(20px) scale(1.8);
+                transform: translateY(-40px) translateX(20px) scale(1.5);
             }
         }
 
@@ -78,19 +77,19 @@
             width: 100%;
             height: 100%;
             background: linear-gradient(90deg, 
-                rgba(255, 215, 0, 0.08) 0%,
-                rgba(255, 215, 0, 0.04) 25%,
-                rgba(255, 215, 0, 0.04) 75%,
-                rgba(255, 215, 0, 0.08) 100%);
+                rgba(239, 68, 68, 0.1) 0%,
+                rgba(239, 68, 68, 0.05) 25%,
+                rgba(239, 68, 68, 0.05) 75%,
+                rgba(239, 68, 68, 0.1) 100%);
             animation: gradientShift 4s ease-in-out infinite;
         }
 
         @keyframes gradientShift {
             0%, 100% {
-                opacity: 0.2;
+                opacity: 0.3;
             }
             50% {
-                opacity: 0.5;
+                opacity: 0.6;
             }
         }
 
@@ -101,9 +100,9 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 24px;
-            min-height: 90px;
-            gap: 24px;
+            padding: 20px;
+            min-height: 80px;
+            gap: 20px;
             flex-wrap: wrap;
         }
 
@@ -114,17 +113,17 @@
         }
 
         .icon-circle {
-            width: 60px;
-            height: 60px;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
-            background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+            background: linear-gradient(135deg, #ef4444 0%, #f87171 100%);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 32px;
+            font-size: 28px;
             position: relative;
-            box-shadow: 0 0 25px rgba(255, 215, 0, 0.6),
-                        0 0 50px rgba(255, 215, 0, 0.3);
+            box-shadow: 0 0 20px rgba(239, 68, 68, 0.5),
+                        0 0 40px rgba(239, 68, 68, 0.3);
         }
 
         .icon-glow {
@@ -132,7 +131,7 @@
             width: 100%;
             height: 100%;
             border-radius: 50%;
-            border: 2px solid rgba(255, 215, 0, 0.6);
+            border: 2px solid rgba(239, 68, 68, 0.5);
             animation: expandGlow 2s ease-out infinite;
         }
 
@@ -142,7 +141,7 @@
                 opacity: 1;
             }
             100% {
-                transform: scale(1.4);
+                transform: scale(1.3);
                 opacity: 0;
             }
         }
@@ -152,7 +151,7 @@
                 transform: scale(1);
             }
             50% {
-                transform: scale(1.08);
+                transform: scale(1.05);
             }
         }
 
@@ -163,29 +162,25 @@
         }
 
         .banner-title {
-            font-size: clamp(18px, 5vw, 26px);
-            font-weight: 800;
-            color: #ffd700;
-            margin-bottom: 6px;
-            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5),
-                         0 0 20px rgba(255, 215, 0, 0.3);
-            letter-spacing: 1px;
+            font-size: clamp(16px, 5vw, 24px);
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 5px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            letter-spacing: 0.5px;
             animation: slideInLeft 0.8s ease-out;
-            text-transform: uppercase;
         }
 
         .banner-subtitle {
-            font-size: clamp(13px, 3.5vw, 15px);
-            color: rgba(255, 255, 255, 0.9);
+            font-size: clamp(12px, 3vw, 14px);
+            color: rgba(255, 255, 255, 0.85);
             opacity: 0;
             animation: fadeInUp 0.8s ease-out 0.2s forwards;
-            font-weight: 500;
-            letter-spacing: 0.5px;
         }
 
         @keyframes slideInLeft {
             from {
-                transform: translateX(-40px);
+                transform: translateX(-30px);
                 opacity: 0;
             }
             to {
@@ -196,7 +191,7 @@
 
         @keyframes fadeInUp {
             from {
-                transform: translateY(15px);
+                transform: translateY(10px);
                 opacity: 0;
             }
             to {
@@ -218,18 +213,17 @@
 
         /* ========== LOADING DOTS ========== */
         .loading-dots {
-            display: inline-flex;
-            gap: 5px;
+            display: flex;
+            gap: 4px;
             align-items: center;
-            margin-left: 8px;
         }
 
         .dot {
             width: 8px;
             height: 8px;
             border-radius: 50%;
-            background: #ffd700;
-            opacity: 0.7;
+            background: #fff;
+            opacity: 0.6;
             animation: dotBounce 1.4s ease-in-out infinite;
         }
 
@@ -255,13 +249,13 @@
         /* ========== CLOSE BUTTON ========== */
         .banner-close {
             flex-shrink: 0;
-            width: 40px;
-            height: 40px;
+            width: 36px;
+            height: 36px;
             border-radius: 50%;
-            background: rgba(255, 215, 0, 0.15);
-            border: 2px solid rgba(255, 215, 0, 0.4);
-            color: #ffd700;
-            font-size: 22px;
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: #fff;
+            font-size: 20px;
             cursor: pointer;
             display: flex;
             align-items: center;
@@ -270,18 +264,16 @@
             position: relative;
             overflow: hidden;
             animation: scaleIn 0.6s ease-out 0.3s both;
-            font-weight: bold;
         }
 
         .banner-close:hover {
-            background: rgba(255, 215, 0, 0.25);
-            transform: rotate(90deg) scale(1.15);
-            box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
-            border-color: rgba(255, 215, 0, 0.7);
+            background: rgba(255, 255, 255, 0.3);
+            transform: rotate(90deg) scale(1.1);
+            box-shadow: 0 0 15px rgba(239, 68, 68, 0.4);
         }
 
         .banner-close:active {
-            transform: rotate(90deg) scale(0.9);
+            transform: rotate(90deg) scale(0.95);
         }
 
         @keyframes scaleIn {
@@ -300,10 +292,9 @@
             position: absolute;
             bottom: 0;
             left: 0;
-            height: 4px;
-            background: linear-gradient(90deg, #ffd700, #ffed4e, #ffd700);
-            animation: progressMove 2.5s ease-in-out infinite;
-            box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+            height: 3px;
+            background: linear-gradient(90deg, #fbbf24, #f97316, #ef4444);
+            animation: progressMove 2s ease-in-out infinite;
         }
 
         @keyframes progressMove {
@@ -322,42 +313,9 @@
         @media (max-width: 768px) {
             .banner-content {
                 flex-direction: column;
-                gap: 16px;
-                padding: 16px;
+                gap: 15px;
+                padding: 15px;
                 min-height: auto;
-            }
-
-            .icon-circle {
-                width: 50px;
-                height: 50px;
-                font-size: 28px;
-            }
-
-            .banner-title {
-                font-size: 18px;
-                text-align: center;
-            }
-
-            .banner-subtitle {
-                font-size: 13px;
-                text-align: center;
-            }
-
-            .banner-close {
-                width: 36px;
-                height: 36px;
-                font-size: 20px;
-            }
-
-            .loading-dots {
-                margin-left: 4px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .banner-content {
-                padding: 12px;
-                gap: 12px;
             }
 
             .icon-circle {
@@ -367,21 +325,13 @@
             }
 
             .banner-title {
-                font-size: 16px;
+                font-size: 18px;
+                text-align: center;
             }
 
             .banner-subtitle {
                 font-size: 12px;
-            }
-
-            .loading-dots {
-                gap: 3px;
-                margin-left: 4px;
-            }
-
-            .dot {
-                width: 6px;
-                height: 6px;
+                text-align: center;
             }
 
             .banner-close {
@@ -391,124 +341,133 @@
             }
         }
 
+        @media (max-width: 480px) {
+            .banner-content {
+                padding: 12px;
+            }
+
+            .icon-circle {
+                width: 40px;
+                height: 40px;
+                font-size: 20px;
+            }
+
+            .banner-title {
+                font-size: 16px;
+            }
+
+            .banner-subtitle {
+                font-size: 11px;
+            }
+
+            .loading-dots {
+                gap: 3px;
+            }
+
+            .dot {
+                width: 6px;
+                height: 6px;
+            }
+        }
+
         /* ========== DEMO PAGE STYLING ========== */
         .demo-container {
             max-width: 1200px;
-            margin: 120px auto 40px;
-            padding: 50px;
-            background: rgba(255, 255, 255, 0.08);
+            margin: 100px auto 0;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.95);
             border-radius: 20px;
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 215, 0, 0.15);
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3),
-                        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
             animation: fadeInUp 0.8s ease-out 0.4s both;
         }
 
         .demo-title {
-            font-size: 42px;
-            font-weight: 900;
-            color: #ffd700;
-            margin-bottom: 12px;
+            font-size: 32px;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 10px;
             text-align: center;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
         }
 
         .demo-subtitle {
-            font-size: 18px;
-            color: rgba(255, 255, 255, 0.8);
-            margin-bottom: 40px;
+            font-size: 16px;
+            color: #6b7280;
+            margin-bottom: 30px;
             text-align: center;
-            font-weight: 500;
         }
 
         .demo-content {
-            color: rgba(255, 255, 255, 0.9);
+            color: #4b5563;
             line-height: 1.8;
-            font-size: 15px;
+            font-size: 14px;
         }
 
         .demo-content p {
-            margin-bottom: 20px;
-        }
-
-        .demo-content ul {
-            margin-left: 30px;
-        }
-
-        .demo-content li {
-            margin-bottom: 10px;
+            margin-bottom: 15px;
         }
 
         .code-block {
-            background: rgba(0, 0, 0, 0.4);
+            background: #1f2937;
             color: #e5e7eb;
-            padding: 20px;
+            padding: 15px;
             border-radius: 8px;
             overflow-x: auto;
             font-family: 'Courier New', monospace;
-            font-size: 13px;
-            margin: 20px 0;
-            border-left: 4px solid #ffd700;
-            border: 1px solid rgba(255, 215, 0, 0.2);
+            font-size: 12px;
+            margin: 15px 0;
+            border-left: 4px solid #ef4444;
         }
 
         .button-group {
             display: flex;
-            gap: 12px;
-            margin-top: 30px;
+            gap: 10px;
+            margin-top: 20px;
             flex-wrap: wrap;
         }
 
         .demo-btn {
-            padding: 12px 28px;
+            padding: 10px 20px;
             border: none;
             border-radius: 8px;
-            font-weight: 700;
+            font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
             font-size: 14px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
         }
 
         .btn-primary {
-            background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
-            color: #1a1a1a;
-            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
         }
 
         .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(255, 215, 0, 0.5);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
         }
 
         .btn-secondary {
-            background: rgba(255, 215, 0, 0.15);
-            color: #ffd700;
-            border: 2px solid rgba(255, 215, 0, 0.4);
+            background: #e5e7eb;
+            color: #1f2937;
         }
 
         .btn-secondary:hover {
-            background: rgba(255, 215, 0, 0.25);
-            border-color: rgba(255, 215, 0, 0.7);
-            transform: translateY(-3px);
+            background: #d1d5db;
+            transform: translateY(-2px);
         }
 
         @media (max-width: 768px) {
             .demo-container {
-                margin: 110px 20px 40px;
-                padding: 30px 20px;
+                margin: 90px 20px 0;
+                padding: 20px;
             }
 
             .demo-title {
-                font-size: 28px;
+                font-size: 24px;
             }
 
             .demo-subtitle {
-                font-size: 16px;
+                font-size: 14px;
             }
         }
     </style>
@@ -526,16 +485,16 @@
             <div class="offline-icon">
                 <div class="icon-circle">
                     <div class="icon-glow"></div>
-                    🎵
+                    ⚠️
                 </div>
             </div>
 
             <div class="banner-text">
                 <div class="banner-title">
-                    Digital Divide Records - Offline
+                    🚀 Digital Divide Records is Currently Offline
                 </div>
                 <div class="banner-subtitle">
-                    Upgrading our systems for the ultimate audio experience
+                    We're upgrading our systems to serve you better
                     <span class="loading-dots">
                         <span class="dot"></span>
                         <span class="dot"></span>
@@ -544,7 +503,7 @@
                 </div>
             </div>
 
-            <button class="banner-close" id="closeBanner" title="Dismiss notification" aria-label="Close offline notification">
+            <button class="banner-close" id="closeBanner" title="Dismiss notification">
                 ✕
             </button>
         </div>
@@ -553,45 +512,45 @@
     </div>
 
     <!-- ========== DEMO CONTENT ========== -->
-    <div class="demo-container">
-        <h1 class="demo-title">🎵 DigitalDivideRecords</h1>
-        <p class="demo-subtitle">Next Generation Music Distribution Platform</p>
+    <!--<div class="demo-container">
+        <h1 class="demo-title">✨ Animated Offline Notification Banner</h1>
+        <p class="demo-subtitle">For DigitalDivideRecords - Fully Responsive & JavaScript Intensive</p>
 
         <div class="demo-content">
-            <p><strong>✨ Premium Features:</strong></p>
-            <ul>
-                <li>🎚️ Glassmorphism Design with Golden Theme</li>
-                <li>🌫️ Animated Smoke Particles (Music Vibes)</li>
-                <li>🎛️ Pulsing Icon with Glowing Aura</li>
-                <li>⚡ Lightning-Fast Particle System</li>
-                <li>📱 Fully Responsive (Mobile to Desktop)</li>
-                <li>💾 Smart LocalStorage Integration</li>
-                <li>🔔 Auto-Detection of Connection Status</li>
-                <li>♿ Accessibility Features (ARIA Labels)</li>
+            <p><strong>🎯 Features Included:</strong></p>
+            <ul style="margin-left: 20px; margin-bottom: 20px;">
+                <li>✅ Glassmorphism effect with blur backdrop</li>
+                <li>✅ Animated smoke particles</li>
+                <li>✅ Pulsing icon with glowing aura</li>
+                <li>✅ Animated loading dots</li>
+                <li>✅ Smooth slide-down entrance animation</li>
+                <li>✅ Rotating gradient background</li>
+                <li>✅ Fully responsive design (mobile, tablet, desktop)</li>
+                <li>✅ Smooth close animation with localStorage</li>
+                <li>✅ Progress bar indicator</li>
+                <li>✅ Particle system for dynamic effects</li>
             </ul>
 
-            <p><strong>🎚️ Technical Stack:</strong></p>
-            <ul>
-                <li><strong>HTML5</strong> - Semantic Structure</li>
-                <li><strong>CSS3</strong> - Advanced Animations & Glassmorphism</li>
-                <li><strong>Vanilla JavaScript</strong> - No Dependencies Required</li>
-                <li><strong>LocalStorage API</strong> - Persistence Layer</li>
-                <li><strong>Window Events</strong> - Connection Monitoring</li>
+            <p><strong>📱 Responsive Breakpoints:</strong></p>
+            <ul style="margin-left: 20px; margin-bottom: 20px;">
+                <li>Desktop: Full horizontal layout</li>
+                <li>Tablet (768px): Flexible layout</li>
+                <li>Mobile (480px): Compact vertical layout</li>
             </ul>
 
             <div class="button-group">
                 <button class="demo-btn btn-primary" onclick="showBanner()">
-                    📡 Show Banner
+                    Show Banner Again
                 </button>
                 <button class="demo-btn btn-secondary" onclick="changeBannerMessage()">
-                    💬 Change Message
+                    Change Message
                 </button>
                 <button class="demo-btn btn-secondary" onclick="toggleParticles()">
-                    🌫️ Toggle Effects
+                    Toggle Particles
                 </button>
             </div>
         </div>
-    </div>
+    </div>-->
 
     <!-- ========== JAVASCRIPT ========== -->
     <script>
@@ -599,30 +558,26 @@
         class OfflineBannerManager {
             constructor() {
                 this.bannerEl = document.getElementById('offlineBanner');
-                this.closeBtn = document.getElementById('closeBanner');
+                //this.closeBtn = document.getElementById('closeBanner');
                 this.storageKey = 'ddr-banner-dismissed';
                 this.particlesEnabled = true;
                 this.messageIndex = 0;
                 this.messages = [
                     {
-                        title: '🎵 Digital Divide Records - Offline',
-                        subtitle: 'Upgrading our systems for the ultimate audio experience'
+                        title: '🚀 Digital Divide Records is Currently Offline',
+                        subtitle: 'We\'re upgrading our systems to serve you better'
                     },
                     {
-                        title: '🎚️ Scheduled Maintenance',
-                        subtitle: 'We\'re fine-tuning our music distribution platform'
+                        title: '🔧 Scheduled Maintenance in Progress',
+                        subtitle: 'We\'re improving your experience'
                     },
                     {
-                        title: '⚡ Performance Optimization',
-                        subtitle: 'Coming back with enhanced streaming capabilities'
+                        title: '⚡ Performance Optimization Underway',
+                        subtitle: 'Coming back stronger than ever'
                     },
                     {
-                        title: '🎶 Major Updates Incoming',
-                        subtitle: 'New features & improved audio quality coming soon'
-                    },
-                    {
-                        title: '🌟 System Upgrade',
-                        subtitle: 'Building the future of music distribution'
+                        title: '🎨 New Features Being Added',
+                        subtitle: 'Exciting updates coming soon'
                     }
                 ];
 
@@ -635,12 +590,11 @@
                 this.generateParticles();
                 this.checkDismissal();
                 this.setupAutoRefresh();
-                console.log('🎵 DigitalDivideRecords Banner Manager Initialized');
             }
 
             // ========== EVENT LISTENERS ==========
             setupEventListeners() {
-                this.closeBtn.addEventListener('click', () => this.closeBanner());
+                //this.closeBtn.addEventListener('click', () => this.closeBanner());
                 this.closeBtn.addEventListener('mouseenter', () => this.scaleButton(true));
                 this.closeBtn.addEventListener('mouseleave', () => this.scaleButton(false));
 
@@ -656,28 +610,29 @@
                 if (!this.particlesEnabled) return;
 
                 const bgContainer = this.bannerEl.querySelector('.banner-bg');
+                const screenWidth = window.innerWidth;
                 const particleCount = this.getParticleCount();
 
                 // Clear existing particles
                 bgContainer.innerHTML = '';
 
                 for (let i = 0; i < particleCount; i++) {
-                    const particle = this.createParticle(i);
+                    const particle = this.createParticle();
                     bgContainer.appendChild(particle);
                 }
             }
 
-            createParticle(index) {
+            createParticle() {
                 const particle = document.createElement('div');
                 particle.className = 'smoke-particle';
 
                 // Random position
                 const startX = Math.random() * 100;
-                const startY = Math.random() * 40;
-                const size = Math.random() * 50 + 40;
-                const duration = Math.random() * 4 + 5;
+                const startY = Math.random() * 50;
+                const size = Math.random() * 40 + 30;
+                const duration = Math.random() * 4 + 4;
                 const delay = Math.random() * 2;
-                const offsetX = (Math.random() - 0.5) * 80;
+                const offsetX = (Math.random() - 0.5) * 60;
 
                 particle.style.cssText = `
                     left: ${startX}%;
@@ -686,6 +641,24 @@
                     height: ${size}px;
                     animation-duration: ${duration}s;
                     animation-delay: ${delay}s;
+                    --offsetX: ${offsetX}px;
+                `;
+
+                // Custom animation with offset
+                const keyframes = `
+                    @keyframes floatSmoke${i} {
+                        0% {
+                            opacity: 0;
+                            transform: translateY(0) translateX(0) scale(1);
+                        }
+                        50% {
+                            opacity: 0.5;
+                        }
+                        100% {
+                            opacity: 0;
+                            transform: translateY(-40px) translateX(${offsetX}px) scale(1.5);
+                        }
+                    }
                 `;
 
                 return particle;
@@ -693,9 +666,9 @@
 
             getParticleCount() {
                 const width = window.innerWidth;
-                if (width < 480) return 3;
-                if (width < 768) return 5;
-                return 7;
+                if (width < 480) return 4;
+                if (width < 768) return 6;
+                return 8;
             }
 
             updateParticleCount() {
@@ -733,8 +706,6 @@
                 const subtitleEl = this.bannerEl.querySelector('.banner-subtitle');
 
                 // Fade out
-                titleEl.style.transition = 'opacity 0.4s ease';
-                subtitleEl.style.transition = 'opacity 0.4s ease';
                 titleEl.style.opacity = '0';
                 subtitleEl.style.opacity = '0';
 
@@ -750,15 +721,17 @@
                     `;
 
                     // Fade in
+                    titleEl.style.transition = 'opacity 0.5s ease';
+                    subtitleEl.style.transition = 'opacity 0.5s ease';
                     titleEl.style.opacity = '1';
                     subtitleEl.style.opacity = '1';
-                }, 400);
+                }, 300);
             }
 
-            // ========== SETUP AUTO REFRESH ==========
+            // ========== AUTO REFRESH (Optional) ==========
             setupAutoRefresh() {
-                // Uncomment to auto-cycle messages every 10 seconds
-                // setInterval(() => this.changeMessage(), 10000);
+                // Uncomment to auto-cycle messages every 8 seconds
+                // setInterval(() => this.changeMessage(), 8000);
             }
 
             // ========== PARTICLE TOGGLE ==========
@@ -774,7 +747,7 @@
             // ========== BUTTON ANIMATION HELPER ==========
             scaleButton(isHovered) {
                 if (isHovered) {
-                    this.closeBtn.style.transform = 'rotate(90deg) scale(1.15)';
+                    this.closeBtn.style.transform = 'rotate(90deg) scale(1.1)';
                 } else {
                     this.closeBtn.style.transform = 'rotate(0deg) scale(1)';
                 }
@@ -796,7 +769,7 @@
         function toggleParticles() {
             bannerManager.toggleParticles();
             const btn = event.target;
-            btn.textContent = bannerManager.particlesEnabled ? '🌫️ Toggle Effects' : '🌫️ Effects Off';
+            btn.textContent = bannerManager.particlesEnabled ? 'Toggle Particles' : 'Toggle Particles (Off)';
         }
 
         // ========== KEYBOARD SHORTCUTS ==========
@@ -807,11 +780,10 @@
             }
         });
 
-        // ========== PAGE LOAD EVENT ==========
+        // ========== PAGE LOAD ANIMATION ==========
         window.addEventListener('load', () => {
-            console.log('🎵 DigitalDivideRecords Banner Ready!');
-            console.log('Shortcut: Ctrl+B to show banner');
-            console.log('Theme: Golden Glassmorphism with Smoke Effects');
+            console.log('🎨 Offline Banner initialized successfully!');
+            console.log('Keyboard Shortcut: Ctrl+B to show banner');
         });
     </script>
 

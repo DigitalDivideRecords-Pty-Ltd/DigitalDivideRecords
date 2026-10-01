@@ -1,1051 +1,688 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DigitalDivideRecords - Offline & Promotional Banner</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #1a1a1a 0%, #2d1b3d 50%, #1a1a1a 100%);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            padding-top: 160px;
-            padding-bottom: 40px;
-        }
-
-        /* ========== OFFLINE BANNER ========== */
-        .offline-banner {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 9999;
-            background: rgba(26, 26, 26, 0.15);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            border-bottom: 2px solid rgba(255, 215, 0, 0.3);
-            box-shadow: 0 8px 32px rgba(255, 215, 0, 0.2),
-                        inset 0 1px 0 rgba(255, 255, 255, 0.1);
-            overflow: hidden;
-            animation: slideDown 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
-        }
-
-        .banner-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-        }
-
-        .smoke-particle {
-            position: absolute;
-            background: radial-gradient(circle, rgba(255, 215, 0, 0.2) 0%, rgba(255, 215, 0, 0) 70%);
-            border-radius: 50%;
-            filter: blur(3px);
-            animation: floatSmoke 6s ease-in-out infinite;
-        }
-
-        @keyframes floatSmoke {
-            0% {
-                opacity: 0;
-                transform: translateY(0) translateX(0) scale(1);
-            }
-            50% {
-                opacity: 0.4;
-            }
-            100% {
-                opacity: 0;
-                transform: translateY(-50px) translateX(20px) scale(1.8);
-            }
-        }
-
-        .banner-gradient {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, 
-                rgba(255, 215, 0, 0.08) 0%,
-                rgba(255, 215, 0, 0.04) 25%,
-                rgba(255, 215, 0, 0.04) 75%,
-                rgba(255, 215, 0, 0.08) 100%);
-            animation: gradientShift 4s ease-in-out infinite;
-        }
-
-        @keyframes gradientShift {
-            0%, 100% { opacity: 0.2; }
-            50% { opacity: 0.5; }
-        }
-
-        .banner-content {
-            position: relative;
-            z-index: 10;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 24px;
-            min-height: 90px;
-            gap: 24px;
-            flex-wrap: wrap;
-        }
-
-        .offline-icon {
-            flex-shrink: 0;
-            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-        }
-
-        .icon-circle {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 32px;
-            position: relative;
-            box-shadow: 0 0 25px rgba(255, 215, 0, 0.6),
-                        0 0 50px rgba(255, 215, 0, 0.3);
-        }
-
-        .icon-glow {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            border: 2px solid rgba(255, 215, 0, 0.6);
-            animation: expandGlow 2s ease-out infinite;
-        }
-
-        @keyframes expandGlow {
-            0% {
-                transform: scale(1);
-                opacity: 1;
-            }
-            100% {
-                transform: scale(1.4);
-                opacity: 0;
-            }
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.08); }
-        }
-
-        .banner-text {
-            flex: 1;
-            min-width: 250px;
-        }
-
-        .banner-title {
-            font-size: clamp(18px, 5vw, 26px);
-            font-weight: 800;
-            color: #ffd700;
-            margin-bottom: 6px;
-            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5),
-                         0 0 20px rgba(255, 215, 0, 0.3);
-            letter-spacing: 1px;
-            animation: slideInLeft 0.8s ease-out;
-            text-transform: uppercase;
-        }
-
-        .banner-subtitle {
-            font-size: clamp(13px, 3.5vw, 15px);
-            color: rgba(255, 255, 255, 0.9);
-            opacity: 0;
-            animation: fadeInUp 0.8s ease-out 0.2s forwards;
-            font-weight: 500;
-            letter-spacing: 0.5px;
-        }
-
-        @keyframes slideInLeft {
-            from { transform: translateX(-40px); opacity: 0; }
-            to { transform: translateX(0); opacity: 1; }
-        }
-
-        @keyframes fadeInUp {
-            from { transform: translateY(15px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-
-        @keyframes slideDown {
-            from { transform: translateY(-100%); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-
-        .loading-dots {
-            display: inline-flex;
-            gap: 5px;
-            align-items: center;
-            margin-left: 8px;
-        }
-
-        .dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: #ffd700;
-            opacity: 0.7;
-            animation: dotBounce 1.4s ease-in-out infinite;
-        }
-
-        .dot:nth-child(1) { animation-delay: -0.32s; }
-        .dot:nth-child(2) { animation-delay: -0.16s; }
-
-        @keyframes dotBounce {
-            0%, 80%, 100% { transform: scale(0); opacity: 0.5; }
-            40% { transform: scale(1); opacity: 1; }
-        }
-
-        .banner-close {
-            flex-shrink: 0;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: rgba(255, 215, 0, 0.15);
-            border: 2px solid rgba(255, 215, 0, 0.4);
-            color: #ffd700;
-            font-size: 22px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-            position: relative;
-            overflow: hidden;
-            animation: scaleIn 0.6s ease-out 0.3s both;
-            font-weight: bold;
-        }
-
-        .banner-close:hover {
-            background: rgba(255, 215, 0, 0.25);
-            transform: rotate(90deg) scale(1.15);
-            box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
-            border-color: rgba(255, 215, 0, 0.7);
-        }
-
-        @keyframes scaleIn {
-            from { transform: scale(0); opacity: 0; }
-            to { transform: scale(1); opacity: 1; }
-        }
-
-        .banner-progress {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            height: 4px;
-            background: linear-gradient(90deg, #ffd700, #ffed4e, #ffd700);
-            animation: progressMove 2.5s ease-in-out infinite;
-            box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
-        }
-
-        @keyframes progressMove {
-            0% { width: 0; }
-            50% { width: 100%; }
-            100% { width: 0; }
-        }
-
-        /* ========== PROMOTIONAL BANNER ========== */
-        .promo-banner {
-            width: 100%;
-            max-width: 1400px;
-            margin: 0 auto 40px;
-            padding: 30px 20px;
-            background: linear-gradient(135deg, rgba(255, 215, 0, 0.05) 0%, rgba(255, 140, 0, 0.05) 100%);
-            border: 2px solid rgba(255, 215, 0, 0.3);
-            border-radius: 20px;
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            box-shadow: 0 20px 60px rgba(255, 215, 0, 0.15),
-                        0 0 40px rgba(255, 140, 0, 0.1),
-                        inset 0 1px 0 rgba(255, 255, 255, 0.1);
-            animation: slideUpReveal 1s cubic-bezier(0.34, 1.56, 0.64, 1);
-            overflow: hidden;
-            position: relative;
-        }
-
-        @keyframes slideUpReveal {
-            from {
-                transform: translateY(50px);
-                opacity: 0;
-            }
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-
-        /* Animated Background Elements */
-        .promo-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            z-index: 0;
-        }
-
-        .promo-gradient-line {
-            position: absolute;
-            background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.4), transparent);
-            animation: slideAcross 3s ease-in-out infinite;
-        }
-
-        @keyframes slideAcross {
-            0% { transform: translateX(-100%); }
-            50% { transform: translateX(100%); }
-            100% { transform: translateX(-100%); }
-        }
-
-        .promo-particles {
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            background: #ffd700;
-            border-radius: 50%;
-            animation: floatParticles 8s ease-in-out infinite;
-            opacity: 0.6;
-        }
-
-        @keyframes floatParticles {
-            0% { transform: translateY(0) translateX(0); opacity: 0; }
-            50% { opacity: 0.8; }
-            100% { transform: translateY(-40px) translateX(20px); opacity: 0; }
-        }
-
-        .promo-content {
-            position: relative;
-            z-index: 5;
-            display: grid;
-            grid-template-columns: 1fr 2fr 1fr;
-            gap: 30px;
-            align-items: center;
-        }
-
-        /* Album Cover Section */
-        .album-cover-section {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            animation: bounceIn 1s cubic-bezier(0.68, -0.55, 0.265, 1.55) 0.2s both;
-        }
-
-        @keyframes bounceIn {
-            0% {
-                transform: scale(0) rotateZ(-10deg);
-                opacity: 0;
-            }
-            50% {
-                transform: scale(1.05);
-            }
-            100% {
-                transform: scale(1) rotateZ(0);
-                opacity: 1;
-            }
-        }
-
-        .album-cover {
-            width: 140px;
-            height: 140px;
-            border-radius: 12px;
-            background: linear-gradient(135deg, rgba(255, 215, 0, 0.3), rgba(255, 140, 0, 0.3));
-            border: 3px solid rgba(255, 215, 0, 0.5);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 60px;
-            box-shadow: 0 20px 40px rgba(255, 215, 0, 0.3),
-                        0 0 30px rgba(255, 140, 0, 0.2),
-                        inset 0 1px 0 rgba(255, 255, 255, 0.2);
-            animation: rotateFloat 6s ease-in-out infinite;
-            position: relative;
-            overflow: hidden;
-        }
-
-        @keyframes rotateFloat {
-            0%, 100% {
-                transform: translateY(0) rotateZ(0);
-            }
-            50% {
-                transform: translateY(-15px) rotateZ(3deg);
-            }
-        }
-
-        .album-cover::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-            animation: shine 3s infinite;
-        }
-
-        @keyframes shine {
-            0% { transform: translate(-100%, -100%) rotate(45deg); }
-            100% { transform: translate(100%, 100%) rotate(45deg); }
-        }
-
-        /* Info Section */
-        .release-info {
-            animation: fadeSlideIn 0.8s ease-out 0.3s both;
-        }
-
-        @keyframes fadeSlideIn {
-            from {
-                transform: translateX(-30px);
-                opacity: 0;
-            }
-            to {
-                transform: translateX(0);
-                opacity: 1;
-            }
-        }
-
-        .artist-name {
-            font-size: clamp(18px, 4vw, 28px);
-            font-weight: 900;
-            color: #ffd700;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 8px;
-            text-shadow: 0 2px 10px rgba(255, 215, 0, 0.3);
-            animation: textGlow 2s ease-in-out infinite;
-        }
-
-        @keyframes textGlow {
-            0%, 100% { text-shadow: 0 2px 10px rgba(255, 215, 0, 0.3); }
-            50% { text-shadow: 0 2px 20px rgba(255, 215, 0, 0.6); }
-        }
-
-        .album-title {
-            font-size: clamp(20px, 5vw, 36px);
-            font-weight: 900;
-            color: #fff;
-            margin-bottom: 15px;
-            letter-spacing: 1px;
-            line-height: 1.2;
-            animation: textSlideIn 0.8s ease-out 0.5s both;
-        }
-
-        @keyframes textSlideIn {
-            from {
-                transform: translateY(20px);
-                opacity: 0;
-            }
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-
-        .release-timeline {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            margin-bottom: 20px;
-        }
-
-        .timeline-item {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 10px 15px;
-            background: rgba(255, 215, 0, 0.08);
-            border-left: 4px solid #ffd700;
-            border-radius: 6px;
-            animation: slideInRight 0.6s ease-out;
-            animation-fill-mode: both;
-        }
-
-        .timeline-item:nth-child(1) { animation-delay: 0.4s; }
-        .timeline-item:nth-child(2) { animation-delay: 0.5s; }
-        .timeline-item:nth-child(3) { animation-delay: 0.6s; }
-
-        @keyframes slideInRight {
-            from {
-                transform: translateX(-20px);
-                opacity: 0;
-            }
-            to {
-                transform: translateX(0);
-                opacity: 1;
-            }
-        }
-
-        .timeline-label {
-            font-size: 12px;
-            font-weight: 700;
-            color: #ffd700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            min-width: 110px;
-            padding: 4px 8px;
-            background: rgba(255, 215, 0, 0.15);
-            border-radius: 4px;
-        }
-
-        .timeline-date {
-            font-size: 14px;
-            color: rgba(255, 255, 255, 0.9);
-            font-weight: 600;
-        }
-
-        .timeline-stores {
-            font-size: 12px;
-            color: rgba(255, 255, 255, 0.7);
-            font-style: italic;
-        }
-
-        .stores-list {
-            margin: 15px 0;
-            padding: 12px 15px;
-            background: rgba(255, 140, 0, 0.1);
-            border-radius: 8px;
-            border: 1px solid rgba(255, 140, 0, 0.3);
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            animation: popIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) 0.7s both;
-        }
-
-        @keyframes popIn {
-            from {
-                transform: scale(0.8);
-                opacity: 0;
-            }
-            to {
-                transform: scale(1);
-                opacity: 1;
-            }
-        }
-
-        .store-badge {
-            padding: 6px 12px;
-            background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
-            color: #1a1a1a;
-            border-radius: 20px;
-            font-size: 11px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            box-shadow: 0 4px 12px rgba(255, 215, 0, 0.3);
-            animation: pulse 2s ease-in-out infinite;
-        }
-
-        .store-badge:nth-child(odd) { animation-delay: 0.2s; }
-        .store-badge:nth-child(even) { animation-delay: 0.4s; }
-
-        /* CTA Section */
-        .cta-section {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            justify-content: center;
-            animation: fadeSlideInRight 0.8s ease-out 0.4s both;
-        }
-
-        @keyframes fadeSlideInRight {
-            from {
-                transform: translateX(30px);
-                opacity: 0;
-            }
-            to {
-                transform: translateX(0);
-                opacity: 1;
-            }
-        }
-
-        .pre-order-btn {
-            padding: 14px 28px;
-            background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
-            color: #1a1a1a;
-            border: none;
-            border-radius: 8px;
-            font-size: 14px;
-            font-weight: 900;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-            box-shadow: 0 8px 20px rgba(255, 215, 0, 0.4);
-            position: relative;
-            overflow: hidden;
-            animation: pulse 2s ease-in-out infinite;
-        }
-
-        .pre-order-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: rgba(255, 255, 255, 0.3);
-            animation: buttonShine 3s infinite;
-        }
-
-        @keyframes buttonShine {
-            0% { left: -100%; }
-            100% { left: 100%; }
-        }
-
-        .pre-order-btn:hover {
-            transform: translateY(-4px) scale(1.05);
-            box-shadow: 0 12px 30px rgba(255, 215, 0, 0.6);
-        }
-
-        .pre-order-btn:active {
-            transform: translateY(-2px) scale(1);
-        }
-
-        .coming-soon {
-            padding: 8px 16px;
-            background: rgba(255, 215, 0, 0.1);
-            border: 2px solid rgba(255, 215, 0, 0.4);
-            color: #ffd700;
-            border-radius: 6px;
-            font-size: 12px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            text-align: center;
-            animation: blink 1.5s ease-in-out infinite;
-        }
-
-        @keyframes blink {
-            0%, 50%, 100% { opacity: 1; }
-            25%, 75% { opacity: 0.6; }
-        }
-
-        .countdown {
-            font-size: 12px;
-            color: rgba(255, 255, 255, 0.8);
-            text-align: center;
-            font-weight: 600;
-            animation: fadeInUp 0.8s ease-out 0.6s both;
-        }
-
-        /* ========== RESPONSIVE DESIGN ========== */
-        @media (max-width: 1024px) {
-            .promo-content {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
-
-            .album-cover {
-                width: 120px;
-                height: 120px;
-                font-size: 50px;
-            }
-
-            .release-info {
-                text-align: center;
-            }
-
-            .cta-section {
-                flex-direction: row;
-                justify-content: center;
-                gap: 12px;
-            }
-
-            .pre-order-btn {
-                flex: 1;
-                min-width: 180px;
-            }
-
-            .coming-soon {
-                flex: 1;
-            }
-        }
-
-        @media (max-width: 768px) {
-            body {
-                padding-top: 150px;
-            }
-
-            .promo-banner {
-                padding: 20px 15px;
-                margin-bottom: 20px;
-            }
-
-            .album-cover {
-                width: 100px;
-                height: 100px;
-                font-size: 40px;
-            }
-
-            .artist-name {
-                font-size: 20px;
-            }
-
-            .album-title {
-                font-size: 24px;
-            }
-
-            .timeline-label {
-                font-size: 11px;
-                min-width: 90px;
-            }
-
-            .cta-section {
-                flex-direction: column;
-            }
-
-            .pre-order-btn,
-            .coming-soon {
-                width: 100%;
-            }
-
-            .banner-content {
-                flex-direction: column;
-                padding: 16px;
-                gap: 12px;
-            }
-
-            .icon-circle {
-                width: 50px;
-                height: 50px;
-                font-size: 28px;
-            }
-
-            .banner-title {
-                font-size: 18px;
-                text-align: center;
-            }
-        }
-
-        @media (max-width: 480px) {
-            body {
-                padding-top: 120px;
-            }
-
-            .promo-banner {
-                padding: 15px 12px;
-                margin-bottom: 15px;
-                border-radius: 12px;
-            }
-
-            .album-cover {
-                width: 90px;
-                height: 90px;
-                font-size: 36px;
-            }
-
-            .artist-name {
-                font-size: 16px;
-                letter-spacing: 1px;
-            }
-
-            .album-title {
-                font-size: 18px;
-            }
-
-            .timeline-item {
-                padding: 8px 12px;
-                font-size: 12px;
-            }
-
-            .timeline-label {
-                font-size: 10px;
-                min-width: 80px;
-            }
-
-            .stores-list {
-                gap: 6px;
-                padding: 10px 12px;
-            }
-
-            .store-badge {
-                font-size: 10px;
-                padding: 5px 10px;
-            }
-
-            .pre-order-btn {
-                padding: 12px 20px;
-                font-size: 13px;
-            }
-
-            .countdown {
-                font-size: 11px;
-            }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Digital Divide Records</title>
+  <style>
+    :root {
+      --gold-1: #ffd76a;
+      --gold-2: #f7b733;
+      --gold-3: #f0a500;
+      --dark-1: #0d0d0d;
+      --dark-2: #1b1b1b;
+      --dark-3: #2a1f17;
+      --glass: rgba(255,255,255,0.08);
+      --glass-strong: rgba(255,255,255,0.12);
+      --text: #f9f2dd;
+      --muted: rgba(255,255,255,0.72);
+      --shadow: rgba(0,0,0,0.45);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      width: 100%;
+      min-height: 100%;
+      background:
+        radial-gradient(circle at center, rgba(255, 170, 60, 0.18), transparent 30%),
+        linear-gradient(180deg, #0f0f12 0%, #17141a 100%);
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      color: var(--text);
+    }
+
+    body {
+      padding-top: 150px;
+    }
+
+    /* =========================
+       OFFLINE BANNER
+    ========================= */
+    .offline-banner {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 9999;
+      background: rgba(20, 20, 20, 0.22);
+      border-bottom: 2px solid rgba(255, 214, 106, 0.4);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+      overflow: hidden;
+      animation: slideDown 0.9s ease-out;
+    }
+
+    @keyframes slideDown {
+      from { transform: translateY(-110%); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    .banner-bg {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .smoke {
+      position: absolute;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,255,255,0.28) 0%, rgba(255,255,255,0.06) 35%, transparent 70%);
+      filter: blur(6px);
+      opacity: 0;
+      animation: smokeFloat 7s ease-in-out infinite;
+    }
+
+    @keyframes smokeFloat {
+      0% {
+        transform: translate(0, 0) scale(0.8);
+        opacity: 0;
+      }
+      25% {
+        opacity: 0.4;
+      }
+      100% {
+        transform: translate(20px, -45px) scale(1.7);
+        opacity: 0;
+      }
+    }
+
+    .banner-gradient {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(255, 214, 106, 0.08), rgba(255, 214, 106, 0.02), rgba(255, 214, 106, 0.08));
+      animation: gradientShift 5s ease-in-out infinite alternate;
+    }
+
+    @keyframes gradientShift {
+      0% { opacity: 0.35; }
+      100% { opacity: 0.75; }
+    }
+
+    .banner-content {
+      position: relative;
+      z-index: 2;
+      min-height: 86px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      padding: 18px 24px;
+      flex-wrap: wrap;
+    }
+
+    .offline-icon {
+      position: relative;
+      width: 58px;
+      height: 58px;
+      display: grid;
+      place-items: center;
+      animation: pulse 2.2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.06); }
+    }
+
+    .offline-icon::before {
+      content: "";
+      position: absolute;
+      inset: -10px;
+      border-radius: 50%;
+      border: 2px solid rgba(255, 214, 106, 0.5);
+      animation: ring 2s ease-out infinite;
+    }
+
+    @keyframes ring {
+      0% { transform: scale(0.8); opacity: 1; }
+      100% { transform: scale(1.4); opacity: 0; }
+    }
+
+    .icon-circle {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--gold-1), var(--gold-3));
+      color: #111;
+      font-size: 30px;
+      box-shadow:
+        0 0 18px rgba(255, 214, 106, 0.45),
+        0 0 36px rgba(255, 214, 106, 0.2);
+      position: relative;
+      z-index: 1;
+    }
+
+    .banner-text {
+      text-align: center;
+      min-width: 260px;
+    }
+
+    .banner-title {
+      font-size: clamp(1.1rem, 2vw, 1.7rem);
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      color: var(--gold-1);
+      text-transform: uppercase;
+      text-shadow: 0 2px 10px rgba(255, 214, 106, 0.2);
+      animation: textIn 0.8s ease-out;
+    }
+
+    @keyframes textIn {
+      from { opacity: 0; transform: translateX(-20px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    .banner-subtitle {
+      margin-top: 5px;
+      font-size: clamp(0.78rem, 1.5vw, 0.95rem);
+      color: rgba(255,255,255,0.9);
+      animation: subtitleIn 0.8s ease-out 0.2s both;
+    }
+
+    @keyframes subtitleIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .loading-dots {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      margin-left: 8px;
+      vertical-align: middle;
+    }
+
+    .loading-dots span {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      display: inline-block;
+      background: var(--gold-1);
+      animation: dotJump 1.2s linear infinite;
+      opacity: 0.7;
+    }
+
+    .loading-dots span:nth-child(2) { animation-delay: 0.2s; }
+    .loading-dots span:nth-child(3) { animation-delay: 0.4s; }
+
+    @keyframes dotJump {
+      0%, 80%, 100% { transform: scale(0.7); opacity: 0.4; }
+      40% { transform: scale(1); opacity: 1; }
+    }
+
+    .banner-close {
+      position: relative;
+      width: 40px;
+      height: 40px;
+      border: 1px solid rgba(255, 214, 106, 0.5);
+      background: rgba(255, 214, 106, 0.08);
+      color: var(--gold-1);
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 1.2rem;
+      display: grid;
+      place-items: center;
+      transition: 0.25s ease;
+      z-index: 2;
+    }
+
+    .banner-close:hover {
+      transform: rotate(90deg) scale(1.08);
+      background: rgba(255, 214, 106, 0.18);
+      box-shadow: 0 0 18px rgba(255, 214, 106, 0.35);
+    }
+
+    /* =========================
+       PROMO BANNER
+    ========================= */
+    .promo-banner {
+      width: min(1400px, calc(100% - 24px));
+      margin: 0 auto 28px;
+      position: relative;
+      border-radius: 26px;
+      overflow: hidden;
+      background:
+        linear-gradient(135deg, rgba(255, 215, 112, 0.08), rgba(255, 255, 255, 0.02)),
+        rgba(22, 18, 17, 0.45);
+      border: 1px solid rgba(255,214,106,0.25);
+      box-shadow:
+        0 18px 42px rgba(0,0,0,0.35),
+        inset 0 1px 0 rgba(255,255,255,0.1);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      animation: bannerReveal 0.9s ease-out;
+    }
+
+    @keyframes bannerReveal {
+      from { transform: translateY(24px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    .promo-bg {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.03), transparent 18%, transparent 82%, rgba(255,255,255,0.02)),
+        radial-gradient(circle at 20% 30%, rgba(255, 214, 106, 0.08), transparent 30%),
+        radial-gradient(circle at 80% 70%, rgba(255, 153, 0, 0.10), transparent 30%);
+    }
+
+    .promo-glow-line {
+      position: absolute;
+      left: -20%;
+      width: 140%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, rgba(255,214,106,0.6), transparent);
+      animation: sweep 4s ease-in-out infinite;
+    }
+
+    @keyframes sweep {
+      0% { transform: translateX(-20%); opacity: 0; }
+      25% { opacity: 1; }
+      50% { transform: translateX(20%); opacity: 1; }
+      100% { transform: translateX(40%); opacity: 0; }
+    }
+
+    .promo-content {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: 220px 1fr 220px;
+      gap: 24px;
+      align-items: center;
+      padding: 22px 26px;
+    }
+
+    .album-art {
+      width: 160px;
+      height: 160px;
+      margin: 0 auto;
+      border-radius: 14px;
+      background:
+        linear-gradient(135deg, rgba(255, 214, 106, 0.18), rgba(255, 145, 77, 0.14)),
+        rgba(0,0,0,0.2);
+      border: 2px solid rgba(255,214,106,0.35);
+      box-shadow:
+        0 18px 32px rgba(0,0,0,0.3),
+        0 0 22px rgba(255,214,106,0.15);
+      display: grid;
+      place-items: center;
+      font-size: 4.1rem;
+      position: relative;
+      overflow: hidden;
+      animation: floatArt 5.5s ease-in-out infinite;
+    }
+
+    @keyframes floatArt {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-12px) rotate(-3deg); }
+    }
+
+    .album-art::before {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background: linear-gradient(120deg, transparent 20%, rgba(255,255,255,0.16) 50%, transparent 80%);
+      transform: rotate(18deg);
+      animation: shine 3.6s linear infinite;
+    }
+
+    @keyframes shine {
+      from { transform: translateX(-120%) rotate(18deg); }
+      to { transform: translateX(120%) rotate(18deg); }
+    }
+
+    .release-info {
+      text-align: center;
+    }
+
+    .artist-name {
+      font-size: clamp(1.2rem, 2vw, 2rem);
+      font-weight: 900;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold-1);
+      text-shadow: 0 0 18px rgba(255,214,106,0.25);
+      margin-bottom: 10px;
+    }
+
+    .title {
+      font-size: clamp(2rem, 4vw, 4rem);
+      font-weight: 900;
+      letter-spacing: 0.05em;
+      color: #fff5d7;
+      text-transform: uppercase;
+      text-shadow: 0 3px 12px rgba(0,0,0,0.45);
+      line-height: 0.95;
+      margin-bottom: 18px;
+    }
+
+    .release-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .pill {
+      background: rgba(255,214,106,0.08);
+      border: 1px solid rgba(255,214,106,0.26);
+      color: var(--gold-1);
+      border-radius: 999px;
+      padding: 7px 12px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .date-grid {
+      display: grid;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .date-item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      background: rgba(255,255,255,0.025);
+      border: 1px solid rgba(255,214,106,0.2);
+      border-radius: 8px;
+      padding: 10px 14px;
+      color: rgba(255,255,255,0.9);
+      font-size: 0.9rem;
+    }
+
+    .date-item strong {
+      color: var(--gold-1);
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.72rem;
+    }
+
+    .store-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 16px;
+    }
+
+    .store-badge {
+      padding: 7px 11px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, rgba(255,214,106,0.18), rgba(255,145,77,0.16));
+      border: 1px solid rgba(255,214,106,0.26);
+      color: #fff1c2;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .cta-panel {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .cta-button {
+      width: 100%;
+      max-width: 180px;
+      padding: 14px 18px;
+      border: none;
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--gold-1), var(--gold-2));
+      color: #1b160e;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      cursor: pointer;
+      box-shadow: 0 12px 24px rgba(255, 214, 106, 0.28);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      animation: buttonPulse 2s ease-in-out infinite;
+    }
+
+    @keyframes buttonPulse {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-4px); }
+    }
+
+    .cta-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 18px 28px rgba(255, 214, 106, 0.38);
+    }
+
+    .status-box {
+      width: 100%;
+      max-width: 180px;
+      text-align: center;
+      padding: 9px 12px;
+      border-radius: 8px;
+      border: 1px solid rgba(255,214,106,0.28);
+      background: rgba(255,214,106,0.08);
+      color: var(--gold-1);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.7rem;
+      font-weight: 800;
+    }
+
+    .countdown {
+      color: rgba(255,255,255,0.8);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-align: center;
+    }
+
+    /* Responsive */
+    @media (max-width: 980px) {
+      .promo-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .cta-panel {
+        margin-top: 8px;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .banner-content {
+        padding-left: 14px;
+        padding-right: 14px;
+      }
+
+      .offine-banner .banner-close {
+        margin-top: 8px;
+      }
+
+      .title {
+        line-height: 1.05;
+      }
+
+      .date-item {
+        justify-content: center;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .promo-banner {
+        border-radius: 18px;
+      }
+      .promo-content {
+        padding: 18px 14px;
+      }
+      .album-art {
+        width: 130px;
+        height: 130px;
+        font-size: 3.3rem;
+      }
+      .title {
+        font-size: 2rem;
+      }
+      .artist-name {
+        font-size: 1rem;
+        letter-spacing: 0.08em;
+      }
+      .store-badge {
+        font-size: 0.62rem;
+      }
+      .cta-button, .status-box {
+        max-width: 100%;
+      }
+    }
+  </style>
 </head>
 <body>
 
-    <!-- ========== OFFLINE BANNER ========== -->
-    <div class="offline-banner" id="offlineBanner">
-        <div class="banner-bg"></div>
-        <div class="banner-gradient"></div>
+  <div class="offline-banner" id="offlineBanner">
+    <div class="banner-bg">
+      <div class="smoke" style="left: 8%; top: 50%; width: 120px; height: 100px; animation-delay: 0s;"></div>
+      <div class="smoke" style="left: 22%; top: 44%; width: 130px; height: 110px; animation-delay: 0.9s;"></div>
+      <div class="smoke" style="left: 48%; top: 48%; width: 150px; height: 120px; animation-delay: 1.8s;"></div>
+      <div class="smoke" style="left: 70%; top: 54%; width: 140px; height: 118px; animation-delay: 2.6s;"></div>
+      <div class="smoke" style="left: 88%; top: 52%; width: 110px; height: 90px; animation-delay: 3.2s;"></div>
+    </div>
+    <div class="banner-gradient"></div>
 
-        <div class="banner-content">
-            <div class="offline-icon">
-                <div class="icon-circle">
-                    <div class="icon-glow"></div>
-                    🎵
-                </div>
-            </div>
+    <div class="banner-content">
+      <div class="offline-icon">
+        <div class="icon-circle">🎵</div>
+      </div>
 
-            <div class="banner-text">
-                <div class="banner-title">
-                    Digital Divide Records - Offline
-                </div>
-                <div class="banner-subtitle">
-                    Upgrading our systems to serve you better
-                    <span class="loading-dots">
-                        <span class="dot"></span>
-                        <span class="dot"></span>
-                        <span class="dot"></span>
-                    </span>
-                </div>
-            </div>
-
-            <button class="banner-close" id="closeBanner" title="Dismiss notification" aria-label="Close offline notification">
-                ✕
-            </button>
+      <div class="banner-text">
+        <div class="banner-title">Digital Divide Records is Currently Offline</div>
+        <div class="banner-subtitle">
+          We're upgrading our systems to serve you better
+          <span class="loading-dots">
+            <span></span>
+            <span></span>
+            <span></span>
+          </span>
         </div>
+      </div>
 
-        <div class="banner-progress"></div>
+      <button class="banner-close" id="closeBanner" aria-label="Close notification">✕</button>
+    </div>
+  </div>
+
+  <div class="promo-banner">
+    <div class="promo-bg">
+      <div class="promo-glow-line" style="top: 28%;"></div>
+      <div class="promo-glow-line" style="top: 72%; animation-delay: 0.8s;"></div>
     </div>
 
-    <!-- ========== PROMOTIONAL BANNER ========== -->
-    <div class="promo-banner" id="promoBanner">
-        <div class="promo-bg">
-            <div class="promo-gradient-line" style="top: 30%; height: 2px;"></div>
-            <div class="promo-gradient-line" style="top: 70%; height: 2px; animation-delay: 0.5s;"></div>
-            <div class="promo-particles" style="top: 20%; left: 10%; animation-delay: 0s;"></div>
-            <div class="promo-particles" style="top: 40%; right: 15%; animation-delay: 0.5s;"></div>
-            <div class="promo-particles" style="top: 60%; left: 20%; animation-delay: 1s;"></div>
-            <div class="promo-particles" style="top: 80%; right: 10%; animation-delay: 1.5s;"></div>
+    <div class="promo-content">
+      <div class="album-art" aria-label="Album art">🌅</div>
+
+      <div class="release-info">
+        <div class="artist-name">DJ Jonnas</div>
+        <div class="title">Sunsets In S.A</div>
+
+        <div class="release-row">
+          <span class="pill">Pre-Order</span>
+          <span class="pill">Oct 30, 2026</span>
+          <span class="pill">2 Weeks</span>
         </div>
 
-        <div class="promo-content">
-            <!-- Album Cover -->
-            <div class="album-cover-section">
-                <div class="album-cover">🌅</div>
-            </div>
+        <div class="date-grid">
+          <div class="date-item">
+            <strong>Pre-Release</strong>
+            <span>Nov 13, 2026</span>
+            <span>•</span>
+            <span>2 Weeks</span>
+          </div>
 
-            <!-- Release Info -->
-            <div class="release-info">
-                <div class="artist-name">DJ Jonnas</div>
-                <div class="album-title">Sunsets In S.A</div>
-
-                <div class="release-timeline">
-                    <div class="timeline-item">
-                        <span class="timeline-label">🎬 Pre-Order</span>
-                        <span class="timeline-date">Oct 30, 2026</span>
-                        <span class="timeline-stores">(2 Weeks)</span>
-                    </div>
-                    <div class="timeline-item">
-                        <span class="timeline-label">🔓 Pre-Release</span>
-                        <span class="timeline-date">Nov 13, 2026</span>
-                        <span class="timeline-stores">(2 Weeks)</span>
-                    </div>
-                    <div class="timeline-item">
-                        <span class="timeline-label">🚀 Full Release</span>
-                        <span class="timeline-date">Nov 27, 2026</span>
-                        <span class="timeline-stores">All Platforms</span>
-                    </div>
-                </div>
-
-                <div class="stores-list">
-                    <span class="store-badge">🎵 Beatport</span>
-                    <span class="store-badge">💿 Volumo</span>
-                    <span class="store-badge">🎧 Spotify</span>
-                    <span class="store-badge">🎶 Apple Music</span>
-                    <span class="store-badge">▶️ YouTube</span>
-                    <span class="store-badge">🎸 SoundCloud</span>
-                </div>
-            </div>
-
-            <!-- CTA Section -->
-            <div class="cta-section">
-                <button class="pre-order-btn" onclick="alert('Pre-order coming October 30, 2026!')">
-                    🎵 Pre-Order Now
-                </button>
-                <div class="coming-soon">Coming Oct 30</div>
-                <div class="countdown">Available on all major platforms</div>
-            </div>
+          <div class="date-item">
+            <strong>Release Date</strong>
+            <span>Nov 27, 2026</span>
+            <span>•</span>
+            <span>Worldwide</span>
+          </div>
         </div>
+
+        <div class="store-list">
+          <span class="store-badge">Beatport</span>
+          <span class="store-badge">Volumo</span>
+          <span class="store-badge">Spotify</span>
+          <span class="store-badge">Apple Music</span>
+          <span class="store-badge">YouTube</span>
+          <span class="store-badge">SoundCloud</span>
+        </div>
+      </div>
+
+      <div class="cta-panel">
+        <button class="cta-button">Pre-Order Now</button>
+        <div class="status-box">Coming Soon</div>
+        <div class="countdown" id="countdownText">Pre-order starts soon</div>
+      </div>
     </div>
+  </div>
 
-    <!-- ========== JAVASCRIPT ========== -->
-    <script>
-        // ========== OFFLINE BANNER MANAGER ========== 
-        class OfflineBannerManager {
-            constructor() {
-                this.bannerEl = document.getElementById('offlineBanner');
-                this.closeBtn = document.getElementById('closeBanner');
-                this.storageKey = 'ddr-banner-dismissed';
-                this.particlesEnabled = true;
+  <script>
+    const offlineBanner = document.getElementById("offlineBanner");
+    const closeBannerBtn = document.getElementById("closeBanner");
 
-                this.init();
-            }
+    const dismissedKey = "ddr-offline-banner-dismissed";
 
-            init() {
-                this.setupEventListeners();
-                this.generateParticles();
-                this.checkDismissal();
-            }
+    closeBannerBtn.addEventListener("click", () => {
+      offlineBanner.style.animation = "slideDown 0.5s ease-in reverse forwards";
+      setTimeout(() => {
+        offlineBanner.style.display = "none";
+        localStorage.setItem(dismissedKey, "true");
+      }, 430);
+    });
 
-            setupEventListeners() {
-                this.closeBtn.addEventListener('click', () => this.closeBanner());
-                this.closeBtn.addEventListener('mouseenter', () => this.scaleButton(true));
-                this.closeBtn.addEventListener('mouseleave', () => this.scaleButton(false));
-                window.addEventListener('online', () => this.showBanner());
-                window.addEventListener('resize', () => this.updateParticleCount());
-            }
+    const dismissed = localStorage.getItem(dismissedKey);
+    if (dismissed === "true") {
+      offlineBanner.style.display = "none";
+    }
 
-            generateParticles() {
-                if (!this.particlesEnabled) return;
-                const bgContainer = this.bannerEl.querySelector('.banner-bg');
-                const particleCount = this.getParticleCount();
+    window.addEventListener("online", () => {
+      offlineBanner.style.display = "block";
+      offlineBanner.style.animation = "slideDown 0.8s ease-out";
+    });
 
-                bgContainer.innerHTML = '';
+    const targetDate = new Date("2026-10-30T00:00:00");
+    const countdownText = document.getElementById("countdownText");
 
-                for (let i = 0; i < particleCount; i++) {
-                    const particle = this.createParticle(i);
-                    bgContainer.appendChild(particle);
-                }
-            }
+    function updateCountdown() {
+      const now = new Date();
+      const diff = targetDate - now;
 
-            createParticle(index) {
-                const particle = document.createElement('div');
-                particle.className = 'smoke-particle';
+      if (diff <= 0) {
+        countdownText.textContent = "Pre-order is live now";
+        return;
+      }
 
-                const startX = Math.random() * 100;
-                const startY = Math.random() * 40;
-                const size = Math.random() * 50 + 40;
-                const duration = Math.random() * 4 + 5;
-                const delay = Math.random() * 2;
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / (1000 * 60)) % 60);
 
-                particle.style.cssText = `
-                    left: ${startX}%;
-                    top: ${startY}%;
-                    width: ${size}px;
-                    height: ${size}px;
-                    animation-duration: ${duration}s;
-                    animation-delay: ${delay}s;
-                `;
+      countdownText.textContent = `${days}d ${hours}h ${minutes}m until pre-order`;
+    }
 
-                return particle;
-            }
-
-            getParticleCount() {
-                const width = window.innerWidth;
-                if (width < 480) return 3;
-                if (width < 768) return 5;
-                return 7;
-            }
-
-            updateParticleCount() {
-                this.generateParticles();
-            }
-
-            checkDismissal() {
-                const isDismissed = localStorage.getItem(this.storageKey);
-                if (isDismissed && isDismissed === 'true') {
-                    this.bannerEl.style.display = 'none';
-                }
-            }
-
-            closeBanner() {
-                this.bannerEl.style.animation = 'slideDown 0.6s ease-in reverse forwards';
-                setTimeout(() => {
-                    this.bannerEl.style.display = 'none';
-                    localStorage.setItem(this.storageKey, 'true');
-                }, 600);
-            }
-
-            showBanner() {
-                localStorage.setItem(this.storageKey, 'false');
-                this.bannerEl.style.display = 'block';
-                this.bannerEl.style.animation = 'slideDown 0.8s cubic-bezier(0.34, 1.56, 0.64, 1)';
-            }
-
-            scaleButton(isHovered) {
-                if (isHovered) {
-                    this.closeBtn.style.transform = 'rotate(90deg) scale(1.15)';
-                } else {
-                    this.closeBtn.style.transform = 'rotate(0deg) scale(1)';
-                }
-            }
-        }
-
-        // ========== PROMOTIONAL BANNER MANAGER ==========
-        class PromoBannerManager {
-            constructor() {
-                this.promoBanner = document.getElementById('promoBanner');
-                this.storageKey = 'ddr-promo-viewed';
-                this.init();
-            }
-
-            init() {
-                this.addParticleAnimation();
-                this.setupCountdown();
-                this.trackView();
-            }
-
-            addParticleAnimation() {
-                const particles = this.promoBanner.querySelectorAll('.promo-particles');
-                particles.forEach((particle, index) => {
-                    particle.style.animationDelay = (index * 0.3) + 's';
-                });
-            }
-
-            setupCountdown() {
-                const preOrderDate = new Date('2026-10-30').getTime();
-                const today = new Date().getTime();
-                const timeLeft = preOrderDate - today;
-
-                if (timeLeft > 0) {
-                    const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
-                    const countdown = this.promoBanner.querySelector('.countdown');
-                    if (countdown) {
-                        countdown.textContent = `Only ${days} days until Pre-Order!`;
-                    }
-                }
-            }
-
-            trackView() {
-                const viewCount = localStorage.getItem('ddr-promo-views') || 0;
-                localStorage.setItem('ddr-promo-views', parseInt(viewCount) + 1);
-            }
-        }
-
-        // ========== INITIALIZE ALL MANAGERS ==========
-        const offlineBannerManager = new OfflineBannerManager();
-        const promoBannerManager = new PromoBannerManager();
-
-        // ========== PAGE LOAD ==========
-        window.addEventListener('load', () => {
-            console.log('🎵 DigitalDivideRecords - Offline & Promo Banners Ready!');
-            console.log('🎵 DJ Jonnas - Sunsets In S.A (Pre-Order Oct 30, 2026)');
-        });
-
-        // ========== KEYBOARD SHORTCUTS ==========
-        document.addEventListener('keydown', (e) => {
-            if (e.ctrlKey && e.key === 'b') {
-                e.preventDefault();
-                offlineBannerManager.showBanner();
-            }
-        });
-    </script>
-
+    updateCountdown();
+    setInterval(updateCountdown, 60000);
+  </script>
 </body>
 </html>

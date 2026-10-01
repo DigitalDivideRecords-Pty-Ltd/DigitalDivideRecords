@@ -387,38 +387,6 @@
         linear-gradient(180deg, rgba(255,255,255,0.02), transparent 18%, transparent 82%, rgba(255,255,255,0.01));
     }
 
-    /*.promo-banner__sweep {
-      position: absolute;
-      left: -35%;
-      width: 170%;
-      height: 2px;
-      background: linear-gradient(90deg, transparent, rgba(255,216,90,0.72), transparent);
-      animation: sweep 5s ease-in-out infinite;
-    }*/
-
-    .promo-banner__sweep:nth-child(2) {
-      top: 60%;
-      animation-delay: 1s;
-    }
-
-    /*@keyframes sweep {
-      0% {
-        transform: translateX(-15%);
-        opacity: 0;
-      }
-      25% {
-        opacity: 1;
-      }
-      50% {
-        transform: translateX(20%);
-        opacity: 1;
-      }
-      100% {
-        transform: translateX(35%);
-        opacity: 0;
-      }
-    }*/
-
     .promo-banner__content {
       position: relative;
       z-index: 2;
@@ -451,6 +419,13 @@
       position: relative;
     }
 
+    .cover-art img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
     @keyframes artFloat {
       0%, 100% {
         transform: translateY(0) rotateZ(0deg);
@@ -467,6 +442,7 @@
       background: linear-gradient(130deg, transparent 18%, rgba(255,255,255,0.18) 50%, transparent 82%);
       transform: rotate(20deg);
       animation: glossRoll 3.6s linear infinite;
+      pointer-events: none;
     }
 
     @keyframes glossRoll {
@@ -616,8 +592,6 @@
     .platform-pill:nth-child(2) { animation-delay: 0.55s; }
     .platform-pill:nth-child(3) { animation-delay: 0.6s; }
     .platform-pill:nth-child(4) { animation-delay: 0.65s; }
-    .platform-pill:nth-child(5) { animation-delay: 0.7s; }
-    .platform-pill:nth-child(6) { animation-delay: 0.75s; }
 
     @keyframes badgeIn {
       from {
@@ -672,6 +646,7 @@
       left: -100%;
       background: linear-gradient(90deg, transparent, rgba(255,255,255,0.24), transparent);
       animation: buttonShine 2.6s ease-in-out infinite;
+      pointer-events: none;
     }
 
     @keyframes buttonShine {
@@ -685,6 +660,10 @@
       box-shadow:
         0 20px 42px rgba(255,216,90,0.36),
         0 0 42px rgba(255,216,90,0.22);
+    }
+
+    .preorder-btn:active {
+      transform: translateY(-2px) scale(1.02);
     }
 
     .status-badge {
@@ -708,13 +687,41 @@
       50% { opacity: 1; }
     }
 
+    /* ===== COUNTDOWN TIMER STYLES ===== */
     .countdown {
-      font-size: 0.72rem;
+      font-size: 0.85rem;
       letter-spacing: 0.04em;
-      color: rgba(255,255,255,0.7);
+      color: rgba(255,255,255,0.85);
       font-weight: 700;
-      min-height: 1.2em;
+      min-height: 1.4em;
       text-align: center;
+      padding: 8px 12px;
+      border-radius: 6px;
+      background: rgba(255,216,90,0.06);
+      border: 1px solid rgba(255,216,90,0.2);
+      animation: countdownGlow 1.5s ease-in-out infinite;
+      font-variant-numeric: tabular-nums;
+      font-feature-settings: "tnum";
+    }
+
+    @keyframes countdownGlow {
+      0%, 100% { box-shadow: 0 0 8px rgba(255,216,90,0.1); }
+      50% { box-shadow: 0 0 16px rgba(255,216,90,0.25); }
+    }
+
+    .countdown-value {
+      display: inline-block;
+      color: var(--gold-1);
+      font-weight: 900;
+      font-size: 1em;
+      margin: 0 2px;
+    }
+
+    .countdown-label {
+      display: inline-block;
+      font-size: 0.65em;
+      opacity: 0.8;
+      margin-left: 3px;
     }
 
     /* =========================
@@ -759,6 +766,7 @@
 
       .promo-banner__content {
         padding: 20px 16px;
+        grid-template-columns: 1fr;
       }
 
       .release-title {
@@ -767,6 +775,14 @@
 
       .promo-actions {
         flex-direction: column;
+        gap: 10px;
+      }
+
+      .preorder-btn,
+      .status-badge,
+      .countdown {
+        max-width: 100%;
+        width: 100%;
       }
     }
 
@@ -825,6 +841,20 @@
 
       .status-badge {
         font-size: 0.64rem;
+        padding: 6px 10px;
+      }
+
+      .countdown {
+        font-size: 0.75rem;
+        padding: 6px 10px;
+      }
+
+      .countdown-value {
+        font-size: 0.95em;
+      }
+
+      .countdown-label {
+        font-size: 0.6em;
       }
     }
   </style>
@@ -864,8 +894,8 @@
           class="offline-banner__close"
           id="closeOfflineBanner"
           type="button"
-          aria-label="Offline notification"
-          title="Offline notification"
+          aria-label="Dismiss notification"
+          title="Dismiss notification"
         >
           ✕
         </button>
@@ -873,65 +903,18 @@
     </div>
   </div>
 
-  <!-- PROMO BANNER -->'
+  <!-- PROMO BANNER -->
   <section class="promo-banner" title="New Release Promotional Banner" aria-label="New Release Promotional Banner">
-    <div class="promo-banner__bg" aria-hidden="true">
-      <div class="promo-banner__sweep"></div>
-      <div class="promo-banner__sweep"></div>
-    </div>
+    <div class="promo-banner__bg" aria-hidden="true"></div>
 
     <div class="promo-banner__content">
-      <div class="cover-wrap" title="Album Cover For Sunsets In S.A" aria-label="Album Cover For Sunsets In S.A">
+      <div class="cover-wrap" aria-label="Album Cover For Sunsets In S.A">
         <div class="cover-art">
-          <img src="DJJonnas-SunsetsInSA-CoverArt.jpeg" role="img" title="DJJonnas-SunsetsInSA-CoverArt" aria-label="DJJonnas-SunsetsInSA-CoverArt">
-            <defs>
-              <linearGradient id="sunsetBg" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stop-color="#56170f" />
-                <stop offset="20%" stop-color="#9d2f1a" />
-                <stop offset="42%" stop-color="#ea6f2f" />
-                <stop offset="68%" stop-color="#f7b546" />
-                <stop offset="100%" stop-color="#f9d87a" />
-              </linearGradient>
-              <linearGradient id="seaGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stop-color="#0e1d2a" />
-                <stop offset="100%" stop-color="#1a4964" />
-              </linearGradient>
-              <linearGradient id="deckGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stop-color="#3a2418" />
-                <stop offset="100%" stop-color="#130d0f" />
-              </linearGradient>
-            </defs>
-
-            <rect width="200" height="200" fill="url(#sunsetBg)" />
-            <circle cx="100" cy="60" r="25" fill="#ffd76a" opacity="0.95" />
-            <path d="M0 95 L30 75 L78 102 L118 82 L158 102 L200 92 L200 200 L0 200 Z" fill="#5b2018" opacity="0.72" />
-            <path d="M0 136 C45 122, 72 120, 98 132 S155 142, 200 128 L200 200 L0 200 Z" fill="url(#seaGrad)" opacity="0.95" />
-
-            <rect x="16" y="112" width="168" height="68" rx="8" fill="url(#deckGrad)" opacity="0.96" />
-            <circle cx="59" cy="149" r="21" fill="#181818" stroke="#dfe0df" stroke-width="2" />
-            <circle cx="59" cy="149" r="8" fill="#ffd700" />
-            <circle cx="116" cy="149" r="21" fill="#181818" stroke="#dfe0df" stroke-width="2" />
-            <circle cx="116" cy="149" r="8" fill="#ffd700" />
-
-            <g opacity="0.9">
-              <rect x="35" y="127" width="126" height="4" fill="#31d8ff" />
-              <rect x="35" y="133" width="126" height="4" fill="#2dde9d" />
-              <rect x="35" y="139" width="126" height="4" fill="#f4d35e" />
-            </g>
-
-            <g fill="#1c1c1c" opacity="0.8">
-              <circle cx="28" cy="180" r="6" />
-              <circle cx="44" cy="176" r="7" />
-              <circle cx="62" cy="182" r="5" />
-              <circle cx="138" cy="180" r="7" />
-              <circle cx="154" cy="176" r="5" />
-            </g>
-             <text x="100" y="72" text-anchor="middle" fill="#fff7d6" font-size="11" font-weight="600" letter-spacing="1.3">NEW</text>
-            <text x="100" y="72" text-anchor="middle" fill="#fff7d6" font-size="11" font-weight="600" letter-spacing="1.3">MUSIC ALERT</text>
-            <text x="100" y="52" text-anchor="middle" fill="#fff7d6" font-size="13" font-weight="500" letter-spacing="1.3">SUNSETS</text>
-            <text x="100" y="52" text-anchor="middle" fill="#fff7d6" font-size="13" font-weight="500" letter-spacing="1.3">IN S.A</text>
-            <text x="100" y="180" text-anchor="middle" fill="#fef5d8" font-size="13" font-weight="500" letter-spacing="1.3">DJ JONNAS</text>
-          </svg>
+          <img 
+            src="DJJonnas-SunsetsInSA-CoverArt.jpeg" 
+            alt="DJ Jonnas - Sunsets In S.A Cover Art"
+            loading="lazy"
+          />
         </div>
       </div>
 
@@ -959,38 +942,36 @@
             <span class="schedule-icon" aria-hidden="true">🚀</span>
             <span class="schedule-label">Release</span>
             <span class="schedule-date">Nov 27, 2026</span>
-            <span class="schedule-duration">Worldwide<br> (<strong>Except:</strong> NetEase Cloud Music, Pandora, Taobao, Tencent)</span>
+            <span class="schedule-duration">Worldwide<br>(<strong>Except:</strong> NetEase, Pandora, Taobao, Tencent)</span>
           </div>
         </div>
 
         <div class="platform-list" aria-label="Stores list">
-          <span class="platform-pill">Pre-Order & Pre-Release On Beatport</span>
-          <span class="platform-pill">Pre-Order & Pre-Release On Volumo</span>
-          <span class="platform-pill">Pre-Order: 30 October 2026</span>
-          <span class="platform-pill">Pre-Release: 13 November 2026</span>
-          <!--<span class="platform-pill">Spotify</span>
-          <span class="platform-pill">Apple Music</span>
-          <span class="platform-pill">YouTube</span>
-          <span class="platform-pill">SoundCloud</span>-->
+          <span class="platform-pill">Pre-Order On Beatport</span>
+          <span class="platform-pill">Pre-Order On Volumo</span>
+          <span class="platform-pill">Pre-Release: Nov 13</span>
+          <span class="platform-pill">Release: Nov 27</span>
         </div>
       </div>
 
       <div class="promo-actions">
-        <button class="preorder-btn" id="preorderBtn" type="button">
-          Pre-Order On Beatport & Volumo
+        <button class="preorder-btn" id="preorderBtn" type="button" aria-label="Pre-order on Beatport and Volumo">
+          Pre-Order Now
         </button>
-        <div class="status-badge">Coming Oct 30</div>
-        <div class="countdown" id="countdownDisplay" aria-live="polite">
-          Days until pre-order
+        <div class="status-badge" id="statusBadge">Coming Oct 30</div>
+        <div class="countdown" id="countdownDisplay" aria-live="polite" aria-atomic="true">
+          Calculating countdown...
         </div>
       </div>
     </div>
   </section>
 
+  <!-- JAVASCRIPT -->
   <script>
     (function () {
       'use strict';
 
+      // ========== STORAGE MANAGEMENT ==========
       const STORAGE_KEYS = {
         offlineDismissed: 'ddr_offline_banner_dismissed'
       };
@@ -999,6 +980,7 @@
         try {
           return window.localStorage.getItem(key);
         } catch (error) {
+          console.warn('localStorage get failed:', error);
           return null;
         }
       }
@@ -1008,71 +990,146 @@
           window.localStorage.setItem(key, String(value));
           return true;
         } catch (error) {
+          console.warn('localStorage set failed:', error);
           return false;
         }
       }
 
+      // ========== OFFLINE BANNER MANAGEMENT ==========
       const offlineBanner = document.getElementById('offlineBanner');
       const closeOfflineBanner = document.getElementById('closeOfflineBanner');
 
-      if (closeOfflineBanner) {
-        //closeOfflineBanner.addEventListener('click', function () {
-          if (!offlineBanner) return;
-
+      if (closeOfflineBanner && offlineBanner) {
+        closeOfflineBanner.addEventListener('click', function () {
           offlineBanner.style.animation = 'bannerDown 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) reverse forwards';
           setTimeout(function () {
             offlineBanner.classList.add('hidden');
             safeStorageSet(STORAGE_KEYS.offlineDismissed, 'true');
           }, 500);
         });
+
+        const offlineDismissed = safeStorageGet(STORAGE_KEYS.offlineDismissed);
+        if (offlineDismissed === 'true') {
+          offlineBanner.classList.add('hidden');
+        }
+
+        window.addEventListener('online', function () {
+          offlineBanner.classList.remove('hidden');
+          offlineBanner.style.animation = 'bannerDown 0.9s cubic-bezier(0.34, 1.56, 0.64, 1) forwards';
+          safeStorageSet(STORAGE_KEYS.offlineDismissed, 'false');
+        });
       }
 
-      const offlineDismissed = safeStorageGet(STORAGE_KEYS.offlineDismissed);
-      if (offlineDismissed === 'true' && offlineBanner) {
-        offlineBanner.classList.add('hidden');
-      }
-
-      window.addEventListener('online', function () {
-        if (!offlineBanner) return;
-        offlineBanner.classList.remove('hidden');
-        offlineBanner.style.animation = 'bannerDown 0.9s cubic-bezier(0.34, 1.56, 0.64, 1) forwards';
-        safeStorageSet(STORAGE_KEYS.offlineDismissed, 'false');
-      });
-
+      // ========== COUNTDOWN TIMER (FULLY FUNCTIONAL) ==========
       const countdownDisplay = document.getElementById('countdownDisplay');
-      const preorderDate = new Date('2026-10-30T00:00:00').getTime();
+      const statusBadge = document.getElementById('statusBadge');
+      const preorderBtn = document.getElementById('preorderBtn');
 
-      function updateCountdown() {
-        if (!countdownDisplay) return;
+      // Pre-order date: October 30, 2026 at 00:00:00 UTC
+      const PRE_ORDER_DATE = new Date('2026-10-30T00:00:00Z').getTime();
+      const PRE_RELEASE_DATE = new Date('2026-11-13T00:00:00Z').getTime();
+      const RELEASE_DATE = new Date('2026-11-27T00:00:00Z').getTime();
 
+      function formatCountdown() {
         const now = Date.now();
-        const diff = preorderDate - now;
 
-        if (diff <= 0) {
-          countdownDisplay.textContent = 'Pre-order is now live!';
+        // Determine which phase we're in
+        let targetDate, phase;
+        if (now < PRE_ORDER_DATE) {
+          targetDate = PRE_ORDER_DATE;
+          phase = 'pre-order';
+        } else if (now < PRE_RELEASE_DATE) {
+          targetDate = PRE_RELEASE_DATE;
+          phase = 'pre-release';
+        } else if (now < RELEASE_DATE) {
+          targetDate = RELEASE_DATE;
+          phase = 'release';
+        } else {
+          // Release is live
+          if (countdownDisplay) countdownDisplay.textContent = '🎉 Now Available Worldwide!';
+          if (statusBadge) statusBadge.textContent = '✅ Released';
+          if (preorderBtn) preorderBtn.textContent = 'Now Available';
           return;
         }
 
+        const diff = targetDate - now;
+
+        if (diff <= 0) {
+          formatCountdown();
+          return;
+        }
+
+        // Calculate time units
         const days = Math.floor(diff / (1000 * 60 * 60 * 24));
         const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
         const minutes = Math.floor((diff / (1000 * 60)) % 60);
+        const seconds = Math.floor((diff / 1000) % 60);
 
-        countdownDisplay.textContent = `${days}d ${hours}h ${minutes}m until pre-order`;
+        // Format output
+        let displayText = '';
+        if (phase === 'pre-order') {
+          displayText = `<span class="countdown-value">${days}</span><span class="countdown-label">D</span> ` +
+                       `<span class="countdown-value">${hours}</span><span class="countdown-label">H</span> ` +
+                       `<span class="countdown-value">${minutes}</span><span class="countdown-label">M</span> ` +
+                       `<span class="countdown-value">${seconds}</span><span class="countdown-label">S</span>`;
+        } else if (phase === 'pre-release') {
+          displayText = `<span class="countdown-value">${days}</span><span class="countdown-label">D</span> ` +
+                       `<span class="countdown-value">${hours}</span><span class="countdown-label">H</span> ` +
+                       `Until Release`;
+        } else if (phase === 'release') {
+          displayText = `<span class="countdown-value">${days}</span><span class="countdown-label">D</span> ` +
+                       `<span class="countdown-value">${hours}</span><span class="countdown-label">H</span> ` +
+                       `Until Release`;
+        }
+
+        if (countdownDisplay) {
+          countdownDisplay.innerHTML = displayText;
+        }
+
+        // Update status badge
+        if (statusBadge) {
+          if (phase === 'pre-order') {
+            statusBadge.textContent = `Coming Oct 30 (${days}d)`;
+          } else if (phase === 'pre-release') {
+            statusBadge.textContent = `Pre-Release Active (${days}d)`;
+          } else if (phase === 'release') {
+            statusBadge.textContent = `Releasing Soon (${days}d)`;
+          }
+        }
       }
 
-      updateCountdown();
-      setInterval(updateCountdown, 60000);
+      // Initial countdown update
+      formatCountdown();
 
-      const preorderBtn = document.getElementById('preorderBtn');
+      // Update countdown every second
+      const countdownInterval = setInterval(formatCountdown, 1000);
+
+      // Cleanup on page unload
+      window.addEventListener('beforeunload', function () {
+        clearInterval(countdownInterval);
+      });
+
+      // ========== PRE-ORDER BUTTON ==========
       if (preorderBtn) {
         preorderBtn.addEventListener('click', function () {
-          const message =
-            '🎵 Pre-orders start October 30, 2026.\n\nAvailable on Beatport and Volumo.\nThank you for your support!';
+          const now = Date.now();
+          let message = '';
+
+          if (now < PRE_ORDER_DATE) {
+            message = '🎵 Pre-orders start October 30, 2026.\n\nAvailable on:\n• Beatport\n• Volumo\n\nThank you for your support!';
+          } else if (now < PRE_RELEASE_DATE) {
+            message = '🎵 Pre-release is now active!\n\nAvailable on:\n• Beatport\n• Volumo\n\nFull release: November 27, 2026';
+          } else if (now < RELEASE_DATE) {
+            message = '🎵 Pre-release is active!\n\nFull worldwide release coming November 27, 2026';
+          } else {
+            message = '🎉 Sunsets In S.A is now available worldwide!\n\nAvailable on all major platforms.';
+          }
 
           window.alert(message);
         });
       }
 
+      // ========== KEYBOARD SHORTCUTS ==========
       document.addEventListener('keydown', function (event) {
         if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === 'b') {
           event.preventDefault();
@@ -1083,7 +1140,13 @@
         }
       });
 
-      console.log('DigitalDivideRecords banner system loaded successfully.');
+      // ========== INITIALIZATION LOG ==========
+      console.log('✅ Digital Divide Records banner system loaded successfully!');
+      console.log('⏱️ Countdown timer is active and updating every second');
+      console.log('🎹 Keyboard shortcut: Ctrl+B to show offline banner');
+      console.log('📅 Pre-Order: Oct 30, 2026');
+      console.log('🔓 Pre-Release: Nov 13, 2026');
+      console.log('🚀 Full Release: Nov 27, 2026');
     })();
   </script>
 </body>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Offline Notification Banner - DigitalDivideRecords</title>
+    <title>DigitalDivideRecords - Offline & Promotional Banner</title>
     <style>
         * {
             margin: 0;
@@ -13,31 +13,31 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d1b3d 50%, #1a1a1a 100%);
             min-height: 100vh;
             display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
+            flex-direction: column;
+            padding-top: 160px;
+            padding-bottom: 40px;
         }
 
-        /* ========== BANNER CONTAINER ========== */
+        /* ========== OFFLINE BANNER ========== */
         .offline-banner {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             z-index: 9999;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+            background: rgba(26, 26, 26, 0.15);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-bottom: 2px solid rgba(255, 215, 0, 0.3);
+            box-shadow: 0 8px 32px rgba(255, 215, 0, 0.2),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.1);
             overflow: hidden;
             animation: slideDown 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
 
-        /* ========== SMOKE/PARTICLE EFFECT BACKGROUND ========== */
         .banner-bg {
             position: absolute;
             top: 0;
@@ -49,9 +49,9 @@
 
         .smoke-particle {
             position: absolute;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 70%);
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.2) 0%, rgba(255, 215, 0, 0) 70%);
             border-radius: 50%;
-            filter: blur(2px);
+            filter: blur(3px);
             animation: floatSmoke 6s ease-in-out infinite;
         }
 
@@ -61,15 +61,14 @@
                 transform: translateY(0) translateX(0) scale(1);
             }
             50% {
-                opacity: 0.5;
+                opacity: 0.4;
             }
             100% {
                 opacity: 0;
-                transform: translateY(-40px) translateX(20px) scale(1.5);
+                transform: translateY(-50px) translateX(20px) scale(1.8);
             }
         }
 
-        /* ========== GRADIENT OVERLAY ========== */
         .banner-gradient {
             position: absolute;
             top: 0;
@@ -77,53 +76,47 @@
             width: 100%;
             height: 100%;
             background: linear-gradient(90deg, 
-                rgba(239, 68, 68, 0.1) 0%,
-                rgba(239, 68, 68, 0.05) 25%,
-                rgba(239, 68, 68, 0.05) 75%,
-                rgba(239, 68, 68, 0.1) 100%);
+                rgba(255, 215, 0, 0.08) 0%,
+                rgba(255, 215, 0, 0.04) 25%,
+                rgba(255, 215, 0, 0.04) 75%,
+                rgba(255, 215, 0, 0.08) 100%);
             animation: gradientShift 4s ease-in-out infinite;
         }
 
         @keyframes gradientShift {
-            0%, 100% {
-                opacity: 0.3;
-            }
-            50% {
-                opacity: 0.6;
-            }
+            0%, 100% { opacity: 0.2; }
+            50% { opacity: 0.5; }
         }
 
-        /* ========== CONTENT WRAPPER ========== */
         .banner-content {
             position: relative;
             z-index: 10;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 20px;
-            min-height: 80px;
-            gap: 20px;
+            padding: 24px;
+            min-height: 90px;
+            gap: 24px;
             flex-wrap: wrap;
         }
 
-        /* ========== ANIMATED ICON ========== */
         .offline-icon {
             flex-shrink: 0;
             animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
         }
 
         .icon-circle {
-            width: 50px;
-            height: 50px;
+            width: 60px;
+            height: 60px;
             border-radius: 50%;
-            background: linear-gradient(135deg, #ef4444 0%, #f87171 100%);
+            background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 28px;
+            font-size: 32px;
             position: relative;
-            box-shadow: 0 0 20px rgba(239, 68, 68, 0.5),
-                        0 0 40px rgba(239, 68, 68, 0.3);
+            box-shadow: 0 0 25px rgba(255, 215, 0, 0.6),
+                        0 0 50px rgba(255, 215, 0, 0.3);
         }
 
         .icon-glow {
@@ -131,7 +124,7 @@
             width: 100%;
             height: 100%;
             border-radius: 50%;
-            border: 2px solid rgba(239, 68, 68, 0.5);
+            border: 2px solid rgba(255, 215, 0, 0.6);
             animation: expandGlow 2s ease-out infinite;
         }
 
@@ -141,44 +134,278 @@
                 opacity: 1;
             }
             100% {
-                transform: scale(1.3);
+                transform: scale(1.4);
                 opacity: 0;
             }
         }
 
         @keyframes pulse {
-            0%, 100% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.05);
-            }
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.08); }
         }
 
-        /* ========== TEXT CONTENT ========== */
         .banner-text {
             flex: 1;
             min-width: 250px;
         }
 
         .banner-title {
-            font-size: clamp(16px, 5vw, 24px);
-            font-weight: 700;
-            color: #fff;
-            margin-bottom: 5px;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-            letter-spacing: 0.5px;
+            font-size: clamp(18px, 5vw, 26px);
+            font-weight: 800;
+            color: #ffd700;
+            margin-bottom: 6px;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5),
+                         0 0 20px rgba(255, 215, 0, 0.3);
+            letter-spacing: 1px;
             animation: slideInLeft 0.8s ease-out;
+            text-transform: uppercase;
         }
 
         .banner-subtitle {
-            font-size: clamp(12px, 3vw, 14px);
-            color: rgba(255, 255, 255, 0.85);
+            font-size: clamp(13px, 3.5vw, 15px);
+            color: rgba(255, 255, 255, 0.9);
             opacity: 0;
             animation: fadeInUp 0.8s ease-out 0.2s forwards;
+            font-weight: 500;
+            letter-spacing: 0.5px;
         }
 
         @keyframes slideInLeft {
+            from { transform: translateX(-40px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        @keyframes fadeInUp {
+            from { transform: translateY(15px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes slideDown {
+            from { transform: translateY(-100%); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .loading-dots {
+            display: inline-flex;
+            gap: 5px;
+            align-items: center;
+            margin-left: 8px;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #ffd700;
+            opacity: 0.7;
+            animation: dotBounce 1.4s ease-in-out infinite;
+        }
+
+        .dot:nth-child(1) { animation-delay: -0.32s; }
+        .dot:nth-child(2) { animation-delay: -0.16s; }
+
+        @keyframes dotBounce {
+            0%, 80%, 100% { transform: scale(0); opacity: 0.5; }
+            40% { transform: scale(1); opacity: 1; }
+        }
+
+        .banner-close {
+            flex-shrink: 0;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 215, 0, 0.15);
+            border: 2px solid rgba(255, 215, 0, 0.4);
+            color: #ffd700;
+            font-size: 22px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
+            overflow: hidden;
+            animation: scaleIn 0.6s ease-out 0.3s both;
+            font-weight: bold;
+        }
+
+        .banner-close:hover {
+            background: rgba(255, 215, 0, 0.25);
+            transform: rotate(90deg) scale(1.15);
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+            border-color: rgba(255, 215, 0, 0.7);
+        }
+
+        @keyframes scaleIn {
+            from { transform: scale(0); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .banner-progress {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #ffd700, #ffed4e, #ffd700);
+            animation: progressMove 2.5s ease-in-out infinite;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+        }
+
+        @keyframes progressMove {
+            0% { width: 0; }
+            50% { width: 100%; }
+            100% { width: 0; }
+        }
+
+        /* ========== PROMOTIONAL BANNER ========== */
+        .promo-banner {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto 40px;
+            padding: 30px 20px;
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.05) 0%, rgba(255, 140, 0, 0.05) 100%);
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            border-radius: 20px;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            box-shadow: 0 20px 60px rgba(255, 215, 0, 0.15),
+                        0 0 40px rgba(255, 140, 0, 0.1),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            animation: slideUpReveal 1s cubic-bezier(0.34, 1.56, 0.64, 1);
+            overflow: hidden;
+            position: relative;
+        }
+
+        @keyframes slideUpReveal {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* Animated Background Elements */
+        .promo-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .promo-gradient-line {
+            position: absolute;
+            background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.4), transparent);
+            animation: slideAcross 3s ease-in-out infinite;
+        }
+
+        @keyframes slideAcross {
+            0% { transform: translateX(-100%); }
+            50% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+
+        .promo-particles {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #ffd700;
+            border-radius: 50%;
+            animation: floatParticles 8s ease-in-out infinite;
+            opacity: 0.6;
+        }
+
+        @keyframes floatParticles {
+            0% { transform: translateY(0) translateX(0); opacity: 0; }
+            50% { opacity: 0.8; }
+            100% { transform: translateY(-40px) translateX(20px); opacity: 0; }
+        }
+
+        .promo-content {
+            position: relative;
+            z-index: 5;
+            display: grid;
+            grid-template-columns: 1fr 2fr 1fr;
+            gap: 30px;
+            align-items: center;
+        }
+
+        /* Album Cover Section */
+        .album-cover-section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: bounceIn 1s cubic-bezier(0.68, -0.55, 0.265, 1.55) 0.2s both;
+        }
+
+        @keyframes bounceIn {
+            0% {
+                transform: scale(0) rotateZ(-10deg);
+                opacity: 0;
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1) rotateZ(0);
+                opacity: 1;
+            }
+        }
+
+        .album-cover {
+            width: 140px;
+            height: 140px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.3), rgba(255, 140, 0, 0.3));
+            border: 3px solid rgba(255, 215, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+            box-shadow: 0 20px 40px rgba(255, 215, 0, 0.3),
+                        0 0 30px rgba(255, 140, 0, 0.2),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            animation: rotateFloat 6s ease-in-out infinite;
+            position: relative;
+            overflow: hidden;
+        }
+
+        @keyframes rotateFloat {
+            0%, 100% {
+                transform: translateY(0) rotateZ(0);
+            }
+            50% {
+                transform: translateY(-15px) rotateZ(3deg);
+            }
+        }
+
+        .album-cover::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            0% { transform: translate(-100%, -100%) rotate(45deg); }
+            100% { transform: translate(100%, 100%) rotate(45deg); }
+        }
+
+        /* Info Section */
+        .release-info {
+            animation: fadeSlideIn 0.8s ease-out 0.3s both;
+        }
+
+        @keyframes fadeSlideIn {
             from {
                 transform: translateX(-30px);
                 opacity: 0;
@@ -189,9 +416,35 @@
             }
         }
 
-        @keyframes fadeInUp {
+        .artist-name {
+            font-size: clamp(18px, 4vw, 28px);
+            font-weight: 900;
+            color: #ffd700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+            text-shadow: 0 2px 10px rgba(255, 215, 0, 0.3);
+            animation: textGlow 2s ease-in-out infinite;
+        }
+
+        @keyframes textGlow {
+            0%, 100% { text-shadow: 0 2px 10px rgba(255, 215, 0, 0.3); }
+            50% { text-shadow: 0 2px 20px rgba(255, 215, 0, 0.6); }
+        }
+
+        .album-title {
+            font-size: clamp(20px, 5vw, 36px);
+            font-weight: 900;
+            color: #fff;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+            line-height: 1.2;
+            animation: textSlideIn 0.8s ease-out 0.5s both;
+        }
+
+        @keyframes textSlideIn {
             from {
-                transform: translateY(10px);
+                transform: translateY(20px);
                 opacity: 0;
             }
             to {
@@ -200,274 +453,335 @@
             }
         }
 
-        @keyframes slideDown {
-            from {
-                transform: translateY(-100%);
-                opacity: 0;
-            }
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-
-        /* ========== LOADING DOTS ========== */
-        .loading-dots {
+        .release-timeline {
             display: flex;
-            gap: 4px;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .timeline-item {
+            display: flex;
             align-items: center;
+            gap: 12px;
+            padding: 10px 15px;
+            background: rgba(255, 215, 0, 0.08);
+            border-left: 4px solid #ffd700;
+            border-radius: 6px;
+            animation: slideInRight 0.6s ease-out;
+            animation-fill-mode: both;
         }
 
-        .dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: #fff;
-            opacity: 0.6;
-            animation: dotBounce 1.4s ease-in-out infinite;
-        }
+        .timeline-item:nth-child(1) { animation-delay: 0.4s; }
+        .timeline-item:nth-child(2) { animation-delay: 0.5s; }
+        .timeline-item:nth-child(3) { animation-delay: 0.6s; }
 
-        .dot:nth-child(1) {
-            animation-delay: -0.32s;
-        }
-
-        .dot:nth-child(2) {
-            animation-delay: -0.16s;
-        }
-
-        @keyframes dotBounce {
-            0%, 80%, 100% {
-                transform: scale(0);
-                opacity: 0.5;
+        @keyframes slideInRight {
+            from {
+                transform: translateX(-20px);
+                opacity: 0;
             }
-            40% {
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .timeline-label {
+            font-size: 12px;
+            font-weight: 700;
+            color: #ffd700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            min-width: 110px;
+            padding: 4px 8px;
+            background: rgba(255, 215, 0, 0.15);
+            border-radius: 4px;
+        }
+
+        .timeline-date {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 600;
+        }
+
+        .timeline-stores {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.7);
+            font-style: italic;
+        }
+
+        .stores-list {
+            margin: 15px 0;
+            padding: 12px 15px;
+            background: rgba(255, 140, 0, 0.1);
+            border-radius: 8px;
+            border: 1px solid rgba(255, 140, 0, 0.3);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            animation: popIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) 0.7s both;
+        }
+
+        @keyframes popIn {
+            from {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+            to {
                 transform: scale(1);
                 opacity: 1;
             }
         }
 
-        /* ========== CLOSE BUTTON ========== */
-        .banner-close {
-            flex-shrink: 0;
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.2);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            color: #fff;
-            font-size: 20px;
-            cursor: pointer;
+        .store-badge {
+            padding: 6px 12px;
+            background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+            color: #1a1a1a;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 12px rgba(255, 215, 0, 0.3);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .store-badge:nth-child(odd) { animation-delay: 0.2s; }
+        .store-badge:nth-child(even) { animation-delay: 0.4s; }
+
+        /* CTA Section */
+        .cta-section {
             display: flex;
-            align-items: center;
+            flex-direction: column;
+            gap: 12px;
             justify-content: center;
+            animation: fadeSlideInRight 0.8s ease-out 0.4s both;
+        }
+
+        @keyframes fadeSlideInRight {
+            from {
+                transform: translateX(30px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .pre-order-btn {
+            padding: 14px 28px;
+            background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+            color: #1a1a1a;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
             transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: 0 8px 20px rgba(255, 215, 0, 0.4);
             position: relative;
             overflow: hidden;
-            animation: scaleIn 0.6s ease-out 0.3s both;
+            animation: pulse 2s ease-in-out infinite;
         }
 
-        .banner-close:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: rotate(90deg) scale(1.1);
-            box-shadow: 0 0 15px rgba(239, 68, 68, 0.4);
-        }
-
-        .banner-close:active {
-            transform: rotate(90deg) scale(0.95);
-        }
-
-        @keyframes scaleIn {
-            from {
-                transform: scale(0);
-                opacity: 0;
-            }
-            to {
-                transform: scale(1);
-                opacity: 1;
-            }
-        }
-
-        /* ========== PROGRESS BAR ========== */
-        .banner-progress {
+        .pre-order-btn::before {
+            content: '';
             position: absolute;
-            bottom: 0;
-            left: 0;
-            height: 3px;
-            background: linear-gradient(90deg, #fbbf24, #f97316, #ef4444);
-            animation: progressMove 2s ease-in-out infinite;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.3);
+            animation: buttonShine 3s infinite;
         }
 
-        @keyframes progressMove {
-            0% {
-                width: 0;
-            }
-            50% {
-                width: 100%;
-            }
-            100% {
-                width: 0;
-            }
+        @keyframes buttonShine {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        .pre-order-btn:hover {
+            transform: translateY(-4px) scale(1.05);
+            box-shadow: 0 12px 30px rgba(255, 215, 0, 0.6);
+        }
+
+        .pre-order-btn:active {
+            transform: translateY(-2px) scale(1);
+        }
+
+        .coming-soon {
+            padding: 8px 16px;
+            background: rgba(255, 215, 0, 0.1);
+            border: 2px solid rgba(255, 215, 0, 0.4);
+            color: #ffd700;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            text-align: center;
+            animation: blink 1.5s ease-in-out infinite;
+        }
+
+        @keyframes blink {
+            0%, 50%, 100% { opacity: 1; }
+            25%, 75% { opacity: 0.6; }
+        }
+
+        .countdown {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.8);
+            text-align: center;
+            font-weight: 600;
+            animation: fadeInUp 0.8s ease-out 0.6s both;
         }
 
         /* ========== RESPONSIVE DESIGN ========== */
+        @media (max-width: 1024px) {
+            .promo-content {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .album-cover {
+                width: 120px;
+                height: 120px;
+                font-size: 50px;
+            }
+
+            .release-info {
+                text-align: center;
+            }
+
+            .cta-section {
+                flex-direction: row;
+                justify-content: center;
+                gap: 12px;
+            }
+
+            .pre-order-btn {
+                flex: 1;
+                min-width: 180px;
+            }
+
+            .coming-soon {
+                flex: 1;
+            }
+        }
+
         @media (max-width: 768px) {
+            body {
+                padding-top: 150px;
+            }
+
+            .promo-banner {
+                padding: 20px 15px;
+                margin-bottom: 20px;
+            }
+
+            .album-cover {
+                width: 100px;
+                height: 100px;
+                font-size: 40px;
+            }
+
+            .artist-name {
+                font-size: 20px;
+            }
+
+            .album-title {
+                font-size: 24px;
+            }
+
+            .timeline-label {
+                font-size: 11px;
+                min-width: 90px;
+            }
+
+            .cta-section {
+                flex-direction: column;
+            }
+
+            .pre-order-btn,
+            .coming-soon {
+                width: 100%;
+            }
+
             .banner-content {
                 flex-direction: column;
-                gap: 15px;
-                padding: 15px;
-                min-height: auto;
+                padding: 16px;
+                gap: 12px;
             }
 
             .icon-circle {
-                width: 45px;
-                height: 45px;
-                font-size: 24px;
+                width: 50px;
+                height: 50px;
+                font-size: 28px;
             }
 
             .banner-title {
                 font-size: 18px;
                 text-align: center;
-            }
-
-            .banner-subtitle {
-                font-size: 12px;
-                text-align: center;
-            }
-
-            .banner-close {
-                width: 32px;
-                height: 32px;
-                font-size: 18px;
             }
         }
 
         @media (max-width: 480px) {
-            .banner-content {
-                padding: 12px;
+            body {
+                padding-top: 120px;
             }
 
-            .icon-circle {
-                width: 40px;
-                height: 40px;
-                font-size: 20px;
+            .promo-banner {
+                padding: 15px 12px;
+                margin-bottom: 15px;
+                border-radius: 12px;
             }
 
-            .banner-title {
+            .album-cover {
+                width: 90px;
+                height: 90px;
+                font-size: 36px;
+            }
+
+            .artist-name {
                 font-size: 16px;
+                letter-spacing: 1px;
             }
 
-            .banner-subtitle {
+            .album-title {
+                font-size: 18px;
+            }
+
+            .timeline-item {
+                padding: 8px 12px;
+                font-size: 12px;
+            }
+
+            .timeline-label {
+                font-size: 10px;
+                min-width: 80px;
+            }
+
+            .stores-list {
+                gap: 6px;
+                padding: 10px 12px;
+            }
+
+            .store-badge {
+                font-size: 10px;
+                padding: 5px 10px;
+            }
+
+            .pre-order-btn {
+                padding: 12px 20px;
+                font-size: 13px;
+            }
+
+            .countdown {
                 font-size: 11px;
-            }
-
-            .loading-dots {
-                gap: 3px;
-            }
-
-            .dot {
-                width: 6px;
-                height: 6px;
-            }
-        }
-
-        /* ========== DEMO PAGE STYLING ========== */
-        .demo-container {
-            max-width: 1200px;
-            margin: 100px auto 0;
-            padding: 40px;
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 20px;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
-            animation: fadeInUp 0.8s ease-out 0.4s both;
-        }
-
-        .demo-title {
-            font-size: 32px;
-            font-weight: 700;
-            color: #1f2937;
-            margin-bottom: 10px;
-            text-align: center;
-        }
-
-        .demo-subtitle {
-            font-size: 16px;
-            color: #6b7280;
-            margin-bottom: 30px;
-            text-align: center;
-        }
-
-        .demo-content {
-            color: #4b5563;
-            line-height: 1.8;
-            font-size: 14px;
-        }
-
-        .demo-content p {
-            margin-bottom: 15px;
-        }
-
-        .code-block {
-            background: #1f2937;
-            color: #e5e7eb;
-            padding: 15px;
-            border-radius: 8px;
-            overflow-x: auto;
-            font-family: 'Courier New', monospace;
-            font-size: 12px;
-            margin: 15px 0;
-            border-left: 4px solid #ef4444;
-        }
-
-        .button-group {
-            display: flex;
-            gap: 10px;
-            margin-top: 20px;
-            flex-wrap: wrap;
-        }
-
-        .demo-btn {
-            padding: 10px 20px;
-            border: none;
-            border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 14px;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
-        }
-
-        .btn-secondary {
-            background: #e5e7eb;
-            color: #1f2937;
-        }
-
-        .btn-secondary:hover {
-            background: #d1d5db;
-            transform: translateY(-2px);
-        }
-
-        @media (max-width: 768px) {
-            .demo-container {
-                margin: 90px 20px 0;
-                padding: 20px;
-            }
-
-            .demo-title {
-                font-size: 24px;
-            }
-
-            .demo-subtitle {
-                font-size: 14px;
             }
         }
     </style>
@@ -476,25 +790,23 @@
 
     <!-- ========== OFFLINE BANNER ========== -->
     <div class="offline-banner" id="offlineBanner">
-        <div class="banner-bg">
-            <!-- Smoke particles will be generated by JavaScript -->
-        </div>
+        <div class="banner-bg"></div>
         <div class="banner-gradient"></div>
 
         <div class="banner-content">
             <div class="offline-icon">
                 <div class="icon-circle">
                     <div class="icon-glow"></div>
-                    ⚠️
+                    🎵
                 </div>
             </div>
 
             <div class="banner-text">
                 <div class="banner-title">
-                    🚀 Digital Divide Records is Currently Offline
+                    Digital Divide Records - Offline
                 </div>
                 <div class="banner-subtitle">
-                    We're upgrading our systems to serve you better
+                    Upgrading our systems to serve you better
                     <span class="loading-dots">
                         <span class="dot"></span>
                         <span class="dot"></span>
@@ -503,7 +815,7 @@
                 </div>
             </div>
 
-            <button class="banner-close" id="closeBanner" title="Dismiss notification">
+            <button class="banner-close" id="closeBanner" title="Dismiss notification" aria-label="Close offline notification">
                 ✕
             </button>
         </div>
@@ -511,128 +823,116 @@
         <div class="banner-progress"></div>
     </div>
 
-    <!-- ========== DEMO CONTENT ========== -->
-    <!--<div class="demo-container">
-        <h1 class="demo-title">✨ Animated Offline Notification Banner</h1>
-        <p class="demo-subtitle">For DigitalDivideRecords - Fully Responsive & JavaScript Intensive</p>
+    <!-- ========== PROMOTIONAL BANNER ========== -->
+    <div class="promo-banner" id="promoBanner">
+        <div class="promo-bg">
+            <div class="promo-gradient-line" style="top: 30%; height: 2px;"></div>
+            <div class="promo-gradient-line" style="top: 70%; height: 2px; animation-delay: 0.5s;"></div>
+            <div class="promo-particles" style="top: 20%; left: 10%; animation-delay: 0s;"></div>
+            <div class="promo-particles" style="top: 40%; right: 15%; animation-delay: 0.5s;"></div>
+            <div class="promo-particles" style="top: 60%; left: 20%; animation-delay: 1s;"></div>
+            <div class="promo-particles" style="top: 80%; right: 10%; animation-delay: 1.5s;"></div>
+        </div>
 
-        <div class="demo-content">
-            <p><strong>🎯 Features Included:</strong></p>
-            <ul style="margin-left: 20px; margin-bottom: 20px;">
-                <li>✅ Glassmorphism effect with blur backdrop</li>
-                <li>✅ Animated smoke particles</li>
-                <li>✅ Pulsing icon with glowing aura</li>
-                <li>✅ Animated loading dots</li>
-                <li>✅ Smooth slide-down entrance animation</li>
-                <li>✅ Rotating gradient background</li>
-                <li>✅ Fully responsive design (mobile, tablet, desktop)</li>
-                <li>✅ Smooth close animation with localStorage</li>
-                <li>✅ Progress bar indicator</li>
-                <li>✅ Particle system for dynamic effects</li>
-            </ul>
+        <div class="promo-content">
+            <!-- Album Cover -->
+            <div class="album-cover-section">
+                <div class="album-cover">🌅</div>
+            </div>
 
-            <p><strong>📱 Responsive Breakpoints:</strong></p>
-            <ul style="margin-left: 20px; margin-bottom: 20px;">
-                <li>Desktop: Full horizontal layout</li>
-                <li>Tablet (768px): Flexible layout</li>
-                <li>Mobile (480px): Compact vertical layout</li>
-            </ul>
+            <!-- Release Info -->
+            <div class="release-info">
+                <div class="artist-name">DJ Jonnas</div>
+                <div class="album-title">Sunsets In S.A</div>
 
-            <div class="button-group">
-                <button class="demo-btn btn-primary" onclick="showBanner()">
-                    Show Banner Again
+                <div class="release-timeline">
+                    <div class="timeline-item">
+                        <span class="timeline-label">🎬 Pre-Order</span>
+                        <span class="timeline-date">Oct 30, 2026</span>
+                        <span class="timeline-stores">(2 Weeks)</span>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-label">🔓 Pre-Release</span>
+                        <span class="timeline-date">Nov 13, 2026</span>
+                        <span class="timeline-stores">(2 Weeks)</span>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-label">🚀 Full Release</span>
+                        <span class="timeline-date">Nov 27, 2026</span>
+                        <span class="timeline-stores">All Platforms</span>
+                    </div>
+                </div>
+
+                <div class="stores-list">
+                    <span class="store-badge">🎵 Beatport</span>
+                    <span class="store-badge">💿 Volumo</span>
+                    <span class="store-badge">🎧 Spotify</span>
+                    <span class="store-badge">🎶 Apple Music</span>
+                    <span class="store-badge">▶️ YouTube</span>
+                    <span class="store-badge">🎸 SoundCloud</span>
+                </div>
+            </div>
+
+            <!-- CTA Section -->
+            <div class="cta-section">
+                <button class="pre-order-btn" onclick="alert('Pre-order coming October 30, 2026!')">
+                    🎵 Pre-Order Now
                 </button>
-                <button class="demo-btn btn-secondary" onclick="changeBannerMessage()">
-                    Change Message
-                </button>
-                <button class="demo-btn btn-secondary" onclick="toggleParticles()">
-                    Toggle Particles
-                </button>
+                <div class="coming-soon">Coming Oct 30</div>
+                <div class="countdown">Available on all major platforms</div>
             </div>
         </div>
-    </div>-->
+    </div>
 
     <!-- ========== JAVASCRIPT ========== -->
     <script>
-        // ========== BANNER MANAGER CLASS ==========
+        // ========== OFFLINE BANNER MANAGER ========== 
         class OfflineBannerManager {
             constructor() {
                 this.bannerEl = document.getElementById('offlineBanner');
-                //this.closeBtn = document.getElementById('closeBanner');
+                this.closeBtn = document.getElementById('closeBanner');
                 this.storageKey = 'ddr-banner-dismissed';
                 this.particlesEnabled = true;
-                this.messageIndex = 0;
-                this.messages = [
-                    {
-                        title: '🚀 Digital Divide Records is Currently Offline',
-                        subtitle: 'We\'re upgrading our systems to serve you better'
-                    },
-                    {
-                        title: '🔧 Scheduled Maintenance in Progress',
-                        subtitle: 'We\'re improving your experience'
-                    },
-                    {
-                        title: '⚡ Performance Optimization Underway',
-                        subtitle: 'Coming back stronger than ever'
-                    },
-                    {
-                        title: '🎨 New Features Being Added',
-                        subtitle: 'Exciting updates coming soon'
-                    }
-                ];
 
                 this.init();
             }
 
-            // ========== INITIALIZATION ==========
             init() {
                 this.setupEventListeners();
                 this.generateParticles();
                 this.checkDismissal();
-                this.setupAutoRefresh();
             }
 
-            // ========== EVENT LISTENERS ==========
             setupEventListeners() {
-                //this.closeBtn.addEventListener('click', () => this.closeBanner());
+                this.closeBtn.addEventListener('click', () => this.closeBanner());
                 this.closeBtn.addEventListener('mouseenter', () => this.scaleButton(true));
                 this.closeBtn.addEventListener('mouseleave', () => this.scaleButton(false));
-
-                // Re-show banner when online
                 window.addEventListener('online', () => this.showBanner());
-                
-                // Responsive updates
                 window.addEventListener('resize', () => this.updateParticleCount());
             }
 
-            // ========== PARTICLE GENERATION (SMOKE EFFECT) ==========
             generateParticles() {
                 if (!this.particlesEnabled) return;
-
                 const bgContainer = this.bannerEl.querySelector('.banner-bg');
-                const screenWidth = window.innerWidth;
                 const particleCount = this.getParticleCount();
 
-                // Clear existing particles
                 bgContainer.innerHTML = '';
 
                 for (let i = 0; i < particleCount; i++) {
-                    const particle = this.createParticle();
+                    const particle = this.createParticle(i);
                     bgContainer.appendChild(particle);
                 }
             }
 
-            createParticle() {
+            createParticle(index) {
                 const particle = document.createElement('div');
                 particle.className = 'smoke-particle';
 
-                // Random position
                 const startX = Math.random() * 100;
-                const startY = Math.random() * 50;
-                const size = Math.random() * 40 + 30;
-                const duration = Math.random() * 4 + 4;
+                const startY = Math.random() * 40;
+                const size = Math.random() * 50 + 40;
+                const duration = Math.random() * 4 + 5;
                 const delay = Math.random() * 2;
-                const offsetX = (Math.random() - 0.5) * 60;
 
                 particle.style.cssText = `
                     left: ${startX}%;
@@ -641,24 +941,6 @@
                     height: ${size}px;
                     animation-duration: ${duration}s;
                     animation-delay: ${delay}s;
-                    --offsetX: ${offsetX}px;
-                `;
-
-                // Custom animation with offset
-                const keyframes = `
-                    @keyframes floatSmoke${i} {
-                        0% {
-                            opacity: 0;
-                            transform: translateY(0) translateX(0) scale(1);
-                        }
-                        50% {
-                            opacity: 0.5;
-                        }
-                        100% {
-                            opacity: 0;
-                            transform: translateY(-40px) translateX(${offsetX}px) scale(1.5);
-                        }
-                    }
                 `;
 
                 return particle;
@@ -666,16 +948,15 @@
 
             getParticleCount() {
                 const width = window.innerWidth;
-                if (width < 480) return 4;
-                if (width < 768) return 6;
-                return 8;
+                if (width < 480) return 3;
+                if (width < 768) return 5;
+                return 7;
             }
 
             updateParticleCount() {
                 this.generateParticles();
             }
 
-            // ========== BANNER VISIBILITY ==========
             checkDismissal() {
                 const isDismissed = localStorage.getItem(this.storageKey);
                 if (isDismissed && isDismissed === 'true') {
@@ -697,93 +978,72 @@
                 this.bannerEl.style.animation = 'slideDown 0.8s cubic-bezier(0.34, 1.56, 0.64, 1)';
             }
 
-            // ========== MESSAGE CYCLING ==========
-            changeMessage() {
-                this.messageIndex = (this.messageIndex + 1) % this.messages.length;
-                const msg = this.messages[this.messageIndex];
-
-                const titleEl = this.bannerEl.querySelector('.banner-title');
-                const subtitleEl = this.bannerEl.querySelector('.banner-subtitle');
-
-                // Fade out
-                titleEl.style.opacity = '0';
-                subtitleEl.style.opacity = '0';
-
-                setTimeout(() => {
-                    titleEl.textContent = msg.title;
-                    subtitleEl.innerHTML = `
-                        ${msg.subtitle}
-                        <span class="loading-dots">
-                            <span class="dot"></span>
-                            <span class="dot"></span>
-                            <span class="dot"></span>
-                        </span>
-                    `;
-
-                    // Fade in
-                    titleEl.style.transition = 'opacity 0.5s ease';
-                    subtitleEl.style.transition = 'opacity 0.5s ease';
-                    titleEl.style.opacity = '1';
-                    subtitleEl.style.opacity = '1';
-                }, 300);
-            }
-
-            // ========== AUTO REFRESH (Optional) ==========
-            setupAutoRefresh() {
-                // Uncomment to auto-cycle messages every 8 seconds
-                // setInterval(() => this.changeMessage(), 8000);
-            }
-
-            // ========== PARTICLE TOGGLE ==========
-            toggleParticles() {
-                this.particlesEnabled = !this.particlesEnabled;
-                if (this.particlesEnabled) {
-                    this.generateParticles();
-                } else {
-                    this.bannerEl.querySelector('.banner-bg').innerHTML = '';
-                }
-            }
-
-            // ========== BUTTON ANIMATION HELPER ==========
             scaleButton(isHovered) {
                 if (isHovered) {
-                    this.closeBtn.style.transform = 'rotate(90deg) scale(1.1)';
+                    this.closeBtn.style.transform = 'rotate(90deg) scale(1.15)';
                 } else {
                     this.closeBtn.style.transform = 'rotate(0deg) scale(1)';
                 }
             }
         }
 
-        // ========== INITIALIZE BANNER ==========
-        const bannerManager = new OfflineBannerManager();
+        // ========== PROMOTIONAL BANNER MANAGER ==========
+        class PromoBannerManager {
+            constructor() {
+                this.promoBanner = document.getElementById('promoBanner');
+                this.storageKey = 'ddr-promo-viewed';
+                this.init();
+            }
 
-        // ========== DEMO FUNCTIONS ==========
-        function showBanner() {
-            bannerManager.showBanner();
+            init() {
+                this.addParticleAnimation();
+                this.setupCountdown();
+                this.trackView();
+            }
+
+            addParticleAnimation() {
+                const particles = this.promoBanner.querySelectorAll('.promo-particles');
+                particles.forEach((particle, index) => {
+                    particle.style.animationDelay = (index * 0.3) + 's';
+                });
+            }
+
+            setupCountdown() {
+                const preOrderDate = new Date('2026-10-30').getTime();
+                const today = new Date().getTime();
+                const timeLeft = preOrderDate - today;
+
+                if (timeLeft > 0) {
+                    const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+                    const countdown = this.promoBanner.querySelector('.countdown');
+                    if (countdown) {
+                        countdown.textContent = `Only ${days} days until Pre-Order!`;
+                    }
+                }
+            }
+
+            trackView() {
+                const viewCount = localStorage.getItem('ddr-promo-views') || 0;
+                localStorage.setItem('ddr-promo-views', parseInt(viewCount) + 1);
+            }
         }
 
-        function changeBannerMessage() {
-            bannerManager.changeMessage();
-        }
+        // ========== INITIALIZE ALL MANAGERS ==========
+        const offlineBannerManager = new OfflineBannerManager();
+        const promoBannerManager = new PromoBannerManager();
 
-        function toggleParticles() {
-            bannerManager.toggleParticles();
-            const btn = event.target;
-            btn.textContent = bannerManager.particlesEnabled ? 'Toggle Particles' : 'Toggle Particles (Off)';
-        }
+        // ========== PAGE LOAD ==========
+        window.addEventListener('load', () => {
+            console.log('🎵 DigitalDivideRecords - Offline & Promo Banners Ready!');
+            console.log('🎵 DJ Jonnas - Sunsets In S.A (Pre-Order Oct 30, 2026)');
+        });
 
         // ========== KEYBOARD SHORTCUTS ==========
         document.addEventListener('keydown', (e) => {
             if (e.ctrlKey && e.key === 'b') {
                 e.preventDefault();
-                showBanner();
+                offlineBannerManager.showBanner();
             }
-        });
-
-        // ========== PAGE LOAD ANIMATION ==========
-        window.addEventListener('load', () => {
-            console.log('🎨 Offline Banner initialized successfully!');
-            console.log('Keyboard Shortcut: Ctrl+B to show banner');
         });
     </script>
 

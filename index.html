@@ -558,7 +558,7 @@
         class OfflineBannerManager {
             constructor() {
                 this.bannerEl = document.getElementById('offlineBanner');
-                this.closeBtn = document.getElementById('closeBanner');
+                //this.closeBtn = document.getElementById('closeBanner');
                 this.storageKey = 'ddr-banner-dismissed';
                 this.particlesEnabled = true;
                 this.messageIndex = 0;
@@ -594,7 +594,7 @@
 
             // ========== EVENT LISTENERS ==========
             setupEventListeners() {
-                this.closeBtn.addEventListener('click', () => this.closeBanner());
+                //this.closeBtn.addEventListener('click', () => this.closeBanner());
                 this.closeBtn.addEventListener('mouseenter', () => this.scaleButton(true));
                 this.closeBtn.addEventListener('mouseleave', () => this.scaleButton(false));
 

@@ -387,21 +387,21 @@
         linear-gradient(180deg, rgba(255,255,255,0.02), transparent 18%, transparent 82%, rgba(255,255,255,0.01));
     }
 
-    .promo-banner__sweep {
+    /*.promo-banner__sweep {
       position: absolute;
       left: -35%;
       width: 170%;
       height: 2px;
       background: linear-gradient(90deg, transparent, rgba(255,216,90,0.72), transparent);
       animation: sweep 5s ease-in-out infinite;
-    }
+    }*/
 
     .promo-banner__sweep:nth-child(2) {
       top: 60%;
       animation-delay: 1s;
     }
 
-    @keyframes sweep {
+    /*@keyframes sweep {
       0% {
         transform: translateX(-15%);
         opacity: 0;
@@ -417,7 +417,7 @@
         transform: translateX(35%);
         opacity: 0;
       }
-    }
+    }*/
 
     .promo-banner__content {
       position: relative;
@@ -864,8 +864,8 @@
           class="offline-banner__close"
           id="closeOfflineBanner"
           type="button"
-          aria-label="Dismiss notification"
-          title="Dismiss notification"
+          aria-label="Offline notification"
+          title="Offline notification"
         >
           ✕
         </button>
@@ -873,17 +873,17 @@
     </div>
   </div>
 
-  <!-- PROMO BANNER -->
-  <section class="promo-banner" aria-label="Upcoming release promotional banner">
+  <!-- PROMO BANNER -->'
+  <section class="promo-banner" title="New Release Promotional Banner" aria-label="New Release Promotional Banner">
     <div class="promo-banner__bg" aria-hidden="true">
       <div class="promo-banner__sweep"></div>
       <div class="promo-banner__sweep"></div>
     </div>
 
     <div class="promo-banner__content">
-      <div class="cover-wrap" aria-label="Album cover for Sunsets In S.A">
+      <div class="cover-wrap" title="Album Cover For Sunsets In S.A" aria-label="Album Cover For Sunsets In S.A">
         <div class="cover-art">
-          <img src="DJJonnas-SunsetsInSA-CoverArt.jpeg" role="img" aria-label="Sunsets In S.A cover art">
+          <img src="DJJonnas-SunsetsInSA-CoverArt.jpeg" role="img" title="DJJonnas-SunsetsInSA-CoverArt" aria-label="DJJonnas-SunsetsInSA-CoverArt">
             <defs>
               <linearGradient id="sunsetBg" x1="0%" y1="0%" x2="100%" y2="100%">
                 <stop offset="0%" stop-color="#56170f" />
@@ -936,7 +936,7 @@
       </div>
 
       <div class="release-info">
-        <h2> class="release-title">New Music Alert!!</h2>
+        <h2 class="release-title">New Music Alert!!</h2>
         <div class="artist-name">DJ Jonnas</div>
         <div class="artist-name">Sunsets In S.A</div>
 
@@ -964,9 +964,11 @@
         </div>
 
         <div class="platform-list" aria-label="Stores list">
-          <!--<span class="platform-pill">Beatport</span>
-          <span class="platform-pill">Volumo</span>
-          <span class="platform-pill">Spotify</span>
+          <span class="platform-pill">Pre-Order & Pre-Release On Beatport</span>
+          <span class="platform-pill">Pre-Order & Pre-Release On Volumo</span>
+          <span class="platform-pill">Pre-Order: 30 October 2026</span>
+          <span class="platform-pill">Pre-Release: 13 November 2026</span>
+          <!--<span class="platform-pill">Spotify</span>
           <span class="platform-pill">Apple Music</span>
           <span class="platform-pill">YouTube</span>
           <span class="platform-pill">SoundCloud</span>-->

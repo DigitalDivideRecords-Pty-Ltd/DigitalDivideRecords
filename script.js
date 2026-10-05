@@ -356,3 +356,187 @@ window.addEventListener('DOMContentLoaded', function() {
     }, 400);
   }
 });
+
+  // ========== START OF PROMO BANNER & COUNTDOWN TIMER JAVASCRIPT CODE ==========
+  <script>
+    (function () {
+      'use strict';
+
+      // ========== STORAGE MANAGEMENT ==========
+      const STORAGE_KEYS = {
+        offlineDismissed: 'ddr_offline_banner_dismissed'
+      };
+
+      function safeStorageGet(key) {
+        try {
+          return window.localStorage.getItem(key);
+        } catch (error) {
+          console.warn('localStorage get failed:', error);
+          return null;
+        }
+      }
+
+      function safeStorageSet(key, value) {
+        try {
+          window.localStorage.setItem(key, String(value));
+          return true;
+        } catch (error) {
+          console.warn('localStorage set failed:', error);
+          return false;
+        }
+      }
+
+      // ========== OFFLINE BANNER MANAGEMENT ==========
+      const offlineBanner = document.getElementById('offlineBanner');
+      const closeOfflineBanner = document.getElementById('closeOfflineBanner');
+
+      if (closeOfflineBanner && offlineBanner) {
+        closeOfflineBanner.addEventListener('click', function () {
+          offlineBanner.style.animation = 'bannerDown 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) reverse forwards';
+          setTimeout(function () {
+            offlineBanner.classList.add('hidden');
+            safeStorageSet(STORAGE_KEYS.offlineDismissed, 'true');
+          }, 500);
+        });
+
+        const offlineDismissed = safeStorageGet(STORAGE_KEYS.offlineDismissed);
+        if (offlineDismissed === 'true') {
+          offlineBanner.classList.add('hidden');
+        }
+
+        window.addEventListener('online', function () {
+          offlineBanner.classList.remove('hidden');
+          offlineBanner.style.animation = 'bannerDown 0.9s cubic-bezier(0.34, 1.56, 0.64, 1) forwards';
+          safeStorageSet(STORAGE_KEYS.offlineDismissed, 'false');
+        });
+      }
+
+      // ========== COUNTDOWN TIMER (FULLY FUNCTIONAL) ==========
+      const countdownDisplay = document.getElementById('countdownDisplay');
+      const statusBadge = document.getElementById('statusBadge');
+      const preorderBtn = document.getElementById('preorderBtn');
+
+      // Pre-order date: October 30, 2026 at 00:00:00 UTC
+      const PRE_ORDER_DATE = new Date('2026-10-30T00:00:00Z').getTime();
+      const PRE_RELEASE_DATE = new Date('2026-11-13T00:00:00Z').getTime();
+      const RELEASE_DATE = new Date('2026-11-27T00:00:00Z').getTime();
+
+      function formatCountdown() {
+        const now = Date.now();
+
+        // Determine which phase we're in
+        let targetDate, phase;
+        if (now < PRE_ORDER_DATE) {
+          targetDate = PRE_ORDER_DATE;
+          phase = 'pre-order';
+        } else if (now < PRE_RELEASE_DATE) {
+          targetDate = PRE_RELEASE_DATE;
+          phase = 'pre-release';
+        } else if (now < RELEASE_DATE) {
+          targetDate = RELEASE_DATE;
+          phase = 'release';
+        } else {
+          // Release is live
+          if (countdownDisplay) countdownDisplay.textContent = '🎉 Now Available Worldwide!';
+          if (statusBadge) statusBadge.textContent = '✅ Released';
+          if (preorderBtn) preorderBtn.textContent = 'Now Available';
+          return;
+        }
+
+        const diff = targetDate - now;
+
+        if (diff <= 0) {
+          formatCountdown();
+          return;
+        }
+
+        // Calculate time units
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+        const minutes = Math.floor((diff / (1000 * 60)) % 60);
+        const seconds = Math.floor((diff / 1000) % 60);
+
+        // Format output
+        let displayText = '';
+        if (phase === 'pre-order') {
+          displayText = `<span class="countdown-value">${days}</span><span class="countdown-label">D</span> ` +
+                       `<span class="countdown-value">${hours}</span><span class="countdown-label">H</span> ` +
+                       `<span class="countdown-value">${minutes}</span><span class="countdown-label">M</span> ` +
+                       `<span class="countdown-value">${seconds}</span><span class="countdown-label">S</span>`;
+        } else if (phase === 'pre-release') {
+          displayText = `<span class="countdown-value">${days}</span><span class="countdown-label">D</span> ` +
+                       `<span class="countdown-value">${hours}</span><span class="countdown-label">H</span> ` +
+                       `Until Release`;
+        } else if (phase === 'release') {
+          displayText = `<span class="countdown-value">${days}</span><span class="countdown-label">D</span> ` +
+                       `<span class="countdown-value">${hours}</span><span class="countdown-label">H</span> ` +
+                       `Until Release`;
+        }
+
+        if (countdownDisplay) {
+          countdownDisplay.innerHTML = displayText;
+        }
+
+        // Update status badge
+        if (statusBadge) {
+          if (phase === 'pre-order') {
+            statusBadge.textContent = `Coming Oct 30 (${days}d)`;
+          } else if (phase === 'pre-release') {
+            statusBadge.textContent = `Pre-Release Active (${days}d)`;
+          } else if (phase === 'release') {
+            statusBadge.textContent = `Releasing Soon (${days}d)`;
+          }
+        }
+      }
+
+      // Initial countdown update
+      formatCountdown();
+
+      // Update countdown every second
+      const countdownInterval = setInterval(formatCountdown, 1000);
+
+      // Cleanup on page unload
+      window.addEventListener('beforeunload', function () {
+        clearInterval(countdownInterval);
+      });
+
+      // ========== PRE-ORDER BUTTON ==========
+      if (preorderBtn) {
+        preorderBtn.addEventListener('click', function () {
+          const now = Date.now();
+          let message = '';
+
+          if (now < PRE_ORDER_DATE) {
+            message = '🎵 Pre-orders start October 30, 2026.\n\nAvailable on:\n• Beatport\n• Volumo\n\nThank you for your support!';
+          } else if (now < PRE_RELEASE_DATE) {
+            message = '🎵 Pre-release is now active!\n\nAvailable on:\n• Beatport\n• Volumo\n\nFull release: November 27, 2026';
+          } else if (now < RELEASE_DATE) {
+            message = '🎵 Pre-release is active!\n\nFull worldwide release coming November 27, 2026';
+          } else {
+            message = '🎉 Sunsets In S.A is now available worldwide!\n\nAvailable on all major platforms.';
+          }
+
+          window.alert(message);
+        });
+      }
+
+      // ========== KEYBOARD SHORTCUTS ==========
+      document.addEventListener('keydown', function (event) {
+        if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === 'b') {
+          event.preventDefault();
+          if (offlineBanner) {
+            offlineBanner.classList.remove('hidden');
+            offlineBanner.style.animation = 'bannerDown 0.9s cubic-bezier(0.34, 1.56, 0.64, 1) forwards';
+          }
+        }
+      });
+
+      // ========== INITIALIZATION LOG ==========
+      console.log('✅ Digital Divide Records banner system loaded successfully!');
+      console.log('⏱️ Countdown timer is active and updating every second');
+      console.log('🎹 Keyboard shortcut: Ctrl+B to show offline banner');
+      console.log('📅 Pre-Order: Oct 30, 2026');
+      console.log('🔓 Pre-Release: Nov 13, 2026');
+      console.log('🚀 Full Release: Nov 27, 2026');
+    })();
+//========== END OF PROMOTIONAL BANNER & COUNTDOWN TIMER JAVASCRIPT CODE ==========

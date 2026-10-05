@@ -60,50 +60,77 @@
         <p>We're committed to supporting both established, yet unknown artists and emerging talent, providing a platform
           for innovative sounds that push boundaries while maintaining the essence of House Music.</p>
 
-        <section class="info">
+      <section class="info">
           <h2>Latest Releases</h2>
           <p>Check out our newest additions to the Digital Divide Records catalog. From driving tech house to soulful deep
             house, we've got something for every House Music lover.</p>
+      </section>
 
-        <!-- PROMOTIONAL BANNER: Put this BELOW the "Latest Releases" intro paragraph and BEFORE the "Browse Our Catalog" button -->
-        <div id="promo-banner" class="promo-banner" role="region" aria-label="Upcoming release promotion" data-release-config='{
-        "preOrder":"2026-10-30T00:00:00Z",
-        "preRelease":"2026-11-13T00:00:00Z",
-        "release":"2026-11-27T00:00:00Z",
-        "title":"New Music Alert!!",
-        "artists":["DJ Jonnas","Sunsets In S.A"]
-        }'>
-    <div class="promo-left">
-    <div class="promo-badge" id="promo-status">Loading...</div>
-    <h2 class="promo-title" id="promo-title">New Music Alert!!</h2>
-    <div class="promo-artists" id="promo-artists">DJ Jonnas • Sunsets In S.A</div>
+        <!--START OF PROMO BANNER & COUNTDOWN TIMER HTML CODE-->
+        <!--START OF PROMO BANNER & cOUNTDOWN TIMER HTML CODE-->
+  <section class="promo-banner" title="New Release Promotional Banner" aria-label="New Release Promotional Banner">
+    <div class="promo-banner__bg" aria-hidden="true"></div>
 
-    <div class="countdown" id="promo-countdown" aria-live="polite">
-      <div class="countdown-item"><span class="count-num" id="cd-days">00</span><small>Days</small></div>
-      <div class="countdown-item"><span class="count-num" id="cd-hours">00</span><small>Hours</small></div>
-      <div class="countdown-item"><span class="count-num" id="cd-mins">00</span><small>Minutes</small></div>
-      <div class="countdown-item"><span class="count-num" id="cd-secs">00</span><small>Seconds</small></div>
+    <div class="promo-banner__content">
+      <div class="cover-wrap" aria-label="Album Cover For Sunsets In S.A">
+        <div class="cover-art">
+          <img 
+            src="DJJonnas-SunsetsInSA-CoverArt.jpeg" 
+            alt="DJ Jonnas - Sunsets In S.A Cover Art"
+            loading="lazy"
+          />
+        </div>
+      </div>
+
+      <div class="release-info">
+        <h2 class="release-title">New Music Alert!!</h2>
+        <div class="artist-name">DJ Jonnas</div>
+        <div class="artist-name">Sunsets In S.A</div>
+
+        <div class="release-schedule" aria-label="Release schedule">
+          <div class="schedule-item">
+            <span class="schedule-icon" aria-hidden="true">📅</span>
+            <span class="schedule-label">Pre-Order</span>
+            <span class="schedule-date">Oct 30, 2026</span>
+            <span class="schedule-duration">(2 weeks On Beatport & Volumo)</span>
+          </div>
+
+          <div class="schedule-item">
+            <span class="schedule-icon" aria-hidden="true">🔓</span>
+            <span class="schedule-label">Pre-Release</span>
+            <span class="schedule-date">Nov 13, 2026</span>
+            <span class="schedule-duration">(2 weeks On Beatport & Volumo)</span>
+          </div>
+
+          <div class="schedule-item">
+            <span class="schedule-icon" aria-hidden="true">🚀</span>
+            <span class="schedule-label">Release</span>
+            <span class="schedule-date">Nov 27, 2026</span>
+            <span class="schedule-duration">Worldwide<br>(<strong>Except:</strong> NetEase, Pandora, Taobao, Tencent)</span>
+          </div>
+        </div>
+
+        <div class="platform-list" aria-label="Stores list">
+          <span class="platform-pill">Pre-Order On Beatport</span>
+          <span class="platform-pill">Pre-Order On Volumo</span>
+          <span class="platform-pill">Pre-Release: Nov 13</span>
+          <span class="platform-pill">Release: Nov 27</span>
+        </div>
+      </div>
+
+      <div class="promo-actions">
+        <button class="preorder-btn" id="preorderBtn" type="button" aria-label="Pre-order on Beatport and Volumo">
+          Pre-Order Now
+        </button>
+        <div class="status-badge" id="statusBadge">Coming Oct 30</div>
+        <div class="countdown" id="countdownDisplay" aria-live="polite" aria-atomic="true">
+          Calculating countdown...
+        </div>
+      </div>
     </div>
-
-    <div class="promo-progress" aria-hidden="true">
-      <div class="progress-bar" id="promo-progress-bar"></div>
-    </div>
-
-    <div class="promo-actions">
-      <a href="releases.html" class="cta-button">Browse Our Catalog <i class="fas fa-arrow-right"></i></a>
-      <a href="artists.html" class="cta-button ghost" id="notify-btn">Checkout Our Artists</a>
-    </div>
-  </div>
-
-  <div class="promo-right" aria-hidden="true">
-    <div class="promo-visuals">
-      <!-- animated vinyl / mockup -->
-      <div class="vinyl" aria-hidden="true"></div>
-      <div class="glow"></div>
-    </div>
-  </div>
-</div>
-        </section>
+  </section>
+        <!--END OF PROMO BANNER & COUNTDOWN TIMER HTML CODE-->
+        <!--END OF PROMO BANNER & COUNTDOWN TIMER HTML CODE-->
         
 <section class="info">
           <h2>Featured Artists</h2>
@@ -111,27 +138,8 @@
             established names and emerging talents in the house music scene.</p>
           
           <a href="artists.html" class="cta-button">Meet Our Artists <i class="fas fa-users"></i></a>
-      
-        <!-- ARTIST SPOTLIGHT: place this BELOW the "Meet Our Artists" button -->
-        <div id="artist-spotlight" class="artist-spotlight" role="region" aria-label="Artist spotlight">
-        <button class="spotlight-control prev" aria-label="Previous artist">&larr;</button>
-
-        <div class="spotlight-track" id="spotlight-track" aria-live="polite">
-        <!-- Each .spot will be injected by JS; fallback static content if JS disabled -->
-        <div class="spot" data-artist="DJ Jonnas">
-        <img src="artists/artist1.jpg" alt="DJ Jonnas image" />
-        <div class="spot-info">
-        <h3>DJ Jonnas</h3>
-        <p>Afro-deep producer, groove-first dancefloor energy.</p>
-      </div>
-    </div>
-  </div>
-
-  <button class="spotlight-control next" aria-label="Next artist">&rarr;</button>
-
-  <div class="spotlight-dots" id="spotlight-dots" aria-hidden="true"></div>
-</div>
 </section>
+        
         
         <section class="info">
           <h2>Check out our releases</h2>

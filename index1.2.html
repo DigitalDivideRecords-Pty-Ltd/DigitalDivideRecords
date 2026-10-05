@@ -1,0 +1,1153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Digital Divide Records | DJ Jonnas - Sunsets In S.A</title>
+  <meta
+    name="description"
+    content="Cinematic offline banner and promotional release banner for DJ Jonnas - Sunsets In S.A by Digital Divide Records."
+  />
+  <style>
+    :root {
+      --gold-1: #ffd85a;
+      --gold-2: #ffce3d;
+      --gold-3: #ff9b2f;
+      --gold-4: #f76b1c;
+      --black-1: #090909;
+      --black-2: #141414;
+      --black-3: #1d1d1d;
+      --white-1: #fffaf2;
+      --white-2: rgba(255,255,255,0.8);
+      --glass: rgba(20,20,20,0.18);
+      --glass-strong: rgba(255,255,255,0.08);
+      --shadow: rgba(0,0,0,0.45);
+      --sunset-1: #9e2b1d;
+      --sunset-2: #f77e33;
+      --sunset-3: #fbb957;
+      --sky-1: #31586f;
+      --sky-2: #6a8fa7;
+      --sea-1: #0c2438;
+      --sea-2: #1d4c67;
+      --accent-cyan: #31d8ff;
+      --accent-green: #2dde9d;
+      --success: #1dd1a1;
+      --danger: #ff5f6d;
+      --warning: #ffb74d;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background:
+        radial-gradient(circle at 50% 0%, rgba(255, 170, 80, 0.16), transparent 25%),
+        linear-gradient(180deg, #0a0a0a 0%, #1b120f 35%, #0a0a0a 100%);
+      color: var(--white-1);
+      min-height: 100vh;
+      overflow-x: hidden;
+      padding-top: 120px;
+    }
+
+    button, input, textarea, select {
+      font: inherit;
+    }
+
+    img, svg {
+      display: block;
+      max-width: 100%;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* =========================
+       OFFLINE BANNER
+    ========================= */
+    .offline-banner {
+      position: fixed;
+      inset: 0 0 auto 0;
+      z-index: 9999;
+      background: rgba(18, 18, 18, 0.2);
+      border-bottom: 2px solid rgba(255, 216, 90, 0.4);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      box-shadow:
+        0 12px 40px rgba(0,0,0,0.32),
+        inset 0 1px 0 rgba(255,255,255,0.08);
+      overflow: hidden;
+      animation: bannerDown 0.9s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    }
+
+    @keyframes bannerDown {
+      0% {
+        transform: translateY(-120%);
+        opacity: 0;
+      }
+      100% {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .offline-banner.hidden {
+      display: none;
+    }
+
+    .offline-banner__inner {
+      position: relative;
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 18px 22px;
+      min-height: 90px;
+      overflow: hidden;
+    }
+
+    .offline-banner__particles {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .smoke {
+      position: absolute;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,255,255,0.25) 0%, rgba(255,255,255,0.08) 30%, transparent 72%);
+      filter: blur(8px);
+      opacity: 0;
+      animation: smokeFloat 8s ease-in-out infinite;
+    }
+
+    @keyframes smokeFloat {
+      0% {
+        transform: translate(0, 0) scale(0.7);
+        opacity: 0;
+      }
+      20% {
+        opacity: 0.5;
+      }
+      100% {
+        transform: translate(18px, -52px) scale(1.8);
+        opacity: 0;
+      }
+    }
+
+    .smoke:nth-child(1) { left: 8%; top: 40%; width: 120px; height: 120px; animation-delay: 0s; }
+    .smoke:nth-child(2) { left: 26%; top: 32%; width: 150px; height: 120px; animation-delay: 1.4s; }
+    .smoke:nth-child(3) { left: 56%; top: 38%; width: 140px; height: 120px; animation-delay: 2.6s; }
+    .smoke:nth-child(4) { right: 16%; top: 34%; width: 125px; height: 110px; animation-delay: 3.8s; }
+    .smoke:nth-child(5) { right: 4%; top: 40%; width: 110px; height: 90px; animation-delay: 5s; }
+
+    .offline-banner__gradient {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        90deg,
+        rgba(255,216,90,0.08) 0%,
+        rgba(255,216,90,0.02) 35%,
+        rgba(255,216,90,0.02) 65%,
+        rgba(255,216,90,0.08) 100%
+      );
+      animation: bannerGlow 4.5s ease-in-out infinite alternate;
+    }
+
+    @keyframes bannerGlow {
+      0% { opacity: 0.2; }
+      100% { opacity: 0.75; }
+    }
+
+    .offline-banner__content {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 24px;
+      flex-wrap: wrap;
+      min-height: 90px;
+    }
+
+    .status-icon {
+      position: relative;
+      width: 58px;
+      height: 58px;
+      display: grid;
+      place-items: center;
+      animation: pulseIcon 2.4s ease-in-out infinite;
+    }
+
+    @keyframes pulseIcon {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.08); }
+    }
+
+    .status-icon::before {
+      content: "";
+      position: absolute;
+      inset: -14px;
+      border-radius: 50%;
+      border: 2px solid rgba(255,216,90,0.5);
+      animation: expandRing 2s ease-out infinite;
+    }
+
+    @keyframes expandRing {
+      0% {
+        transform: scale(0.8);
+        opacity: 1;
+      }
+      100% {
+        transform: scale(1.5);
+        opacity: 0;
+      }
+    }
+
+    .status-icon__badge {
+      position: relative;
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--gold-1), var(--gold-4));
+      display: grid;
+      place-items: center;
+      font-size: 1.8rem;
+      box-shadow:
+        0 0 20px rgba(255,216,90,0.4),
+        0 0 40px rgba(255,216,90,0.2),
+        inset 0 1px 0 rgba(255,255,255,0.32);
+      z-index: 1;
+    }
+
+    .offline-banner__text {
+      flex: 1;
+      min-width: 260px;
+      text-align: center;
+    }
+
+    .offline-banner__title {
+      font-size: clamp(1.1rem, 2.4vw, 1.7rem);
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--gold-1);
+      text-shadow:
+        0 2px 10px rgba(255,216,90,0.25),
+        0 0 20px rgba(255,216,90,0.12);
+      animation: titleSlide 0.8s ease-out both;
+    }
+
+    @keyframes titleSlide {
+      from {
+        opacity: 0;
+        transform: translateX(-28px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    .offline-banner__subtitle {
+      margin-top: 6px;
+      font-size: clamp(0.75rem, 1.5vw, 0.95rem);
+      color: rgba(255,255,255,0.9);
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      animation: subtitleRise 0.85s ease-out 0.2s both;
+    }
+
+    @keyframes subtitleRise {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .loader {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-left: 10px;
+      vertical-align: middle;
+    }
+
+    .loader-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--gold-1);
+      opacity: 0.8;
+      animation: dotPulse 1.2s ease-in-out infinite;
+    }
+
+    .loader-dot:nth-child(2) { animation-delay: 0.15s; }
+    .loader-dot:nth-child(3) { animation-delay: 0.3s; }
+
+    @keyframes dotPulse {
+      0%, 80%, 100% {
+        transform: scale(0.6);
+        opacity: 0.35;
+      }
+      40% {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    .offline-banner__close {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      border: 1.5px solid rgba(255,216,90,0.5);
+      background: rgba(255,216,90,0.08);
+      color: var(--gold-1);
+      font-size: 1.2rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.25s ease;
+      position: relative;
+      z-index: 2;
+      flex-shrink: 0;
+      animation: closeScale 0.65s ease-out 0.3s both;
+    }
+
+    @keyframes closeScale {
+      from {
+        transform: scale(0);
+        opacity: 0;
+      }
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    .offline-banner__close:hover {
+      transform: rotate(90deg) scale(1.1);
+      background: rgba(255,216,90,0.18);
+      box-shadow: 0 0 20px rgba(255,216,90,0.35);
+    }
+
+    /* =========================
+       PROMO BANNER
+    ========================= */
+    .promo-banner {
+      position: relative;
+      width: min(1400px, calc(100% - 24px));
+      margin: 0 auto 32px;
+      border-radius: 24px;
+      overflow: hidden;
+      background:
+        linear-gradient(135deg, rgba(255,216,90,0.06), rgba(255,140,70,0.04)),
+        rgba(18,18,18,0.5);
+      border: 1px solid rgba(255,216,90,0.28);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      box-shadow:
+        0 28px 60px rgba(0,0,0,0.38),
+        0 0 50px rgba(255,216,90,0.08),
+        inset 0 1px 0 rgba(255,255,255,0.06);
+      animation: promoReveal 1s cubic-bezier(0.34, 1.56, 0.64, 1) 0.25s both;
+    }
+
+    @keyframes promoReveal {
+      from {
+        opacity: 0;
+        transform: translateY(28px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .promo-banner__bg {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at 15% 30%, rgba(255,216,90,0.08), transparent 30%),
+        radial-gradient(circle at 85% 60%, rgba(255,140,70,0.08), transparent 32%),
+        linear-gradient(180deg, rgba(255,255,255,0.02), transparent 18%, transparent 82%, rgba(255,255,255,0.01));
+    }
+
+    .promo-banner__content {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: 260px minmax(0, 1fr) 240px;
+      gap: 28px;
+      align-items: center;
+      padding: 28px 30px;
+    }
+
+    .cover-wrap {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      perspective: 1200px;
+    }
+
+    .cover-art {
+      width: 200px;
+      height: 200px;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 3px solid rgba(255,216,90,0.42);
+      background: linear-gradient(135deg, rgba(255,216,90,0.12), rgba(255,140,70,0.1));
+      box-shadow:
+        0 28px 50px rgba(0,0,0,0.4),
+        0 0 35px rgba(255,216,90,0.15),
+        inset 0 1px 0 rgba(255,255,255,0.12);
+      animation: artFloat 6s ease-in-out infinite;
+      position: relative;
+    }
+
+    .cover-art img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    @keyframes artFloat {
+      0%, 100% {
+        transform: translateY(0) rotateZ(0deg);
+      }
+      50% {
+        transform: translateY(-16px) rotateZ(-2deg);
+      }
+    }
+
+    .cover-art::before {
+      content: "";
+      position: absolute;
+      inset: -70%;
+      background: linear-gradient(130deg, transparent 18%, rgba(255,255,255,0.18) 50%, transparent 82%);
+      transform: rotate(20deg);
+      animation: glossRoll 3.6s linear infinite;
+      pointer-events: none;
+    }
+
+    @keyframes glossRoll {
+      0% {
+        transform: translateX(-130%) translateY(-130%) rotate(20deg);
+      }
+      100% {
+        transform: translateX(130%) translateY(130%) rotate(20deg);
+      }
+    }
+
+    .release-info {
+      text-align: center;
+      min-width: 0;
+    }
+
+    .artist-name {
+      font-size: clamp(0.9rem, 1.7vw, 1.4rem);
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--gold-1);
+      text-shadow: 0 0 18px rgba(255,216,90,0.25);
+      margin-bottom: 10px;
+      animation: artistIn 0.8s ease-out 0.2s both;
+    }
+
+    @keyframes artistIn {
+      from {
+        opacity: 0;
+        transform: translateY(-12px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .release-title {
+      font-size: clamp(2rem, 4vw, 3.3rem);
+      font-weight: 500;
+      line-height: 1.05;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: #fffaf0;
+      text-shadow:
+        0 4px 16px rgba(0,0,0,0.48),
+        0 0 30px rgba(255,216,90,0.15);
+      margin-bottom: 18px;
+      animation: titleRise 0.9s ease-out 0.35s both;
+    }
+
+    @keyframes titleRise {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .release-schedule {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .schedule-item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      padding: 10px 14px;
+      border-radius: 8px;
+      border-left: 4px solid var(--gold-1);
+      background: rgba(255,216,90,0.07);
+      animation: itemSlide 0.65s ease-out both;
+    }
+
+    .schedule-item:nth-child(1) { animation-delay: 0.38s; }
+    .schedule-item:nth-child(2) { animation-delay: 0.5s; }
+    .schedule-item:nth-child(3) { animation-delay: 0.62s; }
+
+    @keyframes itemSlide {
+      from {
+        opacity: 0;
+        transform: translateX(-18px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    .schedule-icon {
+      font-size: 1.05rem;
+    }
+
+    .schedule-label {
+      min-width: 110px;
+      font-size: 0.72rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--gold-1);
+    }
+
+    .schedule-date {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--white-1);
+    }
+
+    .schedule-duration {
+      font-size: 0.72rem;
+      font-style: italic;
+      color: rgba(255,255,255,0.72);
+    }
+
+    .platform-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .platform-pill {
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, rgba(255,216,90,0.14), rgba(255,140,70,0.1));
+      border: 1px solid rgba(255,216,90,0.26);
+      color: #fff9ea;
+      font-size: 0.62rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      animation: badgeIn 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) both;
+    }
+
+    .platform-pill:nth-child(1) { animation-delay: 0.5s; }
+    .platform-pill:nth-child(2) { animation-delay: 0.55s; }
+    .platform-pill:nth-child(3) { animation-delay: 0.6s; }
+    .platform-pill:nth-child(4) { animation-delay: 0.65s; }
+
+    @keyframes badgeIn {
+      from {
+        opacity: 0;
+        transform: scale(0.7) translateY(8px);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+      }
+    }
+
+    .promo-actions {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .preorder-btn {
+      width: 100%;
+      max-width: 200px;
+      border: none;
+      cursor: pointer;
+      border-radius: 10px;
+      padding: 14px 18px;
+      background: linear-gradient(135deg, var(--gold-1), var(--gold-3));
+      color: #17120a;
+      font-size: 0.82rem;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      position: relative;
+      overflow: hidden;
+      box-shadow:
+        0 14px 32px rgba(255,216,90,0.28),
+        0 0 25px rgba(255,216,90,0.14);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      animation: btnPulse 2s ease-in-out infinite;
+    }
+
+    @keyframes btnPulse {
+      0%, 100% { box-shadow: 0 14px 32px rgba(255,216,90,0.28), 0 0 25px rgba(255,216,90,0.14); }
+      50% { box-shadow: 0 16px 40px rgba(255,216,90,0.4), 0 0 30px rgba(255,216,90,0.2); }
+    }
+
+    .preorder-btn::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      left: -100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.24), transparent);
+      animation: buttonShine 2.6s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    @keyframes buttonShine {
+      0% { left: -100%; }
+      50% { left: 100%; }
+      100% { left: 200%; }
+    }
+
+    .preorder-btn:hover {
+      transform: translateY(-4px) scale(1.04);
+      box-shadow:
+        0 20px 42px rgba(255,216,90,0.36),
+        0 0 42px rgba(255,216,90,0.22);
+    }
+
+    .preorder-btn:active {
+      transform: translateY(-2px) scale(1.02);
+    }
+
+    .status-badge {
+      width: 100%;
+      max-width: 200px;
+      text-align: center;
+      padding: 8px 12px;
+      border-radius: 8px;
+      border: 1px solid rgba(255,216,90,0.35);
+      background: rgba(255,216,90,0.08);
+      color: var(--gold-1);
+      font-size: 0.7rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      animation: badgeBlink 2s ease-in-out infinite;
+    }
+
+    @keyframes badgeBlink {
+      0%, 100% { opacity: 0.9; }
+      50% { opacity: 1; }
+    }
+
+    /* ===== COUNTDOWN TIMER STYLES ===== */
+    .countdown {
+      font-size: 0.85rem;
+      letter-spacing: 0.04em;
+      color: rgba(255,255,255,0.85);
+      font-weight: 700;
+      min-height: 1.4em;
+      text-align: center;
+      padding: 8px 12px;
+      border-radius: 6px;
+      background: rgba(255,216,90,0.06);
+      border: 1px solid rgba(255,216,90,0.2);
+      animation: countdownGlow 1.5s ease-in-out infinite;
+      font-variant-numeric: tabular-nums;
+      font-feature-settings: "tnum";
+    }
+
+    @keyframes countdownGlow {
+      0%, 100% { box-shadow: 0 0 8px rgba(255,216,90,0.1); }
+      50% { box-shadow: 0 0 16px rgba(255,216,90,0.25); }
+    }
+
+    .countdown-value {
+      display: inline-block;
+      color: var(--gold-1);
+      font-weight: 900;
+      font-size: 1em;
+      margin: 0 2px;
+    }
+
+    .countdown-label {
+      display: inline-block;
+      font-size: 0.65em;
+      opacity: 0.8;
+      margin-left: 3px;
+    }
+
+    /* =========================
+       RESPONSIVE
+    ========================= */
+    @media (max-width: 980px) {
+      .promo-banner__content {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .cover-wrap {
+        order: -1;
+      }
+
+      .promo-actions {
+        flex-direction: row;
+        justify-content: center;
+      }
+
+      .preorder-btn,
+      .status-badge {
+        max-width: none;
+        flex: 1;
+      }
+    }
+
+    @media (max-width: 760px) {
+      body {
+        padding-top: 110px;
+      }
+
+      .offline-banner__content {
+        gap: 12px;
+      }
+
+      .status-icon__badge {
+        width: 50px;
+        height: 50px;
+        font-size: 1.5rem;
+      }
+
+      .promo-banner__content {
+        padding: 20px 16px;
+        grid-template-columns: 1fr;
+      }
+
+      .release-title {
+        font-size: clamp(1.6rem, 8vw, 2.4rem);
+      }
+
+      .promo-actions {
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .preorder-btn,
+      .status-badge,
+      .countdown {
+        max-width: 100%;
+        width: 100%;
+      }
+    }
+
+    @media (max-width: 520px) {
+      body {
+        padding-top: 95px;
+      }
+
+      .offline-banner__inner {
+        padding: 14px 12px;
+      }
+
+      .offline-banner__title {
+        font-size: 0.95rem;
+      }
+
+      .offline-banner__subtitle {
+        font-size: 0.7rem;
+      }
+
+      .status-icon__badge {
+        width: 48px;
+        height: 48px;
+        font-size: 1.4rem;
+      }
+
+      .cover-art {
+        width: 160px;
+        height: 160px;
+      }
+
+      .schedule-item {
+        gap: 8px;
+        padding: 9px 10px;
+      }
+
+      .schedule-label {
+        min-width: 82px;
+        font-size: 0.64rem;
+      }
+
+      .schedule-date,
+      .schedule-duration {
+        font-size: 0.72rem;
+      }
+
+      .platform-pill {
+        font-size: 0.54rem;
+        padding: 5px 9px;
+      }
+
+      .preorder-btn {
+        padding: 12px 16px;
+        font-size: 0.75rem;
+      }
+
+      .status-badge {
+        font-size: 0.64rem;
+        padding: 6px 10px;
+      }
+
+      .countdown {
+        font-size: 0.75rem;
+        padding: 6px 10px;
+      }
+
+      .countdown-value {
+        font-size: 0.95em;
+      }
+
+      .countdown-label {
+        font-size: 0.6em;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- OFFLINE BANNER -->
+  <div class="offline-banner" id="offlineBanner" role="status" aria-live="polite" aria-label="System maintenance notification">
+    <div class="offline-banner__inner">
+      <div class="offline-banner__particles" aria-hidden="true">
+        <span class="smoke"></span>
+        <span class="smoke"></span>
+        <span class="smoke"></span>
+        <span class="smoke"></span>
+        <span class="smoke"></span>
+      </div>
+
+      <div class="offline-banner__gradient" aria-hidden="true"></div>
+
+      <div class="offline-banner__content">
+        <div class="status-icon" aria-hidden="true">
+          <div class="status-icon__badge">🎵</div>
+        </div>
+
+        <div class="offline-banner__text">
+          <div class="offline-banner__title">Digital Divide Records is Currently Offline</div>
+          <div class="offline-banner__subtitle">
+            We're upgrading our systems to serve you better
+            <span class="loader" aria-hidden="true">
+              <span class="loader-dot"></span>
+              <span class="loader-dot"></span>
+              <span class="loader-dot"></span>
+            </span>
+          </div>
+        </div>
+
+        <button
+          class="offline-banner__close"
+          id="closeOfflineBanner"
+          type="button"
+          aria-label="Dismiss notification"
+          title="Dismiss notification"
+        >
+          ✕
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROMO BANNER -->
+  <section class="promo-banner" title="New Release Promotional Banner" aria-label="New Release Promotional Banner">
+    <div class="promo-banner__bg" aria-hidden="true"></div>
+
+    <div class="promo-banner__content">
+      <div class="cover-wrap" aria-label="Album Cover For Sunsets In S.A">
+        <div class="cover-art">
+          <img 
+            src="DJJonnas-SunsetsInSA-CoverArt.jpeg" 
+            alt="DJ Jonnas - Sunsets In S.A Cover Art"
+            loading="lazy"
+          />
+        </div>
+      </div>
+
+      <div class="release-info">
+        <h2 class="release-title">New Music Alert!!</h2>
+        <div class="artist-name">DJ Jonnas</div>
+        <div class="artist-name">Sunsets In S.A</div>
+
+        <div class="release-schedule" aria-label="Release schedule">
+          <div class="schedule-item">
+            <span class="schedule-icon" aria-hidden="true">📅</span>
+            <span class="schedule-label">Pre-Order</span>
+            <span class="schedule-date">Oct 30, 2026</span>
+            <span class="schedule-duration">(2 weeks On Beatport & Volumo)</span>
+          </div>
+
+          <div class="schedule-item">
+            <span class="schedule-icon" aria-hidden="true">🔓</span>
+            <span class="schedule-label">Pre-Release</span>
+            <span class="schedule-date">Nov 13, 2026</span>
+            <span class="schedule-duration">(2 weeks On Beatport & Volumo)</span>
+          </div>
+
+          <div class="schedule-item">
+            <span class="schedule-icon" aria-hidden="true">🚀</span>
+            <span class="schedule-label">Release</span>
+            <span class="schedule-date">Nov 27, 2026</span>
+            <span class="schedule-duration">Worldwide<br>(<strong>Except:</strong> NetEase, Pandora, Taobao, Tencent)</span>
+          </div>
+        </div>
+
+        <div class="platform-list" aria-label="Stores list">
+          <span class="platform-pill">Pre-Order On Beatport</span>
+          <span class="platform-pill">Pre-Order On Volumo</span>
+          <span class="platform-pill">Pre-Release: Nov 13</span>
+          <span class="platform-pill">Release: Nov 27</span>
+        </div>
+      </div>
+
+      <div class="promo-actions">
+        <button class="preorder-btn" id="preorderBtn" type="button" aria-label="Pre-order on Beatport and Volumo">
+          Pre-Order Now
+        </button>
+        <div class="status-badge" id="statusBadge">Coming Oct 30</div>
+        <div class="countdown" id="countdownDisplay" aria-live="polite" aria-atomic="true">
+          Calculating countdown...
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- JAVASCRIPT -->
+  <script>
+    (function () {
+      'use strict';
+
+      // ========== STORAGE MANAGEMENT ==========
+      const STORAGE_KEYS = {
+        offlineDismissed: 'ddr_offline_banner_dismissed'
+      };
+
+      function safeStorageGet(key) {
+        try {
+          return window.localStorage.getItem(key);
+        } catch (error) {
+          console.warn('localStorage get failed:', error);
+          return null;
+        }
+      }
+
+      function safeStorageSet(key, value) {
+        try {
+          window.localStorage.setItem(key, String(value));
+          return true;
+        } catch (error) {
+          console.warn('localStorage set failed:', error);
+          return false;
+        }
+      }
+
+      // ========== OFFLINE BANNER MANAGEMENT ==========
+      const offlineBanner = document.getElementById('offlineBanner');
+      const closeOfflineBanner = document.getElementById('closeOfflineBanner');
+
+      if (closeOfflineBanner && offlineBanner) {
+        closeOfflineBanner.addEventListener('click', function () {
+          offlineBanner.style.animation = 'bannerDown 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) reverse forwards';
+          setTimeout(function () {
+            offlineBanner.classList.add('hidden');
+            safeStorageSet(STORAGE_KEYS.offlineDismissed, 'true');
+          }, 500);
+        });
+
+        const offlineDismissed = safeStorageGet(STORAGE_KEYS.offlineDismissed);
+        if (offlineDismissed === 'true') {
+          offlineBanner.classList.add('hidden');
+        }
+
+        window.addEventListener('online', function () {
+          offlineBanner.classList.remove('hidden');
+          offlineBanner.style.animation = 'bannerDown 0.9s cubic-bezier(0.34, 1.56, 0.64, 1) forwards';
+          safeStorageSet(STORAGE_KEYS.offlineDismissed, 'false');
+        });
+      }
+
+      // ========== COUNTDOWN TIMER (FULLY FUNCTIONAL) ==========
+      const countdownDisplay = document.getElementById('countdownDisplay');
+      const statusBadge = document.getElementById('statusBadge');
+      const preorderBtn = document.getElementById('preorderBtn');
+
+      // Pre-order date: October 30, 2026 at 00:00:00 UTC
+      const PRE_ORDER_DATE = new Date('2026-10-30T00:00:00Z').getTime();
+      const PRE_RELEASE_DATE = new Date('2026-11-13T00:00:00Z').getTime();
+      const RELEASE_DATE = new Date('2026-11-27T00:00:00Z').getTime();
+
+      function formatCountdown() {
+        const now = Date.now();
+
+        // Determine which phase we're in
+        let targetDate, phase;
+        if (now < PRE_ORDER_DATE) {
+          targetDate = PRE_ORDER_DATE;
+          phase = 'pre-order';
+        } else if (now < PRE_RELEASE_DATE) {
+          targetDate = PRE_RELEASE_DATE;
+          phase = 'pre-release';
+        } else if (now < RELEASE_DATE) {
+          targetDate = RELEASE_DATE;
+          phase = 'release';
+        } else {
+          // Release is live
+          if (countdownDisplay) countdownDisplay.textContent = '🎉 Now Available Worldwide!';
+          if (statusBadge) statusBadge.textContent = '✅ Released';
+          if (preorderBtn) preorderBtn.textContent = 'Now Available';
+          return;
+        }
+
+        const diff = targetDate - now;
+
+        if (diff <= 0) {
+          formatCountdown();
+          return;
+        }
+
+        // Calculate time units
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+        const minutes = Math.floor((diff / (1000 * 60)) % 60);
+        const seconds = Math.floor((diff / 1000) % 60);
+
+        // Format output
+        let displayText = '';
+        if (phase === 'pre-order') {
+          displayText = `<span class="countdown-value">${days}</span><span class="countdown-label">D</span> ` +
+                       `<span class="countdown-value">${hours}</span><span class="countdown-label">H</span> ` +
+                       `<span class="countdown-value">${minutes}</span><span class="countdown-label">M</span> ` +
+                       `<span class="countdown-value">${seconds}</span><span class="countdown-label">S</span>`;
+        } else if (phase === 'pre-release') {
+          displayText = `<span class="countdown-value">${days}</span><span class="countdown-label">D</span> ` +
+                       `<span class="countdown-value">${hours}</span><span class="countdown-label">H</span> ` +
+                       `Until Release`;
+        } else if (phase === 'release') {
+          displayText = `<span class="countdown-value">${days}</span><span class="countdown-label">D</span> ` +
+                       `<span class="countdown-value">${hours}</span><span class="countdown-label">H</span> ` +
+                       `Until Release`;
+        }
+
+        if (countdownDisplay) {
+          countdownDisplay.innerHTML = displayText;
+        }
+
+        // Update status badge
+        if (statusBadge) {
+          if (phase === 'pre-order') {
+            statusBadge.textContent = `Coming Oct 30 (${days}d)`;
+          } else if (phase === 'pre-release') {
+            statusBadge.textContent = `Pre-Release Active (${days}d)`;
+          } else if (phase === 'release') {
+            statusBadge.textContent = `Releasing Soon (${days}d)`;
+          }
+        }
+      }
+
+      // Initial countdown update
+      formatCountdown();
+
+      // Update countdown every second
+      const countdownInterval = setInterval(formatCountdown, 1000);
+
+      // Cleanup on page unload
+      window.addEventListener('beforeunload', function () {
+        clearInterval(countdownInterval);
+      });
+
+      // ========== PRE-ORDER BUTTON ==========
+      if (preorderBtn) {
+        preorderBtn.addEventListener('click', function () {
+          const now = Date.now();
+          let message = '';
+
+          if (now < PRE_ORDER_DATE) {
+            message = '🎵 Pre-orders start October 30, 2026.\n\nAvailable on:\n• Beatport\n• Volumo\n\nThank you for your support!';
+          } else if (now < PRE_RELEASE_DATE) {
+            message = '🎵 Pre-release is now active!\n\nAvailable on:\n• Beatport\n• Volumo\n\nFull release: November 27, 2026';
+          } else if (now < RELEASE_DATE) {
+            message = '🎵 Pre-release is active!\n\nFull worldwide release coming November 27, 2026';
+          } else {
+            message = '🎉 Sunsets In S.A is now available worldwide!\n\nAvailable on all major platforms.';
+          }
+
+          window.alert(message);
+        });
+      }
+
+      // ========== KEYBOARD SHORTCUTS ==========
+      document.addEventListener('keydown', function (event) {
+        if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === 'b') {
+          event.preventDefault();
+          if (offlineBanner) {
+            offlineBanner.classList.remove('hidden');
+            offlineBanner.style.animation = 'bannerDown 0.9s cubic-bezier(0.34, 1.56, 0.64, 1) forwards';
+          }
+        }
+      });
+
+      // ========== INITIALIZATION LOG ==========
+      console.log('✅ Digital Divide Records banner system loaded successfully!');
+      console.log('⏱️ Countdown timer is active and updating every second');
+      console.log('🎹 Keyboard shortcut: Ctrl+B to show offline banner');
+      console.log('📅 Pre-Order: Oct 30, 2026');
+      console.log('🔓 Pre-Release: Nov 13, 2026');
+      console.log('🚀 Full Release: Nov 27, 2026');
+    })();
+  </script>
+</body>
+</html>
